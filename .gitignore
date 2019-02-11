@@ -2,6 +2,7 @@
 *.svg
 *.pdf
 *.png
+!cloud.png
 *.pyc
 facility_onepagers*
 excel_data_sheets
