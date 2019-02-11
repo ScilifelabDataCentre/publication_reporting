@@ -1,0 +1,7 @@
+*.html
+*.svg
+*.pdf
+*.png
+*.pyc
+facility_onepagers*
+excel_data_sheets
