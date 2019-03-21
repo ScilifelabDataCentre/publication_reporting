@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env python
 
 import requests
 import json
@@ -11,7 +11,6 @@ class facility_reports(object):
         self.api_headers = {'X-OrderPortal-API-key': api_key}
         self.base_url = "https://facility-reports.scilifelab.se"
 
-    
     def get_reports(self, status=None, form_title=None, facility=None, return_url=False):
         """Return all report ids or api url if requested"""
         report_list = []
@@ -41,8 +40,4 @@ class facility_reports(object):
             else:
                 return {}
         return resp.json()
-            
-fcr = facility_reports(api_key="022d270ec6984994a3ca22bb2b86f3ef")
 
-
-submitted_reports = fcr.get_reports(status="submitted", return_url=True)
