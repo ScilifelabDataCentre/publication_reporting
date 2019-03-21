@@ -44,13 +44,13 @@ for journal in issn_f:
 		ISSN_IMPACT_2015[j[0]]=0
 issn_f.close()
 
-issn_to_l = open(os.path.dirname(os.path.realpath(__file__))+"/assets/ISSN-to-ISSN-L.tsv", "r")
+issn_to_l = open(os.path.dirname(os.path.realpath(__file__))+"/assets/ISSN-to-ISSN-L.tsv.relevant", "r")
 for entry in issn_to_l:
 	e = entry.strip().split("\t")
 	ISSN_TO_ISSNL[e[0]] = e[1]
 issn_to_l.close()
 
-issn_l = open(os.path.dirname(os.path.realpath(__file__))+"/assets/ISSN-L-to-ISSN.tsv", "r")
+issn_l = open(os.path.dirname(os.path.realpath(__file__))+"/assets/ISSN-L-to-ISSN.tsv.relevant", "r")
 for entry in issn_l:
 	e = entry.strip().split("\t")
 	ISSNL_TO_ISSN[e[0]] = e[1:]

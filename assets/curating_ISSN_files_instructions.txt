@@ -1,0 +1,20 @@
+cat ISSN_impact_2015.tsv | cut -f 1 >> ISSNs_that_have_impact.txt
+cat ISSN_impact_2016.tsv | cut -f 1 >> ISSNs_that_have_impact.txt
+cat ISSN_impact_2017.tsv | cut -f 1 >> ISSNs_that_have_impact.txt
+cat ISSNs_that_have_impact.txt | sort | uniq > ISSNs_that_have_impact.txt.sort.uniq
+
+#split ISSNs_that_have_impact.txt.sort.uniq into 5 parts
+
+while read f; do grep $f ISSN-L-to-ISSN.tsv >> ISSN-L-to-ISSN.tsv.grepped.1; done < ISSNs_that_have_impact.txt.sort.uniq.1
+while read f; do grep $f ISSN-L-to-ISSN.tsv >> ISSN-L-to-ISSN.tsv.grepped.2; done < ISSNs_that_have_impact.txt.sort.uniq.2
+while read f; do grep $f ISSN-L-to-ISSN.tsv >> ISSN-L-to-ISSN.tsv.grepped.3; done < ISSNs_that_have_impact.txt.sort.uniq.3
+while read f; do grep $f ISSN-L-to-ISSN.tsv >> ISSN-L-to-ISSN.tsv.grepped.4; done < ISSNs_that_have_impact.txt.sort.uniq.4
+while read f; do grep $f ISSN-L-to-ISSN.tsv >> ISSN-L-to-ISSN.tsv.grepped.5; done < ISSNs_that_have_impact.txt.sort.uniq.5
+
+
+while read f; do grep $f ISSN-to-ISSN-L.tsv >> ISSN-to-ISSN-L.tsv.grepped.1; done < ISSNs_that_have_impact.txt.sort.uniq.1
+while read f; do grep $f ISSN-to-ISSN-L.tsv >> ISSN-to-ISSN-L.tsv.grepped.2; done < ISSNs_that_have_impact.txt.sort.uniq.2
+while read f; do grep $f ISSN-to-ISSN-L.tsv >> ISSN-to-ISSN-L.tsv.grepped.3; done < ISSNs_that_have_impact.txt.sort.uniq.3
+while read f; do grep $f ISSN-to-ISSN-L.tsv >> ISSN-to-ISSN-L.tsv.grepped.4; done < ISSNs_that_have_impact.txt.sort.uniq.4
+while read f; do grep $f ISSN-to-ISSN-L.tsv >> ISSN-to-ISSN-L.tsv.grepped.5; done < ISSNs_that_have_impact.txt.sort.uniq.5
+
