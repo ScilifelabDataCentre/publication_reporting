@@ -41,3 +41,13 @@ class facility_reports(object):
                 return {}
         return resp.json()
 
+    def download_file(self, url, path):
+        """Downloads a file from URL, used to download the suppl files to report"""
+        local_filename = url.split('/')[-1]
+        with requests.get(url, stream=True, headers=self.api_headers) as r:
+            r.raise_for_status()
+            with open("{}/{}".format(path, local_filename), 'wb') as f:
+                for chunk in r.iter_content(chunk_size=8192): 
+                    if chunk:
+                        f.write(chunk)
+        return local_filename
