@@ -11,6 +11,7 @@ import math
 def all_same(items):
 	return all(x == items[0] for x in items)
 
+warnings = []
 
 fcr = facility_reports(api_key=API_KEY)
 
@@ -88,7 +89,7 @@ for report in reports:
 		else: # Just store the rest
 			report_data[key] = report[key]
 	if not volume_file:
-		print "WARNING: NO EXPLICITLY NAMED VOLUME FILE FOR {}, USING {}".format( report_id, volume_file_backup)
+		warnings.append("WARNING: NO EXPLICITLY NAMED VOLUME FILE FOR {}, USING {}".format( report_id, volume_file_backup))
 		volume_file = volume_file_backup
 
 	volume_file = "{}/{}".format(sub_directory, volume_file.split("/")[-1])
@@ -130,27 +131,27 @@ for report in reports:
 			if type(row[2]) == unicode and row[2].strip() != u"":
 				user_fname = row[2].strip()
 			else:
-				print "WARNING: Missing user first name in {} row {}. Report ID: {}".format(facility_name, i, report_id)
+				warnings.append("WARNING: Missing user first name in {} row {}. Report ID: {}".format(facility_name, i, report_id))
 				user_fname = u""
 			# Last name
 			if type(row[3]) == unicode and row[3].strip() != u"":
 				user_lname = row[3].strip()
 			else:
-				print "WARNING: Missing user last name in {} row {}. Report ID: {}".format(facility_name, i, report_id)
+				warnings.append("WARNING: Missing user last name in {} row {}. Report ID: {}".format(facility_name, i, report_id))
 				user_lname = u""
 			# Email
 			if type(row[4]) == unicode and row[4].strip() != u"":
 				user_email = row[4].strip().lower()
 				if u"@" not in user_email:
-					print "WARNING: Broken email address: '{}' in {} row {}. Report ID: {}".format(user_email, facility_name, i, report_id)
+					warnings.append("WARNING: Broken email address: '{}' in {} row {}. Report ID: {}".format(user_email, facility_name, i, report_id))
 			else:
-				print "WARNING: Missing user email in {} row {}. Report ID: {}".format(facility_name, i, report_id)
+				warnings.append("WARNING: Missing user email in {} row {}. Report ID: {}".format(facility_name, i, report_id))
 				user_email = u""
 			# Affiliation
 			if type(row[5]) == unicode and row[5].strip() != u"":
 				user_aff = row[5].strip()
 			else:
-				print "WARNING: Missing user affiliation in {} row {}. Report ID: {}".format(facility_name, i, report_id)
+				warnings.append("WARNING: Missing user affiliation in {} row {}. Report ID: {}".format(facility_name, i, report_id))
 				user_aff = u""
 			# Affiliation specification
 			if type(row[6]) == unicode and row[6].strip() != u"":
@@ -168,7 +169,7 @@ for report in reports:
 		if len(user_dict[user_email]) > 1:
 			if u"@" in user_email:
 				if not all_same(user_dict[user_email]):
-					print "WARNING: Same user email different info: {} {}. Report ID: {}".format(user_dict[user_email], user_email, report_id)
+					warnings.append("WARNING: Same user email different info: {} {}. Report ID: {}".format(user_dict[user_email], user_email, report_id))
 
 	affiliation_dict = {}
 	for aff in valid_affiliations:
@@ -179,7 +180,7 @@ for report in reports:
 			try:
 				affiliation_dict[user[2]] += 1
 			except KeyError as e:
-				print "WARNING: Affiliation not valid: {}. Report ID: {}".format(user, report_id) 
+				warnings.append("WARNING: Affiliation not valid: {}. Report ID: {}".format(user, report_id))
 	
 	report_data["user_affiliation"] = affiliation_dict
 
@@ -191,6 +192,8 @@ for report in reports:
 	all_reports_data[report_id] = report_data
 
 with open("{}/all_reports_data.json".format(directory), 'w') as f:
-    json.dump(all_reports_data, f)
+	json.dump(all_reports_data, f)
 
+# for warning in warnings:
+# 	print warning
 
