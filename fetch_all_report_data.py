@@ -40,7 +40,7 @@ submitted_report_urls = fcr.get_reports(status="submitted", return_url=True)
 reports = []
 
 for report in submitted_report_urls:
-	print "Fethced:", report
+	print "Fetched:", report
 	reports.append(fcr.get_url_json(report))
 
 # print reports
