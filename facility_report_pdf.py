@@ -3,6 +3,8 @@
 
 import os.path
 import pandas as pd
+import json
+import xlsxwriter
 
 from reportlab.platypus import BaseDocTemplate, Paragraph, Spacer, Image, PageTemplate, Frame, CondPageBreak
 from reportlab.platypus.flowables import HRFlowable
@@ -15,6 +17,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from functools import partial
 from svglib.svglib import svg2rlg
 
+from facility_report_plots import user_plot
 
 def header(canvas, doc, content):
 	canvas.saveState()
@@ -37,8 +40,8 @@ def generatePdf(facility_name, reporting_data):
 		showBoundary=0
 	)
 	pdfmetrics.registerFont(TTFont('MinionPro', 'MinionPro-Regular.ttf'))
-	pdfmetrics.registerFont(TTFont('Frutiger-65-Bold', 'Frutiger-LT-Std-65-Bold_18824 2.ttf'))
-	pdfmetrics.registerFont(TTFont('Frutiger-45-Light', 'Frutiger-LT-Std-45-Light_18818 2.ttf'))
+	pdfmetrics.registerFont(TTFont('Frutiger-65-Bold', 'Frutiger-LT-Std-65-Bold.ttf'))
+	pdfmetrics.registerFont(TTFont('Frutiger-45-Light', 'Frutiger-LT-Std-45-Light.ttf'))
 
 	styles = getSampleStyleSheet()
 	styles.add(ParagraphStyle(name="onepager_inner_heading", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=10, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8))
@@ -62,7 +65,7 @@ def generatePdf(facility_name, reporting_data):
 	Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>Basic information</b></font>", styles["onepager_inner_heading"]))
 
 	directors = ""
-	for director in reporting_data["directors"]:
+	for director in reporting_data["facility_director"]:
 		if directors:
 			directors += u', ' + u' '.join((director[0], director[1])).strip()
 		else:
@@ -74,7 +77,7 @@ def generatePdf(facility_name, reporting_data):
 	try:
 		heads = ""
 		print facility_name
-		for head in reporting_data["heads"]:
+		for head in reporting_data["facility_head"]:
 			if heads:
 				heads += u', ' + u' '.join((head[0], head[1])).strip()
 			else:
@@ -383,6 +386,230 @@ def generatePdf(facility_name, reporting_data):
 
 if __name__ == "__main__":
 	reporting_data = dict()
+	garbage_data = dict()
+
+	all_data_raw = open("fetched_facility_reports/all_reports_data.json", "r").read()
+
+	all_data_dict = json.loads(all_data_raw)
+
+	for report in all_data_dict.keys():
+
+		facility = all_data_dict[report]["facility"]
+		reporting_data[facility] = dict()
+		garbage_data[facility] = dict()
+
+		print facility
+
+		reporting_data[facility]["fte"] = all_data_dict[report]["fte"]
+		reporting_data[facility]["fte_scilifelab"] = all_data_dict[report]["fte_scilifelab"]
+
+		reporting_data[facility]["resource_academic_national"] = all_data_dict[report]["resource_academic_national"]
+		reporting_data[facility]["resource_academic_international"] = all_data_dict[report]["resource_academic_international"]
+		reporting_data[facility]["resource_internal"] = all_data_dict[report]["resource_internal"]
+		reporting_data[facility]["resource_industry"] = all_data_dict[report]["resource_industry"]
+		reporting_data[facility]["resource_healthcare"] = all_data_dict[report]["resource_healthcare"]
+		reporting_data[facility]["resource_other"] = all_data_dict[report]["resource_other"]
+
+		reporting_data[facility]["user_fees_academic_sweden"] = all_data_dict[report]["user_fees_academic_sweden"]
+		reporting_data[facility]["user_fees_academic_international"] = all_data_dict[report]["user_fees_academic_international"]
+		reporting_data[facility]["user_fees_industry"] = all_data_dict[report]["user_fees_industry"]
+		reporting_data[facility]["user_fees_healthcare"] = all_data_dict[report]["user_fees_healthcare"]
+		reporting_data[facility]["user_fees_other"] = all_data_dict[report]["user_fees_other"]
+
+		reporting_data[facility]["cost_reagents"] = all_data_dict[report]["cost_reagents"]
+		reporting_data[facility]["cost_instrument"] = all_data_dict[report]["cost_instrument"]
+		reporting_data[facility]["cost_salaries"] = all_data_dict[report]["cost_salaries"]
+		reporting_data[facility]["cost_rents"] = all_data_dict[report]["cost_rents"]
+		reporting_data[facility]["cost_other"] = all_data_dict[report]["cost_other"]
+
+		reporting_data[facility]["additional_funding"] = all_data_dict[report]["additional_funding"]
+
+		reporting_data[facility]["facility_head"] = all_data_dict[report]["facility_head"]
+		reporting_data[facility]["facility_director"] = all_data_dict[report]["facility_director"]
+
+		reporting_data[facility]["user_affiliation"] = all_data_dict[report]["user_affiliation"]
+
+		# NOT USED IN REPORT BUT I THINK CONTAINS DATA??:
+		garbage_data[facility]["personnel"] = all_data_dict[report]["personnel"]
+		garbage_data[facility]["personnel_count"] = all_data_dict[report]["personnel_count"]
+		garbage_data[facility]["personnel_count_male"] = all_data_dict[report]["personnel_count_male"]
+		garbage_data[facility]["personnel_count_phd"] = all_data_dict[report]["personnel_count_phd"]
+		garbage_data[facility]["personnel_count_phd_male"] = all_data_dict[report]["personnel_count_phd_male"]
+
+		garbage_data[facility]["eln_usage"] = all_data_dict[report]["eln_usage"]
+		garbage_data[facility]["facility_kpi"] = all_data_dict[report]["facility_kpi"]
+		garbage_data[facility]["user_fees"] = all_data_dict[report]["user_fees"]
+		garbage_data[facility]["immaterial_property_rights"] = all_data_dict[report]["immaterial_property_rights"]
+		garbage_data[facility]["identifier"] = all_data_dict[report]["identifier"]
+		garbage_data[facility]["resource_allocation"] = all_data_dict[report]["resource_allocation"]
+		garbage_data[facility]["finances"] = all_data_dict[report]["finances"]
+		garbage_data[facility]["scientific_achievements"] = all_data_dict[report]["scientific_achievements"]
+		garbage_data[facility]["technology_development"] = all_data_dict[report]["technology_development"]
+
+		garbage_data[facility]["innovation_utilization"] = all_data_dict[report]["innovation_utilization"]
+		garbage_data[facility]["achievements_of_the_year"] = all_data_dict[report]["achievements_of_the_year"]
+		garbage_data[facility]["budget_next_year"] = all_data_dict[report]["budget_next_year"]
+		garbage_data[facility]["type_of_costs"] = all_data_dict[report]["type_of_costs"]
+		garbage_data[facility]["number_projects"] = all_data_dict[report]["number_projects"]
+		garbage_data[facility]["user_fee_models"] = all_data_dict[report]["user_fee_models"]
+
+		garbage_data[facility]["deliverables"] = all_data_dict[report]["deliverables"]
+		garbage_data[facility]["user_feedback"] = all_data_dict[report]["user_feedback"]
+
+		# NOT USED AND NOT RELEVANT
+		garbage_data[facility]["type"] = all_data_dict[report]["type"]
+		garbage_data[facility]["invalid"] = all_data_dict[report]["invalid"]
+		garbage_data[facility]["site"] = all_data_dict[report]["site"]
+		garbage_data[facility]["links"] = all_data_dict[report]["links"]
+		garbage_data[facility]["form"] = all_data_dict[report]["form"]
+		garbage_data[facility]["tags"] = all_data_dict[report]["tags"]
+		garbage_data[facility]["timestamp"] = all_data_dict[report]["timestamp"]
+		garbage_data[facility]["report"] = all_data_dict[report]["report"]
+		garbage_data[facility]["created"] = all_data_dict[report]["created"]
+		garbage_data[facility]["iuid"] = all_data_dict[report]["iuid"]
+		garbage_data[facility]["modified"] = all_data_dict[report]["modified"]
+		garbage_data[facility]["volume_data"] = all_data_dict[report]["volume_data"]
+
+		garbage_data[facility]["owner"] = all_data_dict[report]["owner"]
+		reporting_data[facility]["id"] = all_data_dict[report]["id"]
+		garbage_data[facility]["title"] = all_data_dict[report]["title"]
+		garbage_data[facility]["history"] = all_data_dict[report]["history"]
+		garbage_data[facility]["status"] = all_data_dict[report]["status"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		del all_data_dict[report]["facility"]
+
+		del all_data_dict[report]["fte"]
+		del all_data_dict[report]["fte_scilifelab"]
+
+		del all_data_dict[report]["resource_academic_national"]
+		del all_data_dict[report]["resource_academic_international"]
+		del all_data_dict[report]["resource_internal"]
+		del all_data_dict[report]["resource_industry"]
+		del all_data_dict[report]["resource_healthcare"]
+		del all_data_dict[report]["resource_other"]
+
+		del all_data_dict[report]["user_fees_academic_sweden"]
+		del all_data_dict[report]["user_fees_academic_international"]
+		del all_data_dict[report]["user_fees_industry"]
+		del all_data_dict[report]["user_fees_healthcare"]
+		del all_data_dict[report]["user_fees_other"]
+
+		del all_data_dict[report]["cost_reagents"]
+		del all_data_dict[report]["cost_instrument"]
+		del all_data_dict[report]["cost_salaries"]
+		del all_data_dict[report]["cost_rents"]
+		del all_data_dict[report]["cost_other"]
+
+		del all_data_dict[report]["facility_head"]
+		del all_data_dict[report]["facility_director"]
+
+		del all_data_dict[report]["user_affiliation"]
+
+
+		# NOT USED IN REPORT BUT I THINK CONTAINS DATA??:
+		del all_data_dict[report]["personnel"]
+		del all_data_dict[report]["personnel_count"]
+		del all_data_dict[report]["personnel_count_male"]
+		del all_data_dict[report]["personnel_count_phd"]
+		del all_data_dict[report]["personnel_count_phd_male"]
+
+
+
+		del all_data_dict[report]["eln_usage"]
+		del all_data_dict[report]["facility_kpi"]
+		del all_data_dict[report]["user_fees"]
+		del all_data_dict[report]["immaterial_property_rights"]
+		del all_data_dict[report]["identifier"]
+		del all_data_dict[report]["resource_allocation"]
+		del all_data_dict[report]["finances"]
+		del all_data_dict[report]["scientific_achievements"]
+		del all_data_dict[report]["technology_development"]
+
+
+		del all_data_dict[report]["innovation_utilization"]
+		del all_data_dict[report]["achievements_of_the_year"]
+		del all_data_dict[report]["budget_next_year"]
+		del all_data_dict[report]["type_of_costs"]
+		del all_data_dict[report]["number_projects"]
+		del all_data_dict[report]["user_fee_models"]
+
+		del all_data_dict[report]["additional_funding"]
+		del all_data_dict[report]["deliverables"]
+		del all_data_dict[report]["user_feedback"]
+
+
+
+		# NOT USED AND NOT RELEVANT
+		del all_data_dict[report]["type"]
+		del all_data_dict[report]["invalid"]
+		del all_data_dict[report]["site"]
+		del all_data_dict[report]["links"]
+		del all_data_dict[report]["form"]
+		del all_data_dict[report]["tags"]
+		del all_data_dict[report]["timestamp"]
+		del all_data_dict[report]["report"]
+		del all_data_dict[report]["created"]
+		del all_data_dict[report]["iuid"]
+		del all_data_dict[report]["modified"]
+		del all_data_dict[report]["volume_data"]
+
+		del all_data_dict[report]["owner"]
+		del all_data_dict[report]["id"]
+		del all_data_dict[report]["title"]
+		del all_data_dict[report]["history"]
+		del all_data_dict[report]["status"]
+
+		user_plot(reporting_data[facility]["user_affiliation"], facility)
+	
+		# for key in sorted(garbage_data[facility].keys()):
+		# 	print key, garbage_data[facility][key]
+	
+	workbook = xlsxwriter.Workbook('Facility_report_data.xlsx')
+	worksheet = workbook.add_worksheet()
+	bold = workbook.add_format({'bold': True})
+
+	for row, facility in enumerate(sorted(reporting_data.keys()),1):
+
+		if row == 1:
+			 worksheet.write(0,0, 'Facility', bold)
+			 worksheet.write(0,1, 'Facility report ID', bold)
+
+		worksheet.write(row, 0, facility, bold)
+
+		# Create a Pandas dataframe from the data.
+		facility_item_list = []
+
+		for col, item in enumerate(sorted(reporting_data[facility].keys()),2):
+			if row == 1:
+				worksheet.write(0, col, item, bold)
+
+			if item == "id":
+				worksheet.write(row, 1, reporting_data[facility][item], bold)
+			else:
+				worksheet.write(row, col, unicode(reporting_data[facility][item]))
+	workbook.close()
+
+
+
+
+
+
+'''
+
+	reporting_data = dict()
 
 	facility_to_pubdb_label = open("excel_data_sheets/reporting_facility_to_pubdb_label.tsv").readlines()
 	for facility_entry in facility_to_pubdb_label:
@@ -477,10 +704,10 @@ if __name__ == "__main__":
 			lname = row["facility_head: Last name"]
 
 		try:
-			reporting_data[facility]["heads"].append((fname, lname))
+			reporting_data[facility]["facility_head"].append((fname, lname))
 		except KeyError as e:
 			#First entry:
-			reporting_data[facility]["heads"] = [(fname, lname)]
+			reporting_data[facility]["facility_head"] = [(fname, lname)]
 
 	for i, row in directors_df.iterrows():
 		facility = row["facility"]
@@ -493,10 +720,10 @@ if __name__ == "__main__":
 		else:
 			lname = row["facility_director: Last name"]
 		try:
-			reporting_data[facility]["directors"].append((fname, lname))
+			reporting_data[facility]["facility_director"].append((fname, lname))
 		except KeyError as e:
 			#First entry:
-			reporting_data[facility]["directors"] = [(fname, lname)]
+			reporting_data[facility]["facility_director"] = [(fname, lname)]
 
 	for i, row in funding_df.iterrows():
 		facility = row["facility"]
@@ -509,4 +736,4 @@ if __name__ == "__main__":
 
 	for facility in reporting_data.keys():
 		generatePdf(facility, reporting_data[facility])
-		
+'''	

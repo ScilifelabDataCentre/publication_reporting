@@ -12,9 +12,7 @@ from colour_science import SCILIFE_COLOURS, FACILITY_USER_AFFILIATION_COLOUR_OFF
 from issn_files import ISSN_IMPACT_2017, ISSN_IMPACT_2016, ISSN_IMPACT_2015, ISSN_TO_ISSNL, ISSNL_TO_ISSN, issn_to_impact
 from publications_api import Publications_api
 
-def build_plots():
-	### GLOBALS ### 
-	T_ZERO = time.time()
+def user_plot(user_affiliation_data, fac):
 	aff_map_abbr = {
 		"Chalmers University of Technology": "Chalmers",
 		"KTH Royal Institute of Technology": "KTH",
@@ -30,63 +28,130 @@ def build_plots():
 		"International University": "International<br>University",
 		"Other Swedish University" : "Other Swedish<br>University",
 		"Other Swedish organization" : "Other Swedish<br>organization",
-		"Other international organization" : "Other international<br>organization"
+		"Other international organization" : "Other international<br>organization",
+		"Industry": "Industry",
+		"Healthcare": "Healthcare"
 	}
+
+	user_fig_name = 'facility_onepagers_figures/{}_user.svg'.format(fac.lower().replace(" ", "_"))
+	values = []
+	labels = []
+
+	for institution in user_affiliation_data.keys():
+		values.append(user_affiliation_data[institution])
+		labels.append(institution)
+	if sum(values) < 2:
+		pi_plural = "PI"
+	else:
+		pi_plural = "PIs"
+	fig = go.Figure(layout={
+		"margin":go.layout.Margin(
+			l=50,
+			r=50,
+			b=80,
+			t=30,
+			pad=4
+		),
+		"annotations": [{"font": {"size": 26},
+			"showarrow": False,
+			"text": "{} Individual {}".format(sum(values), pi_plural),
+			"x": 0.483,
+			"y": 0.5}]
+		}
+	)
+
+	for i in range(len(labels)):
+		print isinstance(labels[i], str)
+		print aff_map_abbr[str(labels[i])]
+
+	print ["{} ({}%)".format(aff_map_abbr.get(labels[i], labels[i]), round(float(values[i])/float(sum(values))*float(100), 1)) for i in range(len(labels))]
+
+	fig.add_pie(labels=labels,
+		values=values,
+		text=["{} ({}%)".format(aff_map_abbr.get(labels[i], labels[i]), round(float(values[i])/float(sum(values))*float(100), 1)) for i in range(len(labels))],
+		marker=dict(colors=[FACILITY_USER_AFFILIATION_COLOUR_OFFICIAL.get(labels[i], "#000000") for i in range(len(labels))]),
+		hole=0.6,
+		textinfo="text",
+		textposition="outside",
+		textfont=dict(size=24, color="#000000"),
+		showlegend=False)
+	plotly.io.write_image(fig, user_fig_name, width=800, height=600)
+
+def build_plots():
+	### GLOBALS ### 
+	T_ZERO = time.time()
+	# aff_map_abbr = {
+	# 	"Chalmers University of Technology": "Chalmers",
+	# 	"KTH Royal Institute of Technology": "KTH",
+	# 	"Swedish University of Agricultural Sciences": "SLU",
+	# 	"Karolinska Institutet": "KI",
+	# 	"Linköping University": "LiU",
+	# 	"Lund University": "LU",
+	# 	"Naturhistoriska Riksmuséet": "NRM",
+	# 	"Stockholm University": "SU",
+	# 	"Umeå University": "UmU",
+	# 	"University of Gothenburg": "GU",
+	# 	"Uppsala University": "UU",
+	# 	"International University": "International<br>University",
+	# 	"Other Swedish University" : "Other Swedish<br>University",
+	# 	"Other Swedish organization" : "Other Swedish<br>organization",
+	# 	"Other international organization" : "Other international<br>organization"
+	# }
 	
-	print "USER PLOTS..."
+	# print "USER PLOTS..."
 
-	user_dict = dict()
-	user_data_file = open("excel_data_sheets/user_data_for_facility_report_2018.tsv", "r").readlines()
+	# user_dict = dict()
+	# user_data_file = open("excel_data_sheets/user_data_for_facility_report_2018.tsv", "r").readlines()
 	
-	for line in user_data_file:
-		l_split = line.split("\t")
-		fac = l_split[0].strip()
+	# for line in user_data_file:
+	# 	l_split = line.split("\t")
+	# 	fac = l_split[0].strip()
 
-		institute = l_split[4].strip()
-		if fac in user_dict.keys():
-			if institute in user_dict[fac].keys():
-				user_dict[fac][institute] += 1
-			else:
-				user_dict[fac][institute] = 1
-		else:
-			user_dict[fac] = {institute:1}
+	# 	institute = l_split[4].strip()
+	# 	if fac in user_dict.keys():
+	# 		if institute in user_dict[fac].keys():
+	# 			user_dict[fac][institute] += 1
+	# 		else:
+	# 			user_dict[fac][institute] = 1
+	# 	else:
+	# 		user_dict[fac] = {institute:1}
 
-	for fac in user_dict.keys():
-		user_fig_name = 'facility_onepagers_figures/{}_user.svg'.format(fac.lower().replace(" ", "_"))
-		values = []
-		labels = []
-		for inst in user_dict[fac].keys():
-			values.append(user_dict[fac][inst])
-			labels.append(inst)
-		if sum(values) < 2:
-			pi_plural = "PI"
-		else:
-			pi_plural = "PIs"
-		fig = go.Figure(layout={
-			"margin":go.layout.Margin(
-				l=50,
-				r=50,
-				b=80,
-				t=30,
-				pad=4
-			),
-			"annotations": [{"font": {"size": 26},
-				"showarrow": False,
-				"text": "{} Individual {}".format(sum(values), pi_plural),
-				"x": 0.483,
-				"y": 0.5}]
-			}
-		)
-		fig.add_pie(labels=labels,
-			values=values,
-			text=["{} ({}%)".format(aff_map_abbr.get(labels[i], labels[i]), round(float(values[i])/float(sum(values))*float(100), 1)) for i in range(len(labels))],
-			marker=dict(colors=[FACILITY_USER_AFFILIATION_COLOUR_OFFICIAL.get(labels[i], "#000000") for i in range(len(labels))]),
-			hole=0.6,
-			textinfo="text",
-			textposition="outside",
-			textfont=dict(size=24, color="#000000"),
-			showlegend=False)
-		plotly.io.write_image(fig, user_fig_name, width=800, height=600)
+	# for fac in user_dict.keys():
+	# 	user_fig_name = 'facility_onepagers_figures/{}_user.svg'.format(fac.lower().replace(" ", "_"))
+	# 	values = []
+	# 	labels = []
+	# 	for inst in user_dict[fac].keys():
+	# 		values.append(user_dict[fac][inst])
+	# 		labels.append(inst)
+	# 	if sum(values) < 2:
+	# 		pi_plural = "PI"
+	# 	else:
+	# 		pi_plural = "PIs"
+	# 	fig = go.Figure(layout={
+	# 		"margin":go.layout.Margin(
+	# 			l=50,
+	# 			r=50,
+	# 			b=80,
+	# 			t=30,
+	# 			pad=4
+	# 		),
+	# 		"annotations": [{"font": {"size": 26},
+	# 			"showarrow": False,
+	# 			"text": "{} Individual {}".format(sum(values), pi_plural),
+	# 			"x": 0.483,
+	# 			"y": 0.5}]
+	# 		}
+	# 	)
+	# 	fig.add_pie(labels=labels,
+	# 		values=values,
+	# 		text=["{} ({}%)".format(aff_map_abbr.get(labels[i], labels[i]), round(float(values[i])/float(sum(values))*float(100), 1)) for i in range(len(labels))],
+	# 		marker=dict(colors=[FACILITY_USER_AFFILIATION_COLOUR_OFFICIAL.get(labels[i], "#000000") for i in range(len(labels))]),
+	# 		hole=0.6,
+	# 		textinfo="text",
+	# 		textposition="outside",
+	# 		textfont=dict(size=24, color="#000000"),
+	# 		showlegend=False)
+	# 	plotly.io.write_image(fig, user_fig_name, width=800, height=600)
 
 	print "PUBLICATION PLOTS..."
 
