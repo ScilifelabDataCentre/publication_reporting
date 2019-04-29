@@ -8,3 +8,5 @@ facility_onepagers*
 excel_data_sheets
 api_key.py
 fetched_facility_reports*
+*Facility_report_data.xlsx
+*.DS_Store
