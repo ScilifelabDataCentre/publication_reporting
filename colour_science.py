@@ -22,25 +22,25 @@ SCILIFE_COLOURS_NOGREY = ["#80C41C", "#1E3F32", "#AECE53", "#AEC69C", "#01646B",
 SCILIFE_COLOURS_GREYS = ["#4D4D4D", "#B1B0B1"]
 
 FACILITY_USER_AFFILIATION_COLOUR_OFFICIAL = {
-	"Chalmers University of Technology": "#006C5C", #https://www.chalmers.se/SiteCollectionDocuments/om%20chalmers%20dokument/Grafisk%20profil/Chalmers_visuella_identitet_1.0_2018.pdf
-	"Karolinska Institutet": "#870052", #https://ki.se/medarbetare/farger-i-kis-grafiska-profil
-	"KTH Royal Institute of Technology": "#1954A6", #https://intra.kth.se/administration/kommunikation/grafiskprofil/profilfarger-for-print-1.845077
-	"Linköping University": "#00B9E7", #https://insidan.liu.se/kommunikationsstod/grafiskprofil/start/1.635075/LiU_Grafisk_manual_171117.pdf
-	"Lund University": "#9C6114", #https://www.medarbetarwebben.lu.se/sites/medarbetarwebben.lu.se/files/lu-grafisk-manual150820.pdf
-	"Stockholm University": "#002F5F", #https://www.su.se/medarbetare/kommunikation/grafisk-manual/f%C3%A4rger-1.362110
-	"Swedish University of Agricultural Sciences": "#00664F", #https://internt.slu.se/riktat/malgrupp/kommunikator/varumarkesmanual/visuell-identitet/farger/identitetsfarger/
-	"Umeå University": "#2A4765", #https://www.aurora.umu.se/stod-och-service/kommunikation/grafisk-profil/
-	"University of Gothenburg": "#004B89", #https://medarbetarportalen.gu.se/Kommunikation/visuell-identitet/grundprofil/farger/
-	"Uppsala University": "#990000", #https://mp.uu.se/documents/432512/911394/Grafiska+riktlinjerokt2018.pdf/b4c90d05-2cc7-d59e-b0af-c357fb33c84b
+	u"Chalmers University of Technology": "#006C5C", #https://www.chalmers.se/SiteCollectionDocuments/om%20chalmers%20dokument/Grafisk%20profil/Chalmers_visuella_identitet_1.0_2018.pdf
+	u"Karolinska Institutet": "#870052", #https://ki.se/medarbetare/farger-i-kis-grafiska-profil
+	u"KTH Royal Institute of Technology": "#1954A6", #https://intra.kth.se/administration/kommunikation/grafiskprofil/profilfarger-for-print-1.845077
+	u"Linköping University": "#00B9E7", #https://insidan.liu.se/kommunikationsstod/grafiskprofil/start/1.635075/LiU_Grafisk_manual_171117.pdf
+	u"Lund University": "#9C6114", #https://www.medarbetarwebben.lu.se/sites/medarbetarwebben.lu.se/files/lu-grafisk-manual150820.pdf
+	u"Stockholm University": "#002F5F", #https://www.su.se/medarbetare/kommunikation/grafisk-manual/f%C3%A4rger-1.362110
+	u"Swedish University of Agricultural Sciences": "#00664F", #https://internt.slu.se/riktat/malgrupp/kommunikator/varumarkesmanual/visuell-identitet/farger/identitetsfarger/
+	u"Umeå University": "#2A4765", #https://www.aurora.umu.se/stod-och-service/kommunikation/grafisk-profil/
+	u"University of Gothenburg": "#004B89", #https://medarbetarportalen.gu.se/Kommunikation/visuell-identitet/grundprofil/farger/
+	u"Uppsala University": "#990000", #https://mp.uu.se/documents/432512/911394/Grafiska+riktlinjerokt2018.pdf/b4c90d05-2cc7-d59e-b0af-c357fb33c84b
 
-	"Naturhistoriska Riksmuséet": "#408EBF", # NOT official I pulled it from the logo at http://www.nrm.se/
+	u"Naturhistoriska Riksmuséet": "#408EBF", # NOT official I pulled it from the logo at http://www.nrm.se/
 
-	"Healthcare": "#FF99DD", #pink
-	"Industry": "#9FA1A3", #grey
-	"International University": "#91D88C", #light green
-	"Other international organization": "#FFFF99", #yellow
-	"Other Swedish organization": "#B15928", #burnt orange
-	"Other Swedish University": "#FF7C5B" #red orange
+	u"Healthcare": "#FF99DD", #pink
+	u"Industry": "#9FA1A3", #grey
+	u"International University": "#91D88C", #light green
+	u"Other international organization": "#FFFF99", #yellow
+	u"Other Swedish organization": "#B15928", #burnt orange
+	u"Other Swedish University": "#FF7C5B" #red orange
 }
 
 #Author of colour gradient stuff: Ben Southgate https://bsou.io/posts/color-gradients-with-python
