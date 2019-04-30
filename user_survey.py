@@ -35,10 +35,12 @@ with open("user_survey_data/user_survey_parsed.tsv", "r") as survey_file:
 
 print survey_data
 
-for i, plot_name in enumerate(["general impression", "quality and scientific level of services", "importance of access", "user fee level", "more than one project", "future"]):
+for i, plot_name in enumerate(["Service", "Quality", "Importance", "User fee", "Used for more than one project", "Would use again"]):
 
 	data = list()
 	data_pre = list()
+	# data_vio_pre = list()
+	# data_vio = list()
 
 	for key in survey_data.keys():
 		if len(survey_data[key][i])>=5:
@@ -48,7 +50,8 @@ for i, plot_name in enumerate(["general impression", "quality and scientific lev
 		data_pre.append([go.Box(
 			y = survey_data[key][i],
 			name = key,
-			boxpoints = 'suspectedoutliers',
+			boxpoints = 'outliers',
+			jitter = 1,
 			marker = dict(
 				color = colour,
 				outliercolor = 'rgba(219, 64, 82, 0.6)',
@@ -59,11 +62,30 @@ for i, plot_name in enumerate(["general impression", "quality and scientific lev
 				color = colour)
 		),mean(survey_data[key][i])])
 
+		# data_vio_pre.append([{
+		# 	"type": 'violin',
+		# 	"y": survey_data[key][i],
+		# 	"name": key,
+		# 	"box": {
+		# 		"visible": True
+		# 	},
+		# 	"meanline": {
+		# 		"visible": True
+		# 	},
+		# 	"line": {
+		# 		"color": colour
+		# 	}
+		# }, mean(survey_data[key][i])])
+
 
 	data_pre = sorted(data_pre, key = lambda x: x[1])
+	# data_vio = sorted(data_vio, key = lambda x: x[1])
 
 	for trace in data_pre:
 		data.append(trace[0])
+
+	# for trace in data_vio_pre:
+	# 	data_vio.append(trace[0])
 
 	layout = go.Layout(
 		title = plot_name,
@@ -75,9 +97,17 @@ for i, plot_name in enumerate(["general impression", "quality and scientific lev
 			t=100,
 			pad=4
 		),
+		yaxis = dict(
+			dtick = 1,
+		)
 	)
 
 	fig = go.Figure(data=data, layout=layout)
 
 	config={'showLink': False, "displayModeBar":False}
-	plotly.offline.plot(fig, filename=plot_name+".html", config=config)
+	plotly.offline.plot(fig, filename="user_survey_plots/"+plot_name.replace(" ", "_")+".html", config=config)
+
+	# fig = go.Figure(data=data_vio, layout=layout)
+
+	# config={'showLink': False, "displayModeBar":False}
+	# plotly.offline.plot(fig, filename=plot_name+"_vio.html", config=config)
