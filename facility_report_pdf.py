@@ -4,6 +4,8 @@
 import os.path
 import pandas as pd
 import json
+import urllib
+import difflib
 import xlsxwriter
 
 from reportlab.platypus import BaseDocTemplate, Paragraph, Spacer, Image, PageTemplate, Frame, CondPageBreak
@@ -17,7 +19,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from functools import partial
 from svglib.svglib import svg2rlg
 
-from facility_report_plots import user_plot
+from facility_report_plots import user_plot, publication_plot
 
 def header(canvas, doc, content):
 	canvas.saveState()
@@ -392,6 +394,12 @@ if __name__ == "__main__":
 
 	all_data_dict = json.loads(all_data_raw)
 
+	label_response = urllib.urlopen("https://publications.scilifelab.se/labels.json")
+	labels = json.loads(label_response.read())
+	labels_check_dict = dict()
+	for label in labels["labels"]:
+		labels_check_dict[label["value"]] = label["links"]["self"]["href"]
+
 	for report in all_data_dict.keys():
 
 		facility = all_data_dict[report]["facility"]
@@ -572,8 +580,17 @@ if __name__ == "__main__":
 		del all_data_dict[report]["history"]
 		del all_data_dict[report]["status"]
 
-		user_plot(reporting_data[facility]["user_affiliation"], facility)
-	
+		user_fig_name = user_plot(reporting_data[facility]["user_affiliation"], facility)
+
+		reporting_data[facility]["user_figure_name"] = user_fig_name
+
+		database_label_name = difflib.get_close_matches(facility, labels_check_dict.keys(), 1)
+
+		reporting_data[facility]["database_label_names"] = database_label_name
+
+		if database_label_name:
+			publication_plot(database_label_name, 2018)
+
 		# for key in sorted(garbage_data[facility].keys()):
 		# 	print key, garbage_data[facility][key]
 	
@@ -599,7 +616,7 @@ if __name__ == "__main__":
 			if item == "id":
 				worksheet.write(row, 1, reporting_data[facility][item], bold)
 			else:
-				worksheet.write(row, col, unicode(reporting_data[facility][item]))
+				worksheet.write(row, col, str(reporting_data[facility][item]).decode('utf-8'))
 	workbook.close()
 
 

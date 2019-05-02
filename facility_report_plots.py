@@ -3,7 +3,7 @@
 
 #Author: Adrian Lärkeryd <adrian.larkeryd@scilifelab.uu.se>
 
-import json, time, urllib
+import json, time, urllib, os
 
 #Plotting libs
 import plotly
@@ -11,6 +11,227 @@ import plotly.graph_objs as go
 from colour_science import SCILIFE_COLOURS, FACILITY_USER_AFFILIATION_COLOUR_OFFICIAL
 from issn_files import ISSN_IMPACT_2017, ISSN_IMPACT_2016, ISSN_IMPACT_2015, ISSN_TO_ISSNL, ISSNL_TO_ISSN, issn_to_impact
 from publications_api import Publications_api
+
+def publication_plot(label_list, year):
+	# difflib.get_close_matches()
+
+	url = "https://publications.scilifelab.se/labels.json"
+	response = urllib.urlopen(url)
+	labels = json.loads(response.read())
+
+	labels_check_dict = dict()
+
+	for label in labels["labels"]:
+		labels_check_dict[label["value"]] = label["links"]["self"]["href"]
+
+	all_publications = list()
+
+	for label in label_list:
+		if label not in labels_check_dict.keys():
+			exit("ERROR: Wrong label, does not exist in database {}".format(label))
+
+		url = labels_check_dict[label]
+		response = urllib.urlopen(url)
+		publications = json.loads(response.read())
+		for pub in publications["publications"]:
+			if pub not in all_publications:
+				all_publications.append(pub)
+
+	years = {
+		year:{"Service":0, "Collaborative":0, "Technology development":0, "None":0}, 
+		year-1:{"Service":0, "Collaborative":0, "Technology development":0, "None":0}, 
+		year-2:{"Service":0, "Collaborative":0, "Technology development":0, "None":0}
+	}
+	publication_issns = list()
+	publication_impacts = {year: [], year-1: [], year-2: []}
+
+	for pub in all_publications:
+		pub_year = int(pub["published"].split("-")[0])
+		if pub_year in years.keys():
+			catflag = False
+			jifflag = False
+			for key in pub["labels"].keys():
+				if key in label_list: 
+					# Need to use the right label for the category
+					try:
+						years[pub_year][pub["labels"][key]] += 1
+						catflag = True
+					except KeyError as e:
+						years[pub_year]["None"] += 1
+						catflag = True
+
+			if pub["journal"]["issn"]:
+				issn = pub["journal"]["issn"]
+				publication_issns.append(issn)
+				impact = issn_to_impact(issn)
+
+				if impact is None:
+					print "NO IMPACT FACTOR FOUND FOR:", issn, pub["journal"]
+				# At the end, add the impact to the list
+				publication_impacts[pub_year].append(impact)
+				jifflag = True
+			else: 
+				# NO ISSN
+				publication_impacts[pub_year].append(None)
+				jifflag = True
+				print "NO ISSN FOUND FOR:", pub["journal"]
+			if catflag ^ jifflag:
+				print "\n\nWHYYYY\n\n" # This should never happen, ie having only one of the flags
+				# I added this to make sure all publications are always visible in BOTH graphs
+
+	jif_data = {year-2: [0,0,0,0,0], year-1: [0,0,0,0,0], year: [0,0,0,0,0]}
+
+	for year in publication_impacts.keys():
+		for impact in publication_impacts[year]:
+			if impact is not None:
+				real_impact = float(impact)/1000
+				#print real_impact
+				if real_impact>25.0:
+					jif_data[year][3] += 1
+					continue
+				if real_impact>9.0:
+					jif_data[year][2] += 1
+					continue
+				if real_impact>6.0:
+					jif_data[year][1] += 1
+					continue					
+				jif_data[year][0] += 1
+			else:
+				jif_data[year][4] += 1
+
+	trace_service = go.Bar(
+		x=[year-2, year-1, year],
+		y=[years[year-2]["Service"], years[year-1]["Service"], years[year]["Service"]],
+		name="Service",			
+		textfont=dict(
+			family='sans-serif',
+			size=28,
+			color='#000000'
+		),
+		marker=dict(
+			color=SCILIFE_COLOURS[0],
+			line=dict(
+			color='#000000',
+			width=1.5)
+		)
+	)
+	trace_collaborative = go.Bar(
+		x=[year-2, year-1, year],
+		y=[years[year-2]["Collaborative"], years[year-1]["Collaborative"], years[year]["Collaborative"]],
+		name="Collaborative", 
+		textfont=dict(
+			family='sans-serif',
+			size=28,
+			color='#000000'
+		),
+		marker=dict(
+			color=SCILIFE_COLOURS[7],
+			line=dict(
+			color='#000000',
+			width=1.5)
+		)
+	)
+	trace_tech_dev = go.Bar(
+		x=[year-2, year-1, year],
+		y=[years[year-2]["Technology development"], years[year-1]["Technology development"], years[year]["Technology development"]],
+		name="Technology<br>development", 
+		textfont=dict(
+			family='sans-serif',
+			size=28,
+			color='#000000'
+		),
+		marker=dict(
+			color=SCILIFE_COLOURS[9],
+			line=dict(
+			color='#000000',
+			width=1.5)
+		)
+	)
+	trace_none = go.Bar(
+		x=[year-2, year-1, year],
+		y=[years[year-2]["None"], years[year-1]["None"], years[year]["None"]],
+		name="No category", 
+		textfont=dict(
+			family='sans-serif',
+			size=28,
+			color='#000000'
+		),
+		marker=dict(
+			color=SCILIFE_COLOURS[5],
+			line=dict(
+			color='#000000',
+			width=1.5)
+		)
+	)
+	if (years[year-2]["None"] or years[year-1]["None"] or years[year]["None"]):
+		data = [trace_none, trace_service, trace_collaborative, trace_tech_dev]
+	else:
+		data = [trace_service, trace_collaborative, trace_tech_dev]
+
+	highest_y_value = max(
+		years[year-2]["None"]+years[year-2]["Technology development"]+years[year-2]["Collaborative"]+years[year-2]["Service"],
+		years[year-1]["None"]+years[year-1]["Technology development"]+years[year-1]["Collaborative"]+years[year-1]["Service"],
+		years[year]["None"]+years[year]["Technology development"]+years[year]["Collaborative"]+years[year]["Service"]
+	)
+	yaxis_tick = 1
+	if highest_y_value>10:
+		yaxis_tick = 2
+	if highest_y_value>20:
+		yaxis_tick = 5
+	if highest_y_value>50:
+		yaxis_tick = 10
+	if highest_y_value>100:
+		yaxis_tick = 20
+	if highest_y_value>150:
+		yaxis_tick = 40
+	if highest_y_value>200:
+		yaxis_tick = 50
+	if highest_y_value>1000:
+		yaxis_tick = 100
+
+	layout = go.Layout(
+		barmode='stack',
+		margin=go.layout.Margin(
+			l=60,
+			r=50,
+			b=50,
+			t=30,
+			pad=4
+		),
+		xaxis=dict(
+			showticklabels=True, 
+			dtick=1,
+			zeroline=True,
+			tickfont=dict(
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			)
+		),
+		yaxis=dict(
+			showticklabels=True,
+			dtick=yaxis_tick,
+			tickfont=dict(
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			range=[0, int(highest_y_value*1.15)] # Set the ylim slightly higher than the max value for a prettier graph
+		),
+		legend=dict(
+			traceorder='normal',
+			font=dict(
+				family='sans-serif',
+				size=20,
+				color='#000'
+			)
+		)
+	)
+
+	fig = go.Figure(data=data, layout=layout)
+	# plotly.io.write_image(fig, 'facility_onepagers_figures/{}_publications_by_category.png'.format(label["value"].lower().replace(" ", "_")))
+	# plotly.io.write_image(fig, 'facility_onepagers_figures/{}_publications_by_category.pdf'.format(label["value"].lower().replace(" ", "_")))
+	plotly.io.write_image(fig, 'facility_onepagers_figures/{}_publications_by_category.svg'.format(label_list[0].lower().replace(" ", "_")))
 
 def user_plot(user_affiliation_data, fac):
 	aff_map_abbr = {
@@ -33,13 +254,17 @@ def user_plot(user_affiliation_data, fac):
 		"Healthcare": "Healthcare"
 	}
 
-	user_fig_name = 'facility_onepagers_figures/{}_user.svg'.format(fac.lower().replace(" ", "_"))
+	if not os.path.isdir("facility_onepagers_figures/"):
+		os.mkdir("facility_onepagers_figures/")
+
+	user_fig_name = 'facility_onepagers_figures/{}_user.svg'.format(fac.encode('utf-8').lower().replace(" ", "_"))
 	values = []
 	labels = []
 
 	for institution in user_affiliation_data.keys():
-		values.append(user_affiliation_data[institution])
-		labels.append(institution)
+		if user_affiliation_data[institution]:
+			values.append(user_affiliation_data[institution])
+			labels.append(institution)
 	if sum(values) < 2:
 		pi_plural = "PI"
 	else:
@@ -60,15 +285,9 @@ def user_plot(user_affiliation_data, fac):
 		}
 	)
 
-	for i in range(len(labels)):
-		print isinstance(labels[i], str)
-		print aff_map_abbr[str(labels[i])]
-
-	print ["{} ({}%)".format(aff_map_abbr.get(labels[i], labels[i]), round(float(values[i])/float(sum(values))*float(100), 1)) for i in range(len(labels))]
-
 	fig.add_pie(labels=labels,
 		values=values,
-		text=["{} ({}%)".format(aff_map_abbr.get(labels[i], labels[i]), round(float(values[i])/float(sum(values))*float(100), 1)) for i in range(len(labels))],
+		text=["{} ({}%)".format(aff_map_abbr.get(labels[i].encode('utf-8'), labels[i].encode('utf-8')), round(float(values[i])/float(sum(values))*float(100), 1)) for i in range(len(labels))],
 		marker=dict(colors=[FACILITY_USER_AFFILIATION_COLOUR_OFFICIAL.get(labels[i], "#000000") for i in range(len(labels))]),
 		hole=0.6,
 		textinfo="text",
@@ -77,83 +296,9 @@ def user_plot(user_affiliation_data, fac):
 		showlegend=False)
 	plotly.io.write_image(fig, user_fig_name, width=800, height=600)
 
-def build_plots():
-	### GLOBALS ### 
-	T_ZERO = time.time()
-	# aff_map_abbr = {
-	# 	"Chalmers University of Technology": "Chalmers",
-	# 	"KTH Royal Institute of Technology": "KTH",
-	# 	"Swedish University of Agricultural Sciences": "SLU",
-	# 	"Karolinska Institutet": "KI",
-	# 	"Linköping University": "LiU",
-	# 	"Lund University": "LU",
-	# 	"Naturhistoriska Riksmuséet": "NRM",
-	# 	"Stockholm University": "SU",
-	# 	"Umeå University": "UmU",
-	# 	"University of Gothenburg": "GU",
-	# 	"Uppsala University": "UU",
-	# 	"International University": "International<br>University",
-	# 	"Other Swedish University" : "Other Swedish<br>University",
-	# 	"Other Swedish organization" : "Other Swedish<br>organization",
-	# 	"Other international organization" : "Other international<br>organization"
-	# }
-	
-	# print "USER PLOTS..."
+	return user_fig_name
 
-	# user_dict = dict()
-	# user_data_file = open("excel_data_sheets/user_data_for_facility_report_2018.tsv", "r").readlines()
-	
-	# for line in user_data_file:
-	# 	l_split = line.split("\t")
-	# 	fac = l_split[0].strip()
-
-	# 	institute = l_split[4].strip()
-	# 	if fac in user_dict.keys():
-	# 		if institute in user_dict[fac].keys():
-	# 			user_dict[fac][institute] += 1
-	# 		else:
-	# 			user_dict[fac][institute] = 1
-	# 	else:
-	# 		user_dict[fac] = {institute:1}
-
-	# for fac in user_dict.keys():
-	# 	user_fig_name = 'facility_onepagers_figures/{}_user.svg'.format(fac.lower().replace(" ", "_"))
-	# 	values = []
-	# 	labels = []
-	# 	for inst in user_dict[fac].keys():
-	# 		values.append(user_dict[fac][inst])
-	# 		labels.append(inst)
-	# 	if sum(values) < 2:
-	# 		pi_plural = "PI"
-	# 	else:
-	# 		pi_plural = "PIs"
-	# 	fig = go.Figure(layout={
-	# 		"margin":go.layout.Margin(
-	# 			l=50,
-	# 			r=50,
-	# 			b=80,
-	# 			t=30,
-	# 			pad=4
-	# 		),
-	# 		"annotations": [{"font": {"size": 26},
-	# 			"showarrow": False,
-	# 			"text": "{} Individual {}".format(sum(values), pi_plural),
-	# 			"x": 0.483,
-	# 			"y": 0.5}]
-	# 		}
-	# 	)
-	# 	fig.add_pie(labels=labels,
-	# 		values=values,
-	# 		text=["{} ({}%)".format(aff_map_abbr.get(labels[i], labels[i]), round(float(values[i])/float(sum(values))*float(100), 1)) for i in range(len(labels))],
-	# 		marker=dict(colors=[FACILITY_USER_AFFILIATION_COLOUR_OFFICIAL.get(labels[i], "#000000") for i in range(len(labels))]),
-	# 		hole=0.6,
-	# 		textinfo="text",
-	# 		textposition="outside",
-	# 		textfont=dict(size=24, color="#000000"),
-	# 		showlegend=False)
-	# 	plotly.io.write_image(fig, user_fig_name, width=800, height=600)
-
-	print "PUBLICATION PLOTS..."
+def build_publication_plots():
 
 	url = "https://publications.scilifelab.se/labels.json"
 	response = urllib.urlopen(url)
@@ -236,66 +381,66 @@ def build_plots():
 		trace_service = go.Bar(
 			x=["2016", "2017", "2018"],
 			y=[years["2016"]["Service"], years["2017"]["Service"], years["2018"]["Service"]],
-			name="Service", 			
+			name="Service",			
 			textfont=dict(
-		        family='sans-serif',
-		        size=28,
-		        color='#000000'
-		    ),
-		    marker=dict(
-		    	color=SCILIFE_COLOURS[0],
-		    	line=dict(
-                color='#000000',
-                width=1.5)
-            )
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			marker=dict(
+				color=SCILIFE_COLOURS[0],
+				line=dict(
+				color='#000000',
+				width=1.5)
+			)
 		)
 		trace_collaborative = go.Bar(
 			x=["2016", "2017", "2018"],
 			y=[years["2016"]["Collaborative"], years["2017"]["Collaborative"], years["2018"]["Collaborative"]],
 			name="Collaborative", 
 			textfont=dict(
-		        family='sans-serif',
-		        size=28,
-		        color='#000000'
-		    ),
-		    marker=dict(
-		    	color=SCILIFE_COLOURS[7],
-		    	line=dict(
-                color='#000000',
-                width=1.5)
-            )
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			marker=dict(
+				color=SCILIFE_COLOURS[7],
+				line=dict(
+				color='#000000',
+				width=1.5)
+			)
 		)
 		trace_tech_dev = go.Bar(
 			x=["2016", "2017", "2018"],
 			y=[years["2016"]["Technology development"], years["2017"]["Technology development"], years["2018"]["Technology development"]],
 			name="Technology<br>development", 
 			textfont=dict(
-		        family='sans-serif',
-		        size=28,
-		        color='#000000'
-		    ),
-		    marker=dict(
-		    	color=SCILIFE_COLOURS[9],
-		    	line=dict(
-                color='#000000',
-                width=1.5)
-            )
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			marker=dict(
+				color=SCILIFE_COLOURS[9],
+				line=dict(
+				color='#000000',
+				width=1.5)
+			)
 		)
 		trace_none = go.Bar(
 			x=["2016", "2017", "2018"],
 			y=[years["2016"]["None"], years["2017"]["None"], years["2018"]["None"]],
 			name="No category", 
 			textfont=dict(
-		        family='sans-serif',
-		        size=28,
-		        color='#000000'
-		    ),
-	    	marker=dict(
-		    	color=SCILIFE_COLOURS[5],
-		    	line=dict(
-                color='#000000',
-                width=1.5)
-         	)
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			marker=dict(
+				color=SCILIFE_COLOURS[5],
+				line=dict(
+				color='#000000',
+				width=1.5)
+			)
 		)
 		if (years["2016"]["None"] or years["2017"]["None"] or years["2018"]["None"]):
 			data = [trace_none, trace_service, trace_collaborative, trace_tech_dev]
@@ -335,20 +480,20 @@ def build_plots():
 				zeroline=True,
 				tickfont=dict(
 					family='sans-serif',
-		        	size=28,
-			    	color='#000000'
-		    	)
-    		),
+					size=28,
+					color='#000000'
+				)
+			),
 			yaxis=dict(
 				showticklabels=True,
 				dtick=yaxis_tick,
 				tickfont=dict(
-		        	family='sans-serif',
-		   			size=28,
-		        	color='#000000'
-		    	),
+					family='sans-serif',
+					size=28,
+					color='#000000'
+				),
 				range=[0, int(highest_y_value*1.15)] # Set the ylim slightly higher than the max value for a prettier graph
-    		),
+			),
 			legend=dict(
 				traceorder='normal',
 				font=dict(
@@ -377,85 +522,85 @@ def build_plots():
 			y=[jif_data["2016"][4], jif_data["2017"][4], jif_data["2018"][4]],
 			name="JIF unknown", 
 			textfont=dict(
-		        family='sans-serif',
-		        size=28,
-		        color='#000000'
-		    ),
-		    marker=dict(
-		    	color=SCILIFE_COLOURS[5],
-		    	line=dict(
-                color='#000000',
-                width=1.5)
-            )
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			marker=dict(
+				color=SCILIFE_COLOURS[5],
+				line=dict(
+				color='#000000',
+				width=1.5)
+			)
 		)
 		jif_low = go.Bar(
 			x=["2016", "2017", "2018"],
 			y=[jif_data["2016"][0], jif_data["2017"][0], jif_data["2018"][0]],
 			name="JIF < 6", 
 			textfont=dict(
-		        family='sans-serif',
-		        size=28,
-		        color='#000000'
-		    ),
-		    marker=dict(
-		    	color=SCILIFE_COLOURS[0],
-		    	line=dict(
-                color='#000000',
-                width=1.5)
-            )
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			marker=dict(
+				color=SCILIFE_COLOURS[0],
+				line=dict(
+				color='#000000',
+				width=1.5)
+			)
 		)
 		jif_mediocre = go.Bar(
 			x=["2016", "2017", "2018"],
 			y=[jif_data["2016"][1], jif_data["2017"][1], jif_data["2018"][1]],
 			name="JIF = 6 - 9", 
 			textfont=dict(
-		        family='sans-serif',
-		        size=28,
-		        color='#000000'
-		    ),
-		    marker=dict(
-		    	color=SCILIFE_COLOURS[7],
-		    	line=dict(
-                color='#000000',
-                width=1.5)
-            )
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			marker=dict(
+				color=SCILIFE_COLOURS[7],
+				line=dict(
+				color='#000000',
+				width=1.5)
+			)
 		)
 		jif_good = go.Bar(
 			x=["2016", "2017", "2018"],
 			y=[jif_data["2016"][2], jif_data["2017"][2], jif_data["2018"][2]],
 			name="JIF = 9 - 25", 
 			textfont=dict(
-		        family='sans-serif',
-		        size=28,
-		        color='#000000'
-		    ),
-		    marker=dict(
-		    	color=SCILIFE_COLOURS[9],
-		    	line=dict(
-                color='#000000',
-                width=1.5)
-            )
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			marker=dict(
+				color=SCILIFE_COLOURS[9],
+				line=dict(
+				color='#000000',
+				width=1.5)
+			)
 		)
 		jif_high = go.Bar(
 			x=["2016", "2017", "2018"],
 			y=[jif_data["2016"][3], jif_data["2017"][3], jif_data["2018"][3]],
 			name="JIF > 25", 
 			textfont=dict(
-		        family='sans-serif',
-		        size=28,
-		        color='#000000'
-		    ),
-		    marker=dict(
-		    	color=SCILIFE_COLOURS[1],
-		    	line=dict(
-                color='#000000',
-                width=1.5)
-            )
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			marker=dict(
+				color=SCILIFE_COLOURS[1],
+				line=dict(
+				color='#000000',
+				width=1.5)
+			)
 		)
 
 		layout = go.Layout(
-		    barmode="stack",
-		    margin=go.layout.Margin(
+			barmode="stack",
+			margin=go.layout.Margin(
 				l=60,
 				r=50,
 				b=50,
@@ -467,21 +612,21 @@ def build_plots():
 				dtick=1,
 				zeroline=True,
 				tickfont=dict(
-		        	family='sans-serif',
-		   			size=28,
-		        	color='#000000'
-		    	)
-    		),
+					family='sans-serif',
+					size=28,
+					color='#000000'
+				)
+			),
 			yaxis=dict(
 				showticklabels=True,
 				dtick=yaxis_tick,
 				tickfont=dict(
-		        	family='sans-serif',
-		   			size=28,
-		        	color='#000000'
-		    	),
+					family='sans-serif',
+					size=28,
+					color='#000000'
+				),
 				range=[0, int(highest_y_value*1.15)]
-    		),
+			),
 			legend=dict(
 				traceorder='normal',
 				font=dict(
@@ -501,7 +646,5 @@ def build_plots():
 		# plotly.io.write_image(fig, 'facility_onepagers_figures/{}_jif.pdf'.format(label["value"].lower().replace(" ", "_")))
 		plotly.io.write_image(fig, 'facility_onepagers_figures/{}_jif.svg'.format(label["value"].lower().replace(" ", "_")))
 
-	print time.time()-T_ZERO
-
 if __name__ == "__main__":
-	build_plots()
+	build_publication_plots()
