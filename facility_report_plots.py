@@ -110,9 +110,7 @@ def publication_plot(label_list, year):
 		),
 		marker=dict(
 			color=SCILIFE_COLOURS[0],
-			line=dict(
-			color='#000000',
-			width=1.5)
+			line=dict(color='#000000', width=1.5)
 		)
 	)
 	trace_collaborative = go.Bar(
@@ -126,9 +124,7 @@ def publication_plot(label_list, year):
 		),
 		marker=dict(
 			color=SCILIFE_COLOURS[7],
-			line=dict(
-			color='#000000',
-			width=1.5)
+			line=dict(color='#000000', width=1.5)
 		)
 	)
 	trace_tech_dev = go.Bar(
@@ -142,9 +138,7 @@ def publication_plot(label_list, year):
 		),
 		marker=dict(
 			color=SCILIFE_COLOURS[9],
-			line=dict(
-			color='#000000',
-			width=1.5)
+			line=dict(color='#000000', width=1.5)
 		)
 	)
 	trace_none = go.Bar(
@@ -158,9 +152,7 @@ def publication_plot(label_list, year):
 		),
 		marker=dict(
 			color=SCILIFE_COLOURS[5],
-			line=dict(
-			color='#000000',
-			width=1.5)
+			line=dict(color='#000000', width=1.5)
 		)
 	)
 	if (years[year-2]["None"] or years[year-1]["None"] or years[year]["None"]):
@@ -229,9 +221,135 @@ def publication_plot(label_list, year):
 	)
 
 	fig = go.Figure(data=data, layout=layout)
-	# plotly.io.write_image(fig, 'facility_onepagers_figures/{}_publications_by_category.png'.format(label["value"].lower().replace(" ", "_")))
-	# plotly.io.write_image(fig, 'facility_onepagers_figures/{}_publications_by_category.pdf'.format(label["value"].lower().replace(" ", "_")))
+	# plotly.io.write_image(fig, 'facility_onepagers_figures/{}_publications_by_category.png'.format(label_list[0].lower().replace(" ", "_")))
+	# plotly.io.write_image(fig, 'facility_onepagers_figures/{}_publications_by_category.pdf'.format(label_list[0].lower().replace(" ", "_")))
 	plotly.io.write_image(fig, 'facility_onepagers_figures/{}_publications_by_category.svg'.format(label_list[0].lower().replace(" ", "_")))
+
+	total_pubs_lastlast_year = years[year-2]["None"]+years[year-2]["Technology development"]+years[year-2]["Collaborative"]+years[year-2]["Service"]
+	total_pubs_last_year = years[year-1]["None"]+years[year-1]["Technology development"]+years[year-1]["Collaborative"]+years[year-1]["Service"]
+	total_pubs_current_year = years[year]["None"]+years[year]["Technology development"]+years[year]["Collaborative"]+years[year]["Service"]
+
+	jif_unknown = go.Bar(
+		x=[year-2, year-1, year],
+		y=[jif_data[year-2][4], jif_data[year-1][4], jif_data[year][4]],
+		name="JIF unknown", 
+		textfont=dict(
+			family='sans-serif',
+			size=28,
+			color='#000000'
+		),
+		marker=dict(
+			color=SCILIFE_COLOURS[5],
+			line=dict(color='#000000', width=1.5)
+		)
+	)
+	jif_low = go.Bar(
+		x=[year-2, year-1, year],
+		y=[jif_data[year-2][0], jif_data[year-1][0], jif_data[year][0]],
+		name="JIF < 6", 
+		textfont=dict(
+			family='sans-serif',
+			size=28,
+			color='#000000'
+		),
+		marker=dict(
+			color=SCILIFE_COLOURS[0],
+			line=dict(color='#000000', width=1.5)
+		)
+	)
+	jif_mediocre = go.Bar(
+		x=[year-2, year-1, year],
+		y=[jif_data[year-2][1], jif_data[year-1][1], jif_data[year][1]],
+		name="JIF = 6 - 9", 
+		textfont=dict(
+			family='sans-serif',
+			size=28,
+			color='#000000'
+		),
+		marker=dict(
+			color=SCILIFE_COLOURS[7],
+			line=dict(color='#000000', width=1.5)
+		)
+	)
+	jif_good = go.Bar(
+		x=[year-2, year-1, year],
+		y=[jif_data[year-2][2], jif_data[year-1][2], jif_data[year][2]],
+		name="JIF = 9 - 25", 
+		textfont=dict(
+			family='sans-serif',
+			size=28,
+			color='#000000'
+		),
+		marker=dict(
+			color=SCILIFE_COLOURS[9],
+			line=dict(color='#000000', width=1.5)
+		)
+	)
+	jif_high = go.Bar(
+		x=[year-2, year-1, year],
+		y=[jif_data[year-2][3], jif_data[year-1][3], jif_data[year][3]],
+		name="JIF > 25", 
+		textfont=dict(
+			family='sans-serif',
+			size=28,
+			color='#000000'
+		),
+		marker=dict(
+			color=SCILIFE_COLOURS[1],
+			line=dict(color='#000000', width=1.5)
+		)
+	)
+
+	jif_layout = go.Layout(
+		barmode="stack",
+		margin=go.layout.Margin(
+			l=60,
+			r=50,
+			b=50,
+			t=30,
+			pad=4
+		),
+		xaxis=dict(
+			showticklabels=True, 
+			dtick=1,
+			zeroline=True,
+			tickfont=dict(
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			)
+		),
+		yaxis=dict(
+			showticklabels=True,
+			dtick=yaxis_tick,
+			tickfont=dict(
+				family='sans-serif',
+				size=28,
+				color='#000000'
+			),
+			range=[0, int(highest_y_value*1.15)]
+		),
+		legend=dict(
+			traceorder='normal',
+			font=dict(
+				family='sans-serif',
+				size=20,
+				color='#000'
+			)
+		)
+	)
+	if (jif_data[year-2][4] or jif_data[year-1][4] or jif_data[year][4]):
+		jif_fig_data = [jif_unknown, jif_low, jif_mediocre, jif_good, jif_high]
+	else:
+		jif_fig_data = [jif_low, jif_mediocre, jif_good, jif_high]
+		
+	jif_fig = go.Figure(data=jif_fig_data, layout=jif_layout)		
+	# plotly.io.write_image(jif_fig, 'facility_onepagers_figures/{}_jif.png'.format(label_list[0].lower().replace(" ", "_")))
+	# plotly.io.write_image(jif_fig, 'facility_onepagers_figures/{}_jif.pdf'.format(label_list[0].lower().replace(" ", "_")))
+	plotly.io.write_image(jif_fig, 'facility_onepagers_figures/{}_jif.svg'.format(label_list[0].lower().replace(" ", "_")))
+
+	return (total_pubs_current_year, total_pubs_last_year, total_pubs_lastlast_year)
+	
 
 def user_plot(user_affiliation_data, fac):
 	aff_map_abbr = {
