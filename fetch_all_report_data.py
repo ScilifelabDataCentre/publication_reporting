@@ -74,6 +74,7 @@ for report in reports:
 			for fkey in report[key]:
 				report_data[fkey] = report[key][fkey]
 		elif key == "files": # Download all the files listed
+			report_data["files"] = dict()
 			for fkey in report[key]:
 				cwd = os.getcwd()
 				# print "Downloading:", report[key][fkey]["href"]
@@ -85,7 +86,8 @@ for report in reports:
 						volume_file_backup = report[key][fkey]["href"]
 					else:
 						if not volume_file:
-							raise Exception("Several possible files found for Volume data") 
+							raise Exception("Several possible files found for Volume data")
+				report_data["files"][fkey] = report[key][fkey]["href"]
 		else: # Just store the rest
 			report_data[key] = report[key]
 	if not volume_file:
