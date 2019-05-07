@@ -137,7 +137,7 @@ layout = go.Layout(
 config={'showLink': False, "displayModeBar":False}
 fig = go.Figure(data=aff_traces, layout=layout)
 plotly.offline.plot(fig, filename="user_survey_plots/aff_bars.html", config=config)
-exit()
+
 global_means = [mean(all_service), mean(all_quality), mean(all_importance), mean(all_fee), mean(all_morethanone), mean(all_again)]
 
 
@@ -435,13 +435,15 @@ for i, plot_name in enumerate(["Service", "Quality", "Importance", "User fee", "
 		title = plot_name,
 		showlegend=False,
 		margin=go.layout.Margin(
-			l=100,
-			r=100,
+			l=200,
+			r=200,
 			b=200,
 			t=100,
 			pad=4
 		),
-		yaxis = dict(
+		yaxis=go.layout.YAxis(
+			ticktext=["-1", "Mean value: "+str(round(mean_of_means, 2)), "+1"],
+			tickvals=[-1, 0, 1],
 			range=[-1,1]
 		)
 	)
