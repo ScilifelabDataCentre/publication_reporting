@@ -2,12 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import os
-import pandas as pd
-import json
-import urllib
-import difflib
-import xlsxwriter
 import datetime
+import pandas as pd
 
 from reportlab.platypus import BaseDocTemplate, Paragraph, Spacer, Image, PageTemplate, Frame, CondPageBreak
 from reportlab.platypus.flowables import HRFlowable
@@ -322,7 +318,6 @@ def generatePdf(facility_name, reporting_data, current_year):
 	Story.append(Paragraph("<font color='#95C11E'><font name=Frutiger-65-Bold><b>Users {}</b></font></font>".format(current_year), 
 		styles["onepager_inner_heading"]))
 
-	# user_dist_filename = reporting_data["user_figure_name"]
 	user_dist_filename = user_plot(eval(reporting_data["user_affiliation"]), facility_name)
 
 	if os.path.isfile(user_dist_filename):
@@ -392,140 +387,6 @@ def generatePdf(facility_name, reporting_data, current_year):
 	doc.build(Story)
 
 if __name__ == "__main__":
-	reporting_data = dict()
-	garbage_data = dict()
-
-	all_data_raw = open("fetched_facility_reports/all_reports_data.json", "r").read()
-	all_data_dict = json.loads(all_data_raw)
-
-	label_response = urllib.urlopen("https://publications.scilifelab.se/labels.json")
-	labels = json.loads(label_response.read())
-	labels_check_dict = dict()
-	for label in labels["labels"]:
-		labels_check_dict[label["value"]] = label["links"]["self"]["href"]
-
-	for report in all_data_dict.keys():
-
-		facility = all_data_dict[report]["facility"]
-		report_id = all_data_dict[report]["id"]
-		reporting_data[facility] = dict()
-		garbage_data[facility] = dict()
-
-		# Reporting data
-		reporting_data[facility]["files"] = all_data_dict[report]["files"]
-		
-		reporting_data[facility]["fte"] = all_data_dict[report]["fte"]
-		reporting_data[facility]["fte_scilifelab"] = all_data_dict[report]["fte_scilifelab"]
-
-		reporting_data[facility]["resource_academic_national"] = all_data_dict[report]["resource_academic_national"]
-		reporting_data[facility]["resource_academic_international"] = all_data_dict[report]["resource_academic_international"]
-		reporting_data[facility]["resource_internal"] = all_data_dict[report]["resource_internal"]
-		reporting_data[facility]["resource_industry"] = all_data_dict[report]["resource_industry"]
-		reporting_data[facility]["resource_healthcare"] = all_data_dict[report]["resource_healthcare"]
-		reporting_data[facility]["resource_other"] = all_data_dict[report]["resource_other"]
-
-		reporting_data[facility]["user_fees_academic_sweden"] = all_data_dict[report]["user_fees_academic_sweden"]
-		reporting_data[facility]["user_fees_academic_international"] = all_data_dict[report]["user_fees_academic_international"]
-		reporting_data[facility]["user_fees_industry"] = all_data_dict[report]["user_fees_industry"]
-		reporting_data[facility]["user_fees_healthcare"] = all_data_dict[report]["user_fees_healthcare"]
-		reporting_data[facility]["user_fees_other"] = all_data_dict[report]["user_fees_other"]
-
-		reporting_data[facility]["cost_reagents"] = all_data_dict[report]["cost_reagents"]
-		reporting_data[facility]["cost_instrument"] = all_data_dict[report]["cost_instrument"]
-		reporting_data[facility]["cost_salaries"] = all_data_dict[report]["cost_salaries"]
-		reporting_data[facility]["cost_rents"] = all_data_dict[report]["cost_rents"]
-		reporting_data[facility]["cost_other"] = all_data_dict[report]["cost_other"]
-
-		reporting_data[facility]["additional_funding"] = all_data_dict[report]["additional_funding"]
-
-		reporting_data[facility]["facility_head"] = all_data_dict[report]["facility_head"]
-		reporting_data[facility]["facility_director"] = all_data_dict[report]["facility_director"]
-
-		reporting_data[facility]["user_affiliation"] = all_data_dict[report]["user_affiliation"]
-
-		# NOT USED IN REPORT BUT I THINK CONTAINS DATA??:
-		garbage_data[facility]["personnel"] = all_data_dict[report]["personnel"]
-		garbage_data[facility]["personnel_count"] = all_data_dict[report]["personnel_count"]
-		garbage_data[facility]["personnel_count_male"] = all_data_dict[report]["personnel_count_male"]
-		garbage_data[facility]["personnel_count_phd"] = all_data_dict[report]["personnel_count_phd"]
-		garbage_data[facility]["personnel_count_phd_male"] = all_data_dict[report]["personnel_count_phd_male"]
-		garbage_data[facility]["eln_usage"] = all_data_dict[report]["eln_usage"]
-		garbage_data[facility]["facility_kpi"] = all_data_dict[report]["facility_kpi"]
-		garbage_data[facility]["user_fees"] = all_data_dict[report]["user_fees"]
-		garbage_data[facility]["immaterial_property_rights"] = all_data_dict[report]["immaterial_property_rights"]
-		garbage_data[facility]["identifier"] = all_data_dict[report]["identifier"]
-		garbage_data[facility]["resource_allocation"] = all_data_dict[report]["resource_allocation"]
-		garbage_data[facility]["finances"] = all_data_dict[report]["finances"]
-		garbage_data[facility]["scientific_achievements"] = all_data_dict[report]["scientific_achievements"]
-		garbage_data[facility]["technology_development"] = all_data_dict[report]["technology_development"]
-		garbage_data[facility]["innovation_utilization"] = all_data_dict[report]["innovation_utilization"]
-		garbage_data[facility]["achievements_of_the_year"] = all_data_dict[report]["achievements_of_the_year"]
-		garbage_data[facility]["budget_next_year"] = all_data_dict[report]["budget_next_year"]
-		garbage_data[facility]["type_of_costs"] = all_data_dict[report]["type_of_costs"]
-		garbage_data[facility]["number_projects"] = all_data_dict[report]["number_projects"]
-		garbage_data[facility]["user_fee_models"] = all_data_dict[report]["user_fee_models"]
-		garbage_data[facility]["deliverables"] = all_data_dict[report]["deliverables"]
-		garbage_data[facility]["user_feedback"] = all_data_dict[report]["user_feedback"]
-
-		# NOT USED AND NOT RELEVANT
-		garbage_data[facility]["type"] = all_data_dict[report]["type"]
-		garbage_data[facility]["invalid"] = all_data_dict[report]["invalid"]
-		garbage_data[facility]["site"] = all_data_dict[report]["site"]
-		garbage_data[facility]["links"] = all_data_dict[report]["links"]
-		garbage_data[facility]["form"] = all_data_dict[report]["form"]
-		garbage_data[facility]["tags"] = all_data_dict[report]["tags"]
-		garbage_data[facility]["timestamp"] = all_data_dict[report]["timestamp"]
-		garbage_data[facility]["report"] = all_data_dict[report]["report"]
-		garbage_data[facility]["created"] = all_data_dict[report]["created"]
-		garbage_data[facility]["iuid"] = all_data_dict[report]["iuid"]
-		garbage_data[facility]["modified"] = all_data_dict[report]["modified"]
-		garbage_data[facility]["volume_data"] = all_data_dict[report]["volume_data"]
-		garbage_data[facility]["owner"] = all_data_dict[report]["owner"]
-		garbage_data[facility]["title"] = all_data_dict[report]["title"]
-		garbage_data[facility]["history"] = all_data_dict[report]["history"]
-		garbage_data[facility]["status"] = all_data_dict[report]["status"]
-
-		# Trying to find a budget file for next year
-		budget_file = ""
-		for reporting_file in reporting_data[facility]["files"]:
-			if "budget" in reporting_file.lower():
-				budget_file = reporting_data[facility]["files"][reporting_file]
-		reporting_data[facility]["next_year_budget_file"] = budget_file
-
-		# Tries to match the facility name with a DB label name
-		database_label_name = difflib.get_close_matches(facility, labels_check_dict.keys(), 1)
-		reporting_data[facility]["database_label_names"] = database_label_name
-
-	if not os.path.isfile('Facility_report_data.xlsx'):
-		workbook = xlsxwriter.Workbook('Facility_report_data.xlsx')
-		worksheet_data = workbook.add_worksheet("Data")
-		worksheet_db_labels = workbook.add_worksheet("Publications DB labels")
-		bold = workbook.add_format({'bold': True})
-
-		for row, facility in enumerate(sorted(reporting_data.keys()),1):
-			if row == 1:
-				worksheet_data.write(0, 0, 'facility', bold)
-				worksheet_data.write(0, 1, 'facility_report_id', bold)
-			worksheet_data.write(row, 0, facility, bold)
-			worksheet_data.write(row, 1, report_id)
-
-			for col, item in enumerate(sorted(reporting_data[facility].keys()),2):
-				if row == 1:
-					worksheet_data.write(0, col, item, bold)
-				worksheet_data.write(row, col, str(reporting_data[facility][item]).decode('utf-8'))
-
-		# These need additional information
-		additional_headers = ["platform", "scilifelab_funding", "services_bullets", "national_scilifelab_facility_since", "host_university", "asterisk_footnote"]
-		for i, col_head in enumerate(additional_headers, 2):
-			worksheet_data.write(0, len(reporting_data[reporting_data.keys()[0]].keys())+i, col_head, bold)
-
-		# Writing the DB labels to separate sheet so that user can fill them in
-		worksheet_db_labels.write(0, 0, "Publications DB label. Put one of these in the 'database_label_names' column in the Data sheet", bold)
-		for i, label in enumerate(sorted(labels_check_dict.keys()), 1):
-			worksheet_db_labels.write(i, 0, str([label]).decode('utf-8'))
-
-		workbook.close()
-
 	# Load spreadsheets
 	completed_data_file = 'Facility_report_data.xlsx'
 	completed_data_xl = pd.ExcelFile(completed_data_file)
@@ -575,7 +436,6 @@ if __name__ == "__main__":
 		complete_reporting_data[facility]["asterisk_footnote"] = row["asterisk_footnote"]
 
 	now = datetime.datetime.now()
-	for facility in reporting_data.keys():
+	for facility in complete_reporting_data.keys():
 	 	# generatePdf(facility, complete_reporting_data[facility], now.year)
 	 	generatePdf(facility, complete_reporting_data[facility], 2018)
-
