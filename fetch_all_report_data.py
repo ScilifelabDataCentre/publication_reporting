@@ -57,8 +57,6 @@ for report in reports:
 	# Stores the data for this specific report
 	report_id = report["identifier"]
 	report_data = dict()
-	volume_file = None
-	volume_file_backup = None
 	
 	# Create a subdir for this report, we will download files
 	sub_directory = cwd+"/fetched_facility_reports/"+report_id
@@ -77,23 +75,12 @@ for report in reports:
 				cwd = os.getcwd()
 				# print "Downloading:", report[key][fkey]["href"]
 				fcr.download_file(report[key][fkey]["href"], sub_directory)
-				if "volume" in report[key][fkey]["href"].lower():
-					volume_file = report[key][fkey]["href"]
-				if ".xlsm" in report[key][fkey]["href"].lower():
-					if not volume_file_backup:
-						volume_file_backup = report[key][fkey]["href"]
-					else:
-						if not volume_file:
-							raise Exception("Several possible files found for Volume data")
 				report_data["files"][fkey] = report[key][fkey]["href"]
 		else: # Just store the rest
 			report_data[key] = report[key]
-	if not volume_file:
-		warnings.append("WARNING: NO EXPLICITLY NAMED VOLUME FILE FOR {}, USING {}".format( report_id, volume_file_backup))
-		volume_file = volume_file_backup
 
-	volume_file = "{}/{}".format(sub_directory, volume_file.split("/")[-1])
-	
+	volume_file = "{}/{}".format(sub_directory, urllib.pathname2url(report["fields"]["volume_data"].encode("utf-8")))
+
 	# Read the volume data spreadsheet
 	volume_xl = pd.ExcelFile(volume_file)
 	# print volume_xl.sheet_names
