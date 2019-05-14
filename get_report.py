@@ -2,6 +2,8 @@
 
 import requests
 import json
+import urllib
+import string
 
 class facility_reports(object):
     """
@@ -43,7 +45,7 @@ class facility_reports(object):
 
     def download_file(self, url, path):
         """Downloads a file from URL, used to download the suppl files to report"""
-        local_filename = url.split('/')[-1]
+        local_filename = u''.join(filter(lambda x: x in string.printable, urllib.url2pathname(url.split('/')[-1])))
         with requests.get(url, stream=True, headers=self.api_headers) as r:
             r.raise_for_status()
             with open("{}/{}".format(path, local_filename), 'wb') as f:

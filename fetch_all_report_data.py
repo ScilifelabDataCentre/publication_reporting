@@ -10,6 +10,7 @@ import math
 import urllib
 import difflib
 import xlsxwriter
+import string
 
 def all_same(items):
 	return all(x == items[0] for x in items)
@@ -79,7 +80,7 @@ for report in reports:
 		else: # Just store the rest
 			report_data[key] = report[key]
 
-	volume_file = "{}/{}".format(sub_directory, urllib.pathname2url(report["fields"]["volume_data"].encode("utf-8")))
+	volume_file = u"{}/{}".format(sub_directory, u''.join(filter(lambda x: x in string.printable, report["fields"]["volume_data"])))
 
 	# Read the volume data spreadsheet
 	volume_xl = pd.ExcelFile(volume_file)
@@ -326,6 +327,7 @@ with open("{}/all_reports_data.json".format(directory), 'w') as f:
 ### reporting_data will contain relevant stuff, garbage will contain garbage
 
 reporting_data = dict()
+meta_data = dict()
 garbage_data = dict()
 
 all_data_raw = open("{}/all_reports_data.json".format(directory), "r").read()
@@ -341,7 +343,11 @@ for report in all_data_dict.keys():
 	facility = all_data_dict[report]["facility"]
 	report_id = all_data_dict[report]["id"]
 	reporting_data[facility] = dict()
+	meta_data[facility] = dict()
 	garbage_data[facility] = dict()
+
+	# Meta data
+	meta_data[facility]["report_id"] = all_data_dict[report]["links"]["display"]["href"]
 
 	# Reporting data
 	reporting_data[facility]["files"] = all_data_dict[report]["files"]
@@ -371,6 +377,14 @@ for report in all_data_dict.keys():
 	reporting_data[facility]["courses_all"] = all_data_dict[report]["courses_all"]
 	reporting_data[facility]["events_all"] = all_data_dict[report]["events_all"]
 	reporting_data[facility]["external_all"] = all_data_dict[report]["external_all"]
+	reporting_data[facility]["eln_usage"] = all_data_dict[report]["eln_usage"]
+	reporting_data[facility]["facility_kpi"] = all_data_dict[report]["facility_kpi"]
+	reporting_data[facility]["user_feedback"] = all_data_dict[report]["user_feedback"]
+	reporting_data[facility]["innovation_utilization"] = all_data_dict[report]["innovation_utilization"]
+	reporting_data[facility]["technology_development"] = all_data_dict[report]["technology_development"]
+	reporting_data[facility]["scientific_achievements"] = all_data_dict[report]["scientific_achievements"]
+	reporting_data[facility]["number_projects"] = all_data_dict[report]["number_projects"]
+
 
 	# NOT USED IN REPORT BUT I THINK CONTAINS DATA??:
 	garbage_data[facility]["personnel"] = all_data_dict[report]["personnel"]
@@ -378,23 +392,17 @@ for report in all_data_dict.keys():
 	garbage_data[facility]["personnel_count_male"] = all_data_dict[report]["personnel_count_male"]
 	garbage_data[facility]["personnel_count_phd"] = all_data_dict[report]["personnel_count_phd"]
 	garbage_data[facility]["personnel_count_phd_male"] = all_data_dict[report]["personnel_count_phd_male"]
-	garbage_data[facility]["eln_usage"] = all_data_dict[report]["eln_usage"]
-	garbage_data[facility]["facility_kpi"] = all_data_dict[report]["facility_kpi"]
 	garbage_data[facility]["user_fees"] = all_data_dict[report]["user_fees"]
 	garbage_data[facility]["immaterial_property_rights"] = all_data_dict[report]["immaterial_property_rights"]
 	garbage_data[facility]["identifier"] = all_data_dict[report]["identifier"]
 	garbage_data[facility]["resource_allocation"] = all_data_dict[report]["resource_allocation"]
 	garbage_data[facility]["finances"] = all_data_dict[report]["finances"]
-	garbage_data[facility]["scientific_achievements"] = all_data_dict[report]["scientific_achievements"]
-	garbage_data[facility]["technology_development"] = all_data_dict[report]["technology_development"]
-	garbage_data[facility]["innovation_utilization"] = all_data_dict[report]["innovation_utilization"]
 	garbage_data[facility]["achievements_of_the_year"] = all_data_dict[report]["achievements_of_the_year"]
 	garbage_data[facility]["budget_next_year"] = all_data_dict[report]["budget_next_year"]
 	garbage_data[facility]["type_of_costs"] = all_data_dict[report]["type_of_costs"]
-	garbage_data[facility]["number_projects"] = all_data_dict[report]["number_projects"]
 	garbage_data[facility]["user_fee_models"] = all_data_dict[report]["user_fee_models"]
 	garbage_data[facility]["deliverables"] = all_data_dict[report]["deliverables"]
-	garbage_data[facility]["user_feedback"] = all_data_dict[report]["user_feedback"]
+	garbage_data[facility]["volume_data"] = all_data_dict[report]["volume_data"]
 
 	# NOT USED AND NOT RELEVANT
 	garbage_data[facility]["type"] = all_data_dict[report]["type"]
@@ -408,18 +416,22 @@ for report in all_data_dict.keys():
 	garbage_data[facility]["created"] = all_data_dict[report]["created"]
 	garbage_data[facility]["iuid"] = all_data_dict[report]["iuid"]
 	garbage_data[facility]["modified"] = all_data_dict[report]["modified"]
-	garbage_data[facility]["volume_data"] = all_data_dict[report]["volume_data"]
 	garbage_data[facility]["owner"] = all_data_dict[report]["owner"]
 	garbage_data[facility]["title"] = all_data_dict[report]["title"]
 	garbage_data[facility]["history"] = all_data_dict[report]["history"]
 	garbage_data[facility]["status"] = all_data_dict[report]["status"]
 
-	# Trying to find a budget file for next year
-	budget_file = ""
-	for reporting_file in reporting_data[facility]["files"]:
-		if "budget" in reporting_file.lower():
-			budget_file = reporting_data[facility]["files"][reporting_file]
-	reporting_data[facility]["next_year_budget_file"] = budget_file
+	# Adding budget and kpi file to the meta data dictionary
+	sub_directory = cwd+"/fetched_facility_reports/"+all_data_dict[report]["id"].split("/")[-1]
+
+	if all_data_dict[report]["budget_next_year"]:
+		meta_data[facility]["budget_next_year"] = u"{}/{}".format(sub_directory, u''.join(filter(lambda x: x in string.printable, all_data_dict[report]["budget_next_year"])))
+	else:
+		meta_data[facility]["budget_next_year"] = u""
+	if all_data_dict[report]["facility_kpi"]:
+		meta_data[facility]["facility_kpi"] = u"{}/{}".format(sub_directory, u''.join(filter(lambda x: x in string.printable, all_data_dict[report]["facility_kpi"])))
+	else:
+		meta_data[facility]["facility_kpi"] = u""
 
 	# Tries to match the facility name with a DB label name
 	database_label_name = difflib.get_close_matches(facility, labels_check_dict.keys(), 1)
@@ -439,23 +451,29 @@ for row, facility in enumerate(sorted(reporting_data.keys()),1):
 	if row == 1:
 		worksheet_onepager.write(0, 0, 'facility', bold)
 		worksheet_onepager.write(0, 1, 'facility_report_id', bold)
+		worksheet_onepager.write(0, 2, 'budget_next_year', bold)
+		worksheet_onepager.write(0, 3, 'facility_kpi', bold)
 	worksheet_onepager.write(row, 0, facility, bold)
-	worksheet_onepager.write(row, 1, report_id)
+	worksheet_onepager.write_url(row, 1, meta_data[facility]["report_id"], string=meta_data[facility]["report_id"].split("/")[-1])
+	if meta_data[facility]["budget_next_year"]:
+		worksheet_onepager.write_url(row, 2, "file://"+meta_data[facility]["budget_next_year"], string=meta_data[facility]["budget_next_year"].split("/")[-1])
+	if meta_data[facility]["facility_kpi"]:
+		worksheet_onepager.write_url(row, 3, "file://"+meta_data[facility]["facility_kpi"], string=meta_data[facility]["facility_kpi"].split("/")[-1])
 
-	for col, item in enumerate(sorted(reporting_data[facility].keys()),2):
+	for col, item in enumerate(sorted(reporting_data[facility].keys()),4):
 		if row == 1:
 			worksheet_onepager.write(0, col, item, bold)
-		worksheet_onepager.write(row, col, str(reporting_data[facility][item]).decode('utf-8'))
+		worksheet_onepager.write(row, col, unicode(reporting_data[facility][item]))
 
 # These need additional information
 additional_headers = ["platform", "scilifelab_funding", "services_bullets", "national_scilifelab_facility_since", "host_university", "asterisk_footnote"]
-for i, col_head in enumerate(additional_headers, 2):
+for i, col_head in enumerate(additional_headers, 4):
 	worksheet_onepager.write(0, len(reporting_data[reporting_data.keys()[0]].keys())+i, col_head, bold)
 
 # Writing the DB labels to separate sheet so that user can fill them in
 worksheet_db_labels.write(0, 0, "Publications DB label. Put one of these in the 'database_label_names' column in the Data sheet", bold)
 for i, label in enumerate(sorted(labels_check_dict.keys()), 1):
-	worksheet_db_labels.write(i, 0, str([label]).decode('utf-8'))
+	worksheet_db_labels.write(i, 0, unicode([label]))
 
 user_row = 1
 worksheet_users.write(0, 0, "facility", bold)
@@ -468,7 +486,6 @@ worksheet_users.write(0, 6, "additional_info", bold)
 for facility in sorted(reporting_data.keys()):
 	# print reporting_data[facility]["user_all"]
 	for user in reporting_data[facility]["user_all"]:
-		# print str(user).encode("utf-8")
 		worksheet_users.write(user_row, 0, facility)
 		worksheet_users.write(user_row, 1, user[0])
 		worksheet_users.write(user_row, 2, user[1])
