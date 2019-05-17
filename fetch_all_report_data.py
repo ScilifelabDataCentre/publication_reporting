@@ -14,6 +14,12 @@ import string
 
 def all_same(items):
 	return all(x == items[0] for x in items)
+def is_number(number):
+	try:
+		float(number)
+		return True
+	except ValueError:
+		return False
 
 warnings = []
 fcr = facility_reports(api_key=API_KEY)
@@ -348,6 +354,7 @@ for report in all_data_dict.keys():
 
 	# Meta data
 	meta_data[facility]["report_id"] = all_data_dict[report]["links"]["display"]["href"]
+	meta_data[facility]["owner"] = all_data_dict[report]["owner"]
 
 	# Reporting data
 	reporting_data[facility]["files"] = all_data_dict[report]["files"]
@@ -378,13 +385,17 @@ for report in all_data_dict.keys():
 	reporting_data[facility]["events_all"] = all_data_dict[report]["events_all"]
 	reporting_data[facility]["external_all"] = all_data_dict[report]["external_all"]
 	reporting_data[facility]["eln_usage"] = all_data_dict[report]["eln_usage"]
-	reporting_data[facility]["facility_kpi"] = all_data_dict[report]["facility_kpi"]
 	reporting_data[facility]["user_feedback"] = all_data_dict[report]["user_feedback"]
 	reporting_data[facility]["innovation_utilization"] = all_data_dict[report]["innovation_utilization"]
 	reporting_data[facility]["technology_development"] = all_data_dict[report]["technology_development"]
 	reporting_data[facility]["scientific_achievements"] = all_data_dict[report]["scientific_achievements"]
 	reporting_data[facility]["number_projects"] = all_data_dict[report]["number_projects"]
+	reporting_data[facility]["immaterial_property_rights"] = all_data_dict[report]["immaterial_property_rights"]
 
+	# USED LATER INSERT TO META DATA
+	garbage_data[facility]["budget_next_year"] = all_data_dict[report]["budget_next_year"]
+	garbage_data[facility]["volume_data"] = all_data_dict[report]["volume_data"]
+	garbage_data[facility]["facility_kpi"] = all_data_dict[report]["facility_kpi"]
 
 	# NOT USED IN REPORT BUT I THINK CONTAINS DATA??:
 	garbage_data[facility]["personnel"] = all_data_dict[report]["personnel"]
@@ -393,16 +404,13 @@ for report in all_data_dict.keys():
 	garbage_data[facility]["personnel_count_phd"] = all_data_dict[report]["personnel_count_phd"]
 	garbage_data[facility]["personnel_count_phd_male"] = all_data_dict[report]["personnel_count_phd_male"]
 	garbage_data[facility]["user_fees"] = all_data_dict[report]["user_fees"]
-	garbage_data[facility]["immaterial_property_rights"] = all_data_dict[report]["immaterial_property_rights"]
 	garbage_data[facility]["identifier"] = all_data_dict[report]["identifier"]
 	garbage_data[facility]["resource_allocation"] = all_data_dict[report]["resource_allocation"]
 	garbage_data[facility]["finances"] = all_data_dict[report]["finances"]
 	garbage_data[facility]["achievements_of_the_year"] = all_data_dict[report]["achievements_of_the_year"]
-	garbage_data[facility]["budget_next_year"] = all_data_dict[report]["budget_next_year"]
 	garbage_data[facility]["type_of_costs"] = all_data_dict[report]["type_of_costs"]
 	garbage_data[facility]["user_fee_models"] = all_data_dict[report]["user_fee_models"]
 	garbage_data[facility]["deliverables"] = all_data_dict[report]["deliverables"]
-	garbage_data[facility]["volume_data"] = all_data_dict[report]["volume_data"]
 
 	# NOT USED AND NOT RELEVANT
 	garbage_data[facility]["type"] = all_data_dict[report]["type"]
@@ -416,7 +424,6 @@ for report in all_data_dict.keys():
 	garbage_data[facility]["created"] = all_data_dict[report]["created"]
 	garbage_data[facility]["iuid"] = all_data_dict[report]["iuid"]
 	garbage_data[facility]["modified"] = all_data_dict[report]["modified"]
-	garbage_data[facility]["owner"] = all_data_dict[report]["owner"]
 	garbage_data[facility]["title"] = all_data_dict[report]["title"]
 	garbage_data[facility]["history"] = all_data_dict[report]["history"]
 	garbage_data[facility]["status"] = all_data_dict[report]["status"]
@@ -439,20 +446,52 @@ for report in all_data_dict.keys():
 
 # Create excel file and sheets
 workbook = xlsxwriter.Workbook('Facility_report_data.xlsx')
-worksheet_onepager = workbook.add_worksheet("Onepager_data")
-worksheet_db_labels = workbook.add_worksheet("Publications_DB_labels")
-worksheet_users = workbook.add_worksheet("Users")
-worksheet_courses = workbook.add_worksheet("Courses")
-worksheet_events = workbook.add_worksheet("Events")
-worksheet_external = workbook.add_worksheet("External_collab")
+
 bold = workbook.add_format({'bold': True})
 
+worksheet_onepager = workbook.add_worksheet("Onepager_data")
+worksheet_onepager.set_column(0, 0, 40)
+worksheet_onepager.set_column(1, 1000, 20)
+worksheet_db_labels = workbook.add_worksheet("Publications_DB_labels")
+worksheet_db_labels.set_column(0,0,90)
+worksheet_users = workbook.add_worksheet("Users")
+worksheet_users.set_column(0,1000,20)
+worksheet_courses = workbook.add_worksheet("Courses")
+worksheet_courses.set_column(0,1000,20)
+worksheet_events = workbook.add_worksheet("Events")
+worksheet_events.set_column(0,1000,20)
+worksheet_external = workbook.add_worksheet("External_collab")
+worksheet_external.set_column(0,1000,20)
+worksheet_additional_funding = workbook.add_worksheet("Additional_funding")
+worksheet_additional_funding.set_column(0,1000,30)
+worksheet_directors = workbook.add_worksheet("Facility_directors")
+worksheet_directors.set_column(0,1000,30)
+worksheet_heads = workbook.add_worksheet("Facility_heads")
+worksheet_heads.set_column(0,1000,30)
+worksheet_ip = workbook.add_worksheet("Immaterial property rights")
+worksheet_ip.set_column(0,1000,30)
+worksheet_statistics = workbook.add_worksheet("Statistics")
+worksheet_statistics.set_column(0,1000,30)
+
+# These are headers not in the reporting data, but are needed for onepagers
+additional_headers = ["platform", "scilifelab_funding", "services_bullets", "national_scilifelab_facility_since", "host_university", "asterisk_footnote"]
+all_headers = ["facility", "facility_report_id", "budget_next_year", "facility_kpi"]+sorted(reporting_data[reporting_data.keys()[0]])+additional_headers
+
+column_names = list()
+for i, header in enumerate(all_headers):
+	column_names.append({"header":header})
+table_onepager = worksheet_onepager.add_table(
+	0, # start row
+	0, # start col
+	len(reporting_data.keys()), # end row
+	4 + len(reporting_data[reporting_data.keys()[0]]) + len(additional_headers) - 1, # end col
+	{
+		"name": "Onepager_table",
+		"columns": column_names
+	}
+)
+
 for row, facility in enumerate(sorted(reporting_data.keys()),1):
-	if row == 1:
-		worksheet_onepager.write(0, 0, 'facility', bold)
-		worksheet_onepager.write(0, 1, 'facility_report_id', bold)
-		worksheet_onepager.write(0, 2, 'budget_next_year', bold)
-		worksheet_onepager.write(0, 3, 'facility_kpi', bold)
 	worksheet_onepager.write(row, 0, facility, bold)
 	worksheet_onepager.write_url(row, 1, meta_data[facility]["report_id"], string=meta_data[facility]["report_id"].split("/")[-1])
 	if meta_data[facility]["budget_next_year"]:
@@ -461,19 +500,18 @@ for row, facility in enumerate(sorted(reporting_data.keys()),1):
 		worksheet_onepager.write_url(row, 3, "file://"+meta_data[facility]["facility_kpi"], string=meta_data[facility]["facility_kpi"].split("/")[-1])
 
 	for col, item in enumerate(sorted(reporting_data[facility].keys()),4):
-		if row == 1:
-			worksheet_onepager.write(0, col, item, bold)
-		worksheet_onepager.write(row, col, unicode(reporting_data[facility][item]))
+		if is_number(unicode(reporting_data[facility][item])):
+			worksheet_onepager.write_number(row, col, float(reporting_data[facility][item]))
+		else:
+			worksheet_onepager.write_string(row, col, unicode(reporting_data[facility][item]))
 
-# These need additional information
-additional_headers = ["platform", "scilifelab_funding", "services_bullets", "national_scilifelab_facility_since", "host_university", "asterisk_footnote"]
 for i, col_head in enumerate(additional_headers, 4):
 	worksheet_onepager.write(0, len(reporting_data[reporting_data.keys()[0]].keys())+i, col_head, bold)
 
 # Writing the DB labels to separate sheet so that user can fill them in
-worksheet_db_labels.write(0, 0, "Publications DB label. Put one of these in the 'database_label_names' column in the Data sheet", bold)
 for i, label in enumerate(sorted(labels_check_dict.keys()), 1):
 	worksheet_db_labels.write(i, 0, unicode([label]))
+worksheet_db_labels.add_table(0,0,len(labels_check_dict.keys()),0, {"columns":[{"header":"Publications DB label. Put one of these in the 'database_label_names' column in the Onepager_data sheet"}]})
 
 user_row = 1
 worksheet_users.write(0, 0, "facility", bold)
@@ -494,17 +532,17 @@ for facility in sorted(reporting_data.keys()):
 		worksheet_users.write(user_row, 5, user[4])
 		worksheet_users.write(user_row, 6, user[5])
 		user_row += 1
+worksheet_users.add_table(0,0,user_row-1,6, {"columns":[
+	{"header":"Facility name"},
+	{"header":"Facility contact"},
+	{"header":"User email"},
+	{"header":"User first name"},
+	{"header":"User last name"},
+	{"header":"Affiliation"},
+	{"header":"Additional info"}
+]})
 
 courses_row = 1
-worksheet_courses.write(0, 0, "facility", bold)
-worksheet_courses.write(0, 1, "facility_contact", bold)
-worksheet_courses.write(0, 2, "Full name of the course", bold)
-worksheet_courses.write(0, 3, "Did the reporting unit organize or co-organize the course?", bold)
-worksheet_courses.write(0, 4, "If co-organized, with whom?", bold)
-worksheet_courses.write(0, 5, "Start date", bold)
-worksheet_courses.write(0, 6, "End date", bold)
-worksheet_courses.write(0, 7, "Location (city) of the course", bold)
-worksheet_courses.write(0, 8, "Comment", bold)
 for facility in sorted(reporting_data.keys()):
 	for course in reporting_data[facility]["courses_all"]:
 		worksheet_courses.write(courses_row, 0, course[0])
@@ -517,17 +555,19 @@ for facility in sorted(reporting_data.keys()):
 		worksheet_courses.write(courses_row, 7, course[7])
 		worksheet_courses.write(courses_row, 8, course[8])
 		courses_row += 1
+worksheet_courses.add_table(0,0,courses_row-1,8, {"columns":[
+	{"header":"Facility name"},
+	{"header":"Facility contact"},
+	{"header":"Full name of the course"},
+	{"header":"Did the reporting unit organize or co-organize the event?"},
+	{"header":"If co-organized, with whom?"},
+	{"header":"Start date"},
+	{"header":"End date"},
+	{"header":"Location (city) of the event"},
+	{"header":"Comment"}
+]})
 
 events_row = 1
-worksheet_events.write(0, 0, "facility", bold)
-worksheet_events.write(0, 1, "facility_contact", bold)
-worksheet_events.write(0, 2, "Full name of the event", bold)
-worksheet_events.write(0, 3, "Did the reporting unit organize or co-organize the event?", bold)
-worksheet_events.write(0, 4, "If co-organized, with whom?", bold)
-worksheet_events.write(0, 5, "Start date", bold)
-worksheet_events.write(0, 6, "End date", bold)
-worksheet_events.write(0, 7, "Location (city) of the event", bold)
-worksheet_events.write(0, 8, "Comment", bold)
 for facility in sorted(reporting_data.keys()):
 	for event in reporting_data[facility]["events_all"]:
 		worksheet_events.write(events_row, 0, event[0])
@@ -540,14 +580,19 @@ for facility in sorted(reporting_data.keys()):
 		worksheet_events.write(events_row, 7, event[7])
 		worksheet_events.write(events_row, 8, event[8])
 		events_row += 1
+worksheet_events.add_table(0,0,events_row-1,8, {"columns":[
+	{"header":"Facility name"},
+	{"header":"Facility contact"},
+	{"header":"Full name of the event"},
+	{"header":"Did the reporting unit organize or co-organize the event?"},
+	{"header":"If co-organized, with whom?"},
+	{"header":"Start date"},
+	{"header":"End date"},
+	{"header":"Location (city) of the event"},
+	{"header":"Comment"}
+]})
 
 external_row = 1
-worksheet_external.write(0, 0, "facility", bold)
-worksheet_external.write(0, 1, "facility_contact", bold)
-worksheet_external.write(0, 2, "Name of external organization", bold)
-worksheet_external.write(0, 3, "Type of organization", bold)
-worksheet_external.write(0, 4, "Reference person", bold)
-worksheet_external.write(0, 5, "Purpose of collabaration/alliance", bold)
 for facility in sorted(reporting_data.keys()):
 	for external in reporting_data[facility]["external_all"]:
 		worksheet_external.write(external_row, 0, external[0])
@@ -557,7 +602,69 @@ for facility in sorted(reporting_data.keys()):
 		worksheet_external.write(external_row, 4, external[4])
 		worksheet_external.write(external_row, 5, external[5])
 		external_row += 1
+worksheet_external.add_table(0,0,external_row-1,5, {"columns":[
+	{"header":"Facility name"},
+	{"header":"Facility contact"},
+	{"header":"Name of external organization"},
+	{"header":"Type of organization"},
+	{"header":"Reference person"},
+	{"header":"Purpose of collabaration/alliance"}
+]})
 
+additional_funding_row = 1
+for facility in sorted(reporting_data.keys()):
+	for item in reporting_data[facility]["additional_funding"]:
+		worksheet_additional_funding.write(additional_funding_row,0,facility)
+		worksheet_additional_funding.write(additional_funding_row,1,meta_data[facility]["owner"]["email"])
+		worksheet_additional_funding.write(additional_funding_row,2,unicode(item[0]))
+		worksheet_additional_funding.write(additional_funding_row,3,unicode(item[1]))
+		if is_number(unicode(item[2])):
+			worksheet_additional_funding.write(additional_funding_row,4,float(item[2]))
+		else:
+			worksheet_additional_funding.write(additional_funding_row,4,unicode(item[2]))
+		additional_funding_row += 1
+worksheet_additional_funding.add_table(0,0,additional_funding_row-1,4, {"columns":[{"header":"Facility name"},{"header":"Facility contact"},{"header":"Name of financier"},{"header":"Type of financier"},{"header":"Amount"}]})
+directors_row = 1
+for facility in sorted(reporting_data.keys()):
+	for item in reporting_data[facility]["facility_director"]:
+		worksheet_directors.write(directors_row,0,facility)
+		worksheet_directors.write(directors_row,1,meta_data[facility]["owner"]["email"])
+		worksheet_directors.write(directors_row,2,unicode(item[0]))
+		worksheet_directors.write(directors_row,3,unicode(item[1]))
+		worksheet_directors.write(directors_row,4,unicode(item[2]))
+		directors_row += 1
+worksheet_directors.add_table(0,0,directors_row-1,4, {"columns":[{"header":"Facility name"},{"header":"Facility contact"},{"header":"First name"},{"header":"Last name"},{"header":"Affiliation"}]})
+heads_row = 1
+for facility in sorted(reporting_data.keys()):
+	for item in reporting_data[facility]["facility_head"]:
+		worksheet_heads.write(heads_row,0,facility)
+		worksheet_heads.write(heads_row,1,meta_data[facility]["owner"]["email"])
+		worksheet_heads.write(heads_row,2,unicode(item[0]))
+		worksheet_heads.write(heads_row,3,unicode(item[1]))
+		worksheet_heads.write(heads_row,4,unicode(item[2]))
+		heads_row += 1
+worksheet_heads.add_table(0,0,heads_row-1,4, {"columns":[{"header":"Facility name"},{"header":"Facility contact"},{"header":"First name"},{"header":"Last name"},{"header":"Affiliation"}]})
+
+ip_row = 1
+for facility in sorted(reporting_data.keys()):
+	for item in reporting_data[facility]["immaterial_property_rights"]:
+		worksheet_ip.write(ip_row,0,facility)
+		worksheet_ip.write(ip_row,1,meta_data[facility]["owner"]["email"])
+		worksheet_ip.write(ip_row,2,unicode(item[0]))
+		worksheet_ip.write(ip_row,3,unicode(item[1]))
+		worksheet_ip.write(ip_row,4,unicode(item[2]))
+		worksheet_ip.write(ip_row,5,unicode(item[3]))
+		worksheet_ip.write(ip_row,6,unicode(item[4]))
+		ip_row += 1
+worksheet_ip.add_table(0,0,ip_row-1,6, {"columns":[
+	{"header":"Facility name"},
+	{"header":"Facility contact"},
+	{"header":"Patent title"},
+	{"header":"Patent application number"},
+	{"header":"Filed or granted during 2018?"},
+	{"header":"Registered designs"},
+	{"header":"Registered trademarks"}
+]})
 
 workbook.close()
 
