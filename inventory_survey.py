@@ -30,9 +30,10 @@ def header(canvas, doc, content):
 	canvas.setStrokeColor("#999999")
 	canvas.drawPath(p, stroke=1)
 	canvas.restoreState()
+	canvas.drawString(150, 65, "Technology Needs Inventory")
 
 def generatePdf(user_responses):
-	doc = BaseDocTemplate(u"user_survey_plots/{}.pdf".format(user_responses["01_id"].lower().replace(" ", "_")),
+	doc = BaseDocTemplate(u"user_survey_plots/Technology_Needs_Inventory{}.pdf".format(user_responses["01_id"].lower().replace(" ", "_")),
 		pagesize=A4,
 		rightMargin=18*mm, leftMargin=18*mm,
 		topMargin=16*mm, bottomMargin=16*mm, 
@@ -54,10 +55,13 @@ def generatePdf(user_responses):
 	header_content = Paragraph(
 		u'<b>{} {}</b><br/><font name=Frutiger-45-Light size=12> {}</font>'.format(user_responses["02_name"], user_responses["04_email"], user_responses["03_position"]), 
 		styles["onepager_title"])
+	footer_content = Paragraph(
+		u'<b>{}</b>'.format("Technology Needs Inventory"), 
+		styles["onepager_text"])
 
-	template = PageTemplate(id='test', frames=[frame1,frame2], onPage=partial(header, content=header_content))
-	doc.addPageTemplates([template])
-
+	header_item = PageTemplate(id='test', frames=[frame1,frame2], onPage=partial(header, content=header_content))
+	doc.addPageTemplates([header_item])
+	
 	Story = []
 
 	Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>Affiliation:</b></font>", styles["onepager_inner_heading"]))
@@ -70,13 +74,18 @@ def generatePdf(user_responses):
 		Story.append(Paragraph(u"{}".format(platform), 
 			styles["onepager_text"]))
 
-	Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>I propose a technology/service:</b></font>", styles["onepager_inner_heading"]))
-	Story.append(Paragraph(u"{}".format(user_responses["07_propose"]), 
-		styles["onepager_text"]))
-	
-	Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>Specify who you are representing:</b></font>", styles["onepager_inner_heading"]))
-	Story.append(Paragraph(u"{}".format(user_responses["08_representing"]), 
-		styles["onepager_text"]))	
+	if user_responses["08_representing"]:
+		Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>I propose a technology/service:</b></font>", styles["onepager_inner_heading"]))
+		Story.append(Paragraph(u"{}".format(user_responses["07_propose"].replace("(specify  below)", "(specified below)")), 
+			styles["onepager_text"]))
+		Story.append(Paragraph(u"{}".format(user_responses["08_representing"]), 
+			styles["onepager_text"]))	
+	else:
+		Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>I propose a technology/service:</b></font>", styles["onepager_inner_heading"]))
+		Story.append(Paragraph(u"{}".format(user_responses["07_propose"]), 
+			styles["onepager_text"]))
+
+
 	
 	# print user_responses["09_description"].split("\n")
 	Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>Give a brief description of the technology/service suggested. Specify what makes it nationally unique and the added value for academic researchers, healthcare and industry.</b></font>", styles["onepager_inner_heading"]))
@@ -89,7 +98,7 @@ def generatePdf(user_responses):
 		Story.append(Paragraph(u"{}".format(platform), 
 			styles["onepager_text"]))
 	
-	Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>Estimate the number of annual users of the technology if incorporated into the SciLifeLab infrastructure and offering nation-wide service:</b></font>", styles["onepager_inner_heading"]))
+	Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>Estimate the number of annual users of the technology if incorporated into the SciLifeLab infrastructure and offering nation-wide service (1-10, 10-100, more than 100, Don't know):</b></font>", styles["onepager_inner_heading"]))
 	Story.append(Paragraph(u"{}".format(user_responses["11_num_users"]), 
 		styles["onepager_text"]))
 	
