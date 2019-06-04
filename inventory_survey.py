@@ -132,94 +132,94 @@ def generate_summary_pdf(summary_data, form_data, heading_colour="#0093BD"):
 	
 	doc.build(Story)
 
-def generate_summary_pdf_vertical(summary_data, form_data, heading_colour="#0093BD"):
+# def generate_summary_pdf_vertical(summary_data, form_data, heading_colour="#0093BD"):
 	
-	title = "Summary of {}".format(form_data["title"])
-	doc = BaseDocTemplate(u"user_survey_plots/summary_of_{}_vertical.pdf".format(title.lower().replace(" ", "_")),
-		pagesize=A4,
-		rightMargin=18*mm, leftMargin=18*mm,
-		topMargin=16*mm, bottomMargin=16*mm, 
-		showBoundary=0
-	)
+# 	title = "Summary of {}".format(form_data["title"])
+# 	doc = BaseDocTemplate(u"user_survey_plots/summary_of_{}_vertical.pdf".format(title.lower().replace(" ", "_")),
+# 		pagesize=A4,
+# 		rightMargin=18*mm, leftMargin=18*mm,
+# 		topMargin=16*mm, bottomMargin=16*mm, 
+# 		showBoundary=0
+# 	)
 
-	pdfmetrics.registerFont(TTFont('MinionPro', 'MinionPro-Regular.ttf'))
-	pdfmetrics.registerFont(TTFont('Frutiger-65-Bold', 'Frutiger-LT-Std-65-Bold.ttf'))
-	pdfmetrics.registerFont(TTFont('Frutiger-45-Light', 'Frutiger-LT-Std-45-Light.ttf'))
+# 	pdfmetrics.registerFont(TTFont('MinionPro', 'MinionPro-Regular.ttf'))
+# 	pdfmetrics.registerFont(TTFont('Frutiger-65-Bold', 'Frutiger-LT-Std-65-Bold.ttf'))
+# 	pdfmetrics.registerFont(TTFont('Frutiger-45-Light', 'Frutiger-LT-Std-45-Light.ttf'))
 
-	styles = getSampleStyleSheet()
-	styles.add(ParagraphStyle(name="onepager_inner_heading", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=10, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8))
-	styles.add(ParagraphStyle(name="onepager_title", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=16, bold=0, color="#000000", leading=16, spaceBefore=0))
-	styles.add(ParagraphStyle(name="onepager_text", parent=styles["Normal"], fontName="MinionPro", fontSize=10, bold=0, color="#000000", leading=14))
+# 	styles = getSampleStyleSheet()
+# 	styles.add(ParagraphStyle(name="onepager_inner_heading", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=10, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8))
+# 	styles.add(ParagraphStyle(name="onepager_title", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=16, bold=0, color="#000000", leading=16, spaceBefore=0))
+# 	styles.add(ParagraphStyle(name="onepager_text", parent=styles["Normal"], fontName="MinionPro", fontSize=10, bold=0, color="#000000", leading=14))
 
-	frame1 = Frame(doc.leftMargin, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-21*mm, id='col1', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
-	frame2 = Frame(doc.leftMargin+doc.width/2+3.5*mm, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-21*mm, id='col2', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
+# 	frame1 = Frame(doc.leftMargin, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-21*mm, id='col1', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
+# 	frame2 = Frame(doc.leftMargin+doc.width/2+3.5*mm, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-21*mm, id='col2', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
 	
-	header_content = Paragraph(
-		u'<b>{}</b>'.format(title), 
-		styles["onepager_title"])
+# 	header_content = Paragraph(
+# 		u'<b>{}</b>'.format(title), 
+# 		styles["onepager_title"])
 
-	header_item = PageTemplate(id='inventory_survey', frames=[frame1,frame2], onPage=partial(header, content=header_content))
+# 	header_item = PageTemplate(id='inventory_survey', frames=[frame1,frame2], onPage=partial(header, content=header_content))
 	
-	doc.addPageTemplates([header_item])
+# 	doc.addPageTemplates([header_item])
 
-	Story = []
+# 	Story = []
 
-	for q in form_data["fields"]:
-		if q["ref"] in summary_data.keys():
-			Story.append(Paragraph(u"<font color='{}' name=Frutiger-65-Bold><b>{}</b></font>".format(heading_colour, q["title"].replace("*", "")),
-				styles["onepager_inner_heading"]))
+# 	for q in form_data["fields"]:
+# 		if q["ref"] in summary_data.keys():
+# 			Story.append(Paragraph(u"<font color='{}' name=Frutiger-65-Bold><b>{}</b></font>".format(heading_colour, q["title"].replace("*", "")),
+# 				styles["onepager_inner_heading"]))
 			
-			labels = list()
-			values = list()
-			for choice in q["properties"]["choices"]:
-				labels.append(textwrap.fill(choice["label"], 50).replace("\n", "<br>"))
-				values.append(0)
-			for item in summary_data[q["ref"]]:
-				try:
-					values[labels.index(textwrap.fill(item, 50).replace("\n", "<br>"))] += 1
-				except ValueError as e:
-					print e
-			data = [go.Bar(
-				y = values,
-				x = labels,
-			)]
-			layout = go.Layout(
-				margin = dict(
-					r = 200,
-					t = 20,
-					b = 200,
-					l = 20
-				),
-				yaxis = go.layout.YAxis(
-					tick0 = 0,
-					dtick = 1
-				),
-				xaxis=dict(
-					tickangle = 45
-				)
-			)
-			fig = go.Figure(data=data, layout=layout)
-			plotly.io.write_image(fig, u'user_survey_plots/{}.svg'.format(q["ref"]))
+# 			labels = list()
+# 			values = list()
+# 			for choice in q["properties"]["choices"]:
+# 				labels.append(textwrap.fill(choice["label"], 50).replace("\n", "<br>"))
+# 				values.append(0)
+# 			for item in summary_data[q["ref"]]:
+# 				try:
+# 					values[labels.index(textwrap.fill(item, 50).replace("\n", "<br>"))] += 1
+# 				except ValueError as e:
+# 					print e
+# 			data = [go.Bar(
+# 				y = values,
+# 				x = labels,
+# 			)]
+# 			layout = go.Layout(
+# 				margin = dict(
+# 					r = 200,
+# 					t = 20,
+# 					b = 200,
+# 					l = 20
+# 				),
+# 				yaxis = go.layout.YAxis(
+# 					tick0 = 0,
+# 					dtick = 1
+# 				),
+# 				xaxis=dict(
+# 					tickangle = 45
+# 				)
+# 			)
+# 			fig = go.Figure(data=data, layout=layout)
+# 			plotly.io.write_image(fig, u'user_survey_plots/{}.svg'.format(q["ref"]))
 
-			user_dist_filename = u'user_survey_plots/{}.svg'.format(q["ref"])
+# 			user_dist_filename = u'user_survey_plots/{}.svg'.format(q["ref"])
 
-			if os.path.isfile(user_dist_filename):
-				user_dist_image  = svg2rlg(user_dist_filename)
+# 			if os.path.isfile(user_dist_filename):
+# 				user_dist_image  = svg2rlg(user_dist_filename)
 
-				#Scaling the svg files
-				tmp_width = 83
-				tmp_height = 60
+# 				#Scaling the svg files
+# 				tmp_width = 83
+# 				tmp_height = 60
 
-				scaling_factor = tmp_width*mm/user_dist_image.width
+# 				scaling_factor = tmp_width*mm/user_dist_image.width
 
-				user_dist_image.width = tmp_width*mm
-				user_dist_image.height = tmp_height*mm
-				user_dist_image.scale(scaling_factor, scaling_factor)
-				Story.append(Spacer(1, 3*mm))
-				Story.append(user_dist_image)
-			Story.append(CondPageBreak(60*mm))
+# 				user_dist_image.width = tmp_width*mm
+# 				user_dist_image.height = tmp_height*mm
+# 				user_dist_image.scale(scaling_factor, scaling_factor)
+# 				Story.append(Spacer(1, 3*mm))
+# 				Story.append(user_dist_image)
+# 			Story.append(CondPageBreak(60*mm))
 	
-	doc.build(Story)
+# 	doc.build(Story)
 
 
 def generate_pdf(user_id, response, form_data, index, additional_data, heading_colour="#0093BD"):
@@ -314,9 +314,7 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 					Story.append(Paragraph(u"<em>{}</em>".format(choice), 
 						indent_styles[2]))
 			elif shown_responses[q["ref"]]["type"] == "choice":
-				if q["ref"] == "e10b6c87-bab8-49c6-a64b-43bd8372ea90":
-					print shown_responses[q["ref"]]["choice"]
-					if == "78fc6f46-f93f-4b93-af0e-ad5516d0047d"
+				if shown_responses[q["ref"]]["choice"]["label"] == u'Representing a group of scientists, a department, a university, a SciLifeLab committee, healthcare, industry etc. (specify  below)':
 					Story.append(Paragraph(u"<em>Representing:</em>", 
 						indent_styles[2]))
 				else:
@@ -334,6 +332,7 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 						indent_styles[1]))
 				except KeyError as e:
 					print shown_responses[q["ref"]]
+			Story.append(CondPageBreak(30*mm))
 	doc.build(Story)
 
 def get_form(form_id, api_key, raise_error=True):
@@ -365,7 +364,7 @@ def get_responses(form_id, api_key, raise_error=True):
 	
 if __name__ == "__main__":
 
-	listofthings = [
+	additional_information = [
 		"#95C11E",                              # colour
 		"B",                                    # prefix
 		"f3715e52-fe18-48e2-a064-d4b941c32b55", # name of tech
@@ -373,7 +372,7 @@ if __name__ == "__main__":
 		"2fcff9f3-9d5e-48e5-8268-5dc5725e170f", # position
 		"e129e013-f85e-4a50-a987-fc31b0a6f938"  # email
 	]
-	listofthings2 = [
+	additional_information2 = [
 		"#0093BD",                              # colour
 		"A",                                    # prefix
 		"6b72ad82-ed01-4950-89b5-97796d0264d5", # name of tech
@@ -381,7 +380,7 @@ if __name__ == "__main__":
 		"2fcff9f3-9d5e-48e5-8268-5dc5725e170f", # position
 		"e129e013-f85e-4a50-a987-fc31b0a6f938"  # email
 		]
-	form_ids = {"mu9Pmx": listofthings, "TKMJZS": listofthings2}
+	form_ids = {"mu9Pmx": additional_information, "TKMJZS": additional_information2}
 
 	for form_id in form_ids.keys():
 		print form_id
@@ -415,7 +414,7 @@ if __name__ == "__main__":
 						exit("ERROR"+str(question))
 
 		generate_summary_pdf(summary_responses, form_data, heading_colour=form_ids[form_id][0])
-		generate_summary_pdf_vertical(summary_responses, form_data, heading_colour=form_ids[form_id][0])
+		# generate_summary_pdf_vertical(summary_responses, form_data, heading_colour=form_ids[form_id][0])
 
 		for i, user_id in enumerate(responses.keys(), 1):
 			generate_pdf(user_id, responses[user_id], form_data, index=i, additional_data=form_ids[form_id], heading_colour=form_ids[form_id][0])
