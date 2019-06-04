@@ -91,19 +91,18 @@ aff_col = list()
 
 for aff in sorted(affiliation_data.keys()):
 	aff_names.append(aff)
-	aff_0.append(mean(affiliation_data[aff][0]))
-	aff_1.append(mean(affiliation_data[aff][1]))
-	aff_2.append(mean(affiliation_data[aff][2]))
-	aff_3.append(mean(affiliation_data[aff][3]))
-	aff_4.append(mean(affiliation_data[aff][4]))
-	aff_5.append(mean(affiliation_data[aff][5]))
-	aff_6.append(mean(affiliation_data[aff][6]))
+	aff_0.append(round(mean(affiliation_data[aff][0]), 2))
+	aff_1.append(round(mean(affiliation_data[aff][1]), 2))
+	aff_2.append(round(mean(affiliation_data[aff][2]), 2))
+	aff_3.append(round(mean(affiliation_data[aff][3]), 2))
+	aff_4.append(round(mean(affiliation_data[aff][4]), 2))
+	aff_5.append(round(mean(affiliation_data[aff][5]), 2))
+	aff_6.append(round(mean(affiliation_data[aff][6]), 2))
 	print aff, len(affiliation_data[aff][6])
 	if len(affiliation_data[aff][6])<5:
 		aff_col.append(0.5)
 	else:
 		aff_col.append(1)
-
 
 barnames = ["Service", "Quality", "Importance", "User fee", "Used for more than one project", "Would use again", "SciLifeLab Impact"]
 
@@ -122,6 +121,7 @@ for i, bar in enumerate([aff_0, aff_1, aff_2, aff_3, aff_4, aff_5, aff_6]):
 				width = 2
 			)
 		),
+		yaxis="y2"
 	))
 layout = go.Layout(
 	xaxis=dict(tickangle=-45),
@@ -134,8 +134,24 @@ layout = go.Layout(
 		pad=4
 	),
 )
+fig = plotly.tools.make_subplots(rows=4, cols=2,vertical_spacing = 0.15)
+fig.append_trace(aff_traces[0], 1, 1)
+fig.append_trace(aff_traces[1], 1, 2)
+fig.append_trace(aff_traces[2], 2, 1)
+fig.append_trace(aff_traces[3], 2, 2)
+fig.append_trace(aff_traces[4], 3, 1)
+fig.append_trace(aff_traces[5], 3, 2)
+fig.append_trace(aff_traces[6], 4, 1)
+fig['layout'].update(margin=go.layout.Margin(l=100,r=250,b=200,t=100,pad=4))
+fig['layout']['yaxis'].update(range=[1, 5])
+fig['layout']['yaxis2'].update(range=[1, 5])
+fig['layout']['yaxis3'].update(range=[1, 5])
+fig['layout']['yaxis4'].update(range=[1, 5])
+fig['layout']['yaxis5'].update(range=[0, 1])
+fig['layout']['yaxis6'].update(range=[0, 1])
+fig['layout']['yaxis7'].update(range=[1, 5])
 config={'showLink': False, "displayModeBar":False}
-fig = go.Figure(data=aff_traces, layout=layout)
+# fig = go.Figure(data=aff_traces, layout=layout)
 plotly.offline.plot(fig, filename="user_survey_plots/aff_bars.html", config=config)
 
 global_means = [mean(all_service), mean(all_quality), mean(all_importance), mean(all_fee), mean(all_morethanone), mean(all_again)]
@@ -174,7 +190,7 @@ layout = go.Layout(
 
 data = [trace]
 fig = go.Figure(data=data, layout=layout)
-plotly.offline.plot(fig, filename="user_survey_plots/scatter_service.html")
+# plotly.offline.plot(fig, filename="user_survey_plots/scatter_service.html")
 
 trace = go.Scatter(
 	x= correlation_data[6],
@@ -209,7 +225,7 @@ layout = go.Layout(
 
 data = [trace]
 fig = go.Figure(data=data, layout=layout)
-plotly.offline.plot(fig, filename="user_survey_plots/scatter_quality.html")
+# plotly.offline.plot(fig, filename="user_survey_plots/scatter_quality.html")
 
 trace = go.Scatter(
 	x= correlation_data[6],
@@ -244,7 +260,7 @@ layout = go.Layout(
 
 data = [trace]
 fig = go.Figure(data=data, layout=layout)
-plotly.offline.plot(fig, filename="user_survey_plots/scatter_importance.html")
+# plotly.offline.plot(fig, filename="user_survey_plots/scatter_importance.html")
 
 trace = go.Scatter(
 	x= correlation_data[6],
@@ -279,7 +295,7 @@ layout = go.Layout(
 
 data = [trace]
 fig = go.Figure(data=data, layout=layout)
-plotly.offline.plot(fig, filename="user_survey_plots/scatter_userfee.html")
+# plotly.offline.plot(fig, filename="user_survey_plots/scatter_userfee.html")
 
 trace = go.Scatter(
 	x= correlation_data[6],
@@ -314,7 +330,7 @@ layout = go.Layout(
 
 data = [trace]
 fig = go.Figure(data=data, layout=layout)
-plotly.offline.plot(fig, filename="user_survey_plots/scatter_morethanone.html")
+# plotly.offline.plot(fig, filename="user_survey_plots/scatter_morethanone.html")
 
 trace = go.Scatter(
 	x= correlation_data[6],
@@ -349,9 +365,15 @@ layout = go.Layout(
 
 data = [trace]
 fig = go.Figure(data=data, layout=layout)
-plotly.offline.plot(fig, filename="user_survey_plots/scatter_useagain.html")
-
-for i, plot_name in enumerate(["Service", "Quality", "Importance", "User fee", "Used for more than one project", "Would use again"]):
+# plotly.offline.plot(fig, filename="user_survey_plots/scatter_useagain.html")
+plot_file_names = ["general", "service", "importance", "user_fee", "several_projects", "use_again"]
+for i, plot_name in enumerate([
+		"What is your general impression of the facility with regards to service-mindedness keeping of timelines and communication?<br>(1 Poor, 5 Excellent)", 
+		"How do you rate the quality and scientific level of services technologies and data provided by the facility?<br>(1 Poor, 5 Excellent)", 
+		"How do you rate the importance of access to the facility services for your research project?<br>(1 Low importance, 5 High importance)", 
+		"How did you experience the user fee level at the facility?<br>(1 Low, 3 Fair, 5 High)", 
+		"Have you used the facility for more than one project?<br>(Yes/No)", 
+		"Would you consider using the facility in future research projects?<br>(Yes/No)"]):
 
 	data = list()
 	data_pre = list()
@@ -379,10 +401,10 @@ for i, plot_name in enumerate(["Service", "Quality", "Importance", "User fee", "
 			line = dict(
 				color = colour)
 		),mean(survey_data[key][i])])
-
+		
 		list_of_means.append(mean(survey_data[key][i]))
 
-		data_means_pre.append([mean(survey_data[key][i]),key,mean(survey_data[key][i]), colour])
+		data_means_pre.append([mean(survey_data[key][i]),key,mean(survey_data[key][i]), colour, len(survey_data[key][i])])
 
 	mean_of_means = mean(list_of_means)
 
@@ -393,70 +415,108 @@ for i, plot_name in enumerate(["Service", "Quality", "Importance", "User fee", "
 	data_means_labels = list()
 	data_means_colours = list()
 	data_means_values_mean_of_means = list()
+	list_of_num_responses = list()
 
 	for trace in data_pre:
 		data.append(trace[0])
 	for trace in data_means_pre:
-		data_means_values.append(trace[0] - global_means[i])
-		data_means_values_mean_of_means.append(trace[0] - mean_of_means)
+		# data_means_values.append(trace[0])
+		data_means_values_mean_of_means.append(round(trace[0], 2))
 		data_means_labels.append(trace[1])
 		data_means_colours.append(trace[3])
+		list_of_num_responses.append(trace[4])
 
-	data_means = [go.Bar(
-		x = data_means_labels,
-		y = data_means_values,
-		marker = dict(
-			color = data_means_colours
+	# data_means = [go.Bar(
+	# 	x = data_means_labels,
+	# 	y = data_means_values,
+	# 	marker = dict(
+	# 		color = data_means_colours
+	# 	)
+	# )]
+
+	if max(data_means_values_mean_of_means) > 1:
+		data_mean_of_means = [
+			go.Bar(
+				x = data_means_labels,
+				y = data_means_values_mean_of_means,
+				marker = dict(
+					color = data_means_colours
+				),
+				text=["{}<br>({})".format(data_means_values_mean_of_means[j], list_of_num_responses[j]) for j in range(len(data_means_values_mean_of_means))],
+				textposition = 'auto',
+				name="Facility mean"
+			),
+			go.Scatter(
+				x = data_means_labels,
+				y = [mean_of_means]*len(data_means_labels),
+				mode = 'lines',
+				name = 'Mean of means'
+			)
+		]
+		layout_means = go.Layout(
+			title = plot_name,
+			showlegend=False,
+			margin=go.layout.Margin(
+				l=200,
+				r=200,
+				b=200,
+				t=100,
+				pad=10
+			),
+			yaxis=go.layout.YAxis(
+				title="Mean score, N user replies in parenthesis",
+				ticktext=["1", "3", "Average: "+str(round(mean_of_means, 2)), "5"],
+				tickvals=[1, 3, mean_of_means, 5],
+				range=[1,5]
+			)
 		)
-	)]
-	data_mean_of_means = [go.Bar(
-		x = data_means_labels,
-		y = data_means_values_mean_of_means,
-		marker = dict(
-			color = data_means_colours
-		)
-	)]
+	else:
+		data_mean_of_means = [
+			go.Bar(
+				x = data_means_labels,
+				y = [x*100 for x in data_means_values_mean_of_means],
+				marker = dict(
+					color = data_means_colours
+				),
+				text=["{}%<br>({})".format(100*data_means_values_mean_of_means[j], list_of_num_responses[j]) for j in range(len(data_means_values_mean_of_means))],
+				textposition = 'auto',
+				name="Facility mean"
+			),
+			go.Scatter(
+				x = data_means_labels,
+				y = [mean_of_means*100]*len(data_means_labels),
+				mode = 'lines',
+				name = 'Mean of means'
+			)
+		]
+		layout_means = go.Layout(
+			title = plot_name,
+			showlegend=False,
+			margin=go.layout.Margin(
+				l=200,
+				r=200,
+				b=200,
+				t=100,
+				pad=10
+			),
+			yaxis=go.layout.YAxis(
+				title="Percent Yes answers",
+				ticktext=["0", "Average: {}%".format(round(mean_of_means, 2)*100), "100"],
+				tickvals=[0, mean_of_means*100, 100],
+				range=[0,100],
+				dtick=0.25
+			)
+		)		
 
-	layout = go.Layout(
-		title = plot_name,
-		showlegend=False,
-		margin=go.layout.Margin(
-			l=100,
-			r=100,
-			b=200,
-			t=100,
-			pad=4
-		),
-		yaxis = dict(
-			dtick = 1,
-		)
-	)
-	layout_means = go.Layout(
-		title = plot_name,
-		showlegend=False,
-		margin=go.layout.Margin(
-			l=200,
-			r=200,
-			b=200,
-			t=100,
-			pad=4
-		),
-		yaxis=go.layout.YAxis(
-			ticktext=["-1", "Mean value: "+str(round(mean_of_means, 2)), "+1"],
-			tickvals=[-1, 0, 1],
-			range=[-1,1]
-		)
-	)
+	# fig = go.Figure(data=data, layout=layout)
 
-	fig = go.Figure(data=data, layout=layout)
+	# config={'showLink': False, "displayModeBar":False}
+	# # plotly.offline.plot(fig, filename="user_survey_plots/"+plot_name.replace(" ", "_")+".html", config=config)
 
-	config={'showLink': False, "displayModeBar":False}
-	# plotly.offline.plot(fig, filename="user_survey_plots/"+plot_name.replace(" ", "_")+".html", config=config)
-
-	fig_means = go.Figure(data=data_means, layout=layout_means)
+	# fig_means = go.Figure(data=data_means, layout=layout_means)
 
 	# plotly.offline.plot(fig_means, filename="user_survey_plots/"+plot_name.replace(" ", "_")+"_means.html", config=config)
 
 	fig_mean_of_means = go.Figure(data=data_mean_of_means, layout=layout_means)
 
-	plotly.offline.plot(fig_mean_of_means, filename="user_survey_plots/"+plot_name.replace(" ", "_")+"_mean_of_means.html", config=config)
+	plotly.offline.plot(fig_mean_of_means, filename="user_survey_plots/"+plot_file_names[i]+".html", config=config)

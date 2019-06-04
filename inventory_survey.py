@@ -32,11 +32,11 @@ from api_key import INVENTORY_API_KEY
 
 def header(canvas, doc, content, footer_string=""):
 	canvas.saveState()
-	w, h = content.wrap(doc.width, doc.topMargin)
+	w, h = content.wrap(doc.width-60*mm, doc.topMargin)
 	content.drawOn(canvas, doc.leftMargin, doc.height + doc.topMargin - h)
 	p = canvas.beginPath()
 	p.moveTo(doc.leftMargin,doc.height + doc.topMargin - h - 2*mm)
-	p.lineTo(doc.leftMargin+w,doc.height + doc.topMargin - h - 2*mm)
+	p.lineTo(doc.leftMargin+doc.width,doc.height + doc.topMargin - h - 2*mm)
 	p.close()
 	canvas.setLineWidth(0.5)
 	canvas.setStrokeColor("#999999")
@@ -220,10 +220,12 @@ def generate_summary_pdf_vertical(summary_data, form_data, heading_colour="#0093
 			Story.append(CondPageBreak(60*mm))
 	
 	doc.build(Story)
-def generate_pdf(user_id, response, form_data, heading_colour="#0093BD"):
+
+
+def generate_pdf(user_id, response, form_data, index, additional_data, heading_colour="#0093BD"):
 	# print form_data
 	title = form_data["title"]
-	doc = BaseDocTemplate(u"user_survey_plots/{}_{}.pdf".format(title.lower().replace(" ", "_"), user_id.lower().replace(" ", "_")),
+	doc = BaseDocTemplate(u"user_survey_plots/{}_{}{}.pdf".format(title.lower().replace(" ", "_"), additional_data[1], index),
 		pagesize=A4,
 		rightMargin=18*mm, leftMargin=18*mm,
 		topMargin=16*mm, bottomMargin=16*mm, 
@@ -246,42 +248,45 @@ def generate_pdf(user_id, response, form_data, heading_colour="#0093BD"):
  
 	frame1 = Frame(doc.leftMargin, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-21*mm, id='col1', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
 	frame2 = Frame(doc.leftMargin+doc.width/2+3.5*mm, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-21*mm, id='col2', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
-	# print "\n\n\n"
-	name_question = None
-	email_question = None
-	position_question = None
 
-	for question in form_data["fields"]:
-		if name_question == None and "name" in question["title"].lower():
-			name_question = question["ref"]
-		if email_question == None and "email" in question["title"].lower():
-			email_question = question["ref"]
-		if position_question == None and "position" in question["title"].lower():
-			position_question = question["ref"]
-
+	tech_name_response = ""
 	name_response = ""
 	email_response = ""
 	position_response = ""
 
 	shown_responses = {}
+	maybe_show_pos = {}
 
 	for q_response in response:
-		if q_response["field"]["ref"] == name_question:
+		if q_response["field"]["ref"] == additional_data[2]:
+			tech_name_response = q_response["text"]
+		elif q_response["field"]["ref"] == additional_data[3]:
 			name_response = q_response["text"]
-		elif q_response["field"]["ref"] == email_question:
-			email_response = q_response["email"]
-		elif q_response["field"]["ref"] == position_question:
+		elif q_response["field"]["ref"] == additional_data[4]:
 			position_response = q_response["text"]
+			maybe_show_pos[q_response["field"]["ref"]] = q_response
+		elif q_response["field"]["ref"] == additional_data[5]:
+			email_response = q_response["email"]
 		else:
 			shown_responses[q_response["field"]["ref"]] = q_response
 
-
+	if tech_name_response == "":
+		tech_name_response = "Placeholder"
 
 	header_content = Paragraph(
-		u'<b>{}</b><br/><font name=Frutiger-45-Light size=12>{}<br/>{}</font>'.format(name_response, email_response, position_response), 
+		u'<b>{}</b><br/><font name=Frutiger-45-Light size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response,name_response,position_response,email_response), 
 		styles["onepager_title"])
 
-	footer_string = title
+	w, h = header_content.wrap(doc.width-50*mm, doc.topMargin)
+
+	top_margin_offset = 0
+	if h > 48:
+		top_margin_offset = h - 48
+
+	frame1 = Frame(doc.leftMargin, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-21*mm-top_margin_offset, id='col1', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
+	frame2 = Frame(doc.leftMargin+doc.width/2+3.5*mm, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-21*mm-top_margin_offset, id='col2', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
+
+	footer_string = "{} Reg No - {}{}".format(title, additional_data[1], index)
 	
 	header_item = PageTemplate(id='inventory_survey', frames=[frame1,frame2], onPage=partial(header, content=header_content, footer_string=footer_string))
 	doc.addPageTemplates([header_item])
@@ -309,8 +314,14 @@ def generate_pdf(user_id, response, form_data, heading_colour="#0093BD"):
 					Story.append(Paragraph(u"<em>{}</em>".format(choice), 
 						indent_styles[2]))
 			elif shown_responses[q["ref"]]["type"] == "choice":
-				Story.append(Paragraph(u"<em>{}</em>".format(shown_responses[q["ref"]]["choice"][shown_responses[q["ref"]]["choice"].keys()[0]]), 
-					indent_styles[2]))
+				if q["ref"] == "e10b6c87-bab8-49c6-a64b-43bd8372ea90":
+					print shown_responses[q["ref"]]["choice"]
+					if == "78fc6f46-f93f-4b93-af0e-ad5516d0047d"
+					Story.append(Paragraph(u"<em>Representing:</em>", 
+						indent_styles[2]))
+				else:
+					Story.append(Paragraph(u"<em>{}</em>".format(shown_responses[q["ref"]]["choice"][shown_responses[q["ref"]]["choice"].keys()[0]]), 
+						indent_styles[2]))
 			elif shown_responses[q["ref"]]["type"] == "url":
 				Story.append(Paragraph(u"{}".format(shown_responses[q["ref"]]["url"]), 
 					indent_styles[1]))
@@ -354,13 +365,32 @@ def get_responses(form_id, api_key, raise_error=True):
 	
 if __name__ == "__main__":
 
-	form_ids = {"mu9Pmx": "#95C11E", "TKMJZS": "#0093BD"}
+	listofthings = [
+		"#95C11E",                              # colour
+		"B",                                    # prefix
+		"f3715e52-fe18-48e2-a064-d4b941c32b55", # name of tech
+		"23cc0bc6-8ffb-4994-a569-0a24d64502b7", # name
+		"2fcff9f3-9d5e-48e5-8268-5dc5725e170f", # position
+		"e129e013-f85e-4a50-a987-fc31b0a6f938"  # email
+	]
+	listofthings2 = [
+		"#0093BD",                              # colour
+		"A",                                    # prefix
+		"6b72ad82-ed01-4950-89b5-97796d0264d5", # name of tech
+		"23cc0bc6-8ffb-4994-a569-0a24d64502b7", # name
+		"2fcff9f3-9d5e-48e5-8268-5dc5725e170f", # position
+		"e129e013-f85e-4a50-a987-fc31b0a6f938"  # email
+		]
+	form_ids = {"mu9Pmx": listofthings, "TKMJZS": listofthings2}
 
 	for form_id in form_ids.keys():
-
+		print form_id
 		form_data = get_form(form_id, INVENTORY_API_KEY)
 		response_data = get_responses(form_id, INVENTORY_API_KEY)
 		
+		for q in form_data["fields"]:
+			print q
+
 		responses = dict()
 		for item in response_data["items"]:
 			if "answers" in item.keys():
@@ -384,10 +414,10 @@ if __name__ == "__main__":
 					else:
 						exit("ERROR"+str(question))
 
-		generate_summary_pdf(summary_responses, form_data, heading_colour=form_ids[form_id])
-		generate_summary_pdf_vertical(summary_responses, form_data, heading_colour=form_ids[form_id])
+		generate_summary_pdf(summary_responses, form_data, heading_colour=form_ids[form_id][0])
+		generate_summary_pdf_vertical(summary_responses, form_data, heading_colour=form_ids[form_id][0])
 
-		for user_id in responses.keys():
-			generate_pdf(user_id, responses[user_id], form_data, heading_colour=form_ids[form_id])
+		for i, user_id in enumerate(responses.keys(), 1):
+			generate_pdf(user_id, responses[user_id], form_data, index=i, additional_data=form_ids[form_id], heading_colour=form_ids[form_id][0])
 
 
