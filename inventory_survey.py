@@ -271,7 +271,10 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 			shown_responses[q_response["field"]["ref"]] = q_response
 
 	if tech_name_response == "":
-		tech_name_response = "Placeholder"
+		if additional_data[1] == "A":
+			tech_name_response = additional_data[6][index]
+		else:
+			tech_name_response = "Placeholder"
 
 	header_content = Paragraph(
 		u'<b>{}</b><br/><font name=Frutiger-45-Light size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response,name_response,position_response,email_response), 
@@ -364,6 +367,22 @@ def get_responses(form_id, api_key, raise_error=True):
 	
 if __name__ == "__main__":
 
+	placeholder_tech_names = {
+		1:"CUT&RUN",
+		2:"BioNano Genomics Saphyre system",
+		3:"Imaging Mass Cytometry",
+		4:"eCLIP, XRNAX, PRIDE-seq",
+		5:"Platform for Organoids",
+		6:"STED-FCS",
+		7:"Advanced Fluorescence Micoroscopy",
+		8:"High-speed Camera for ALM Facility",
+		10:"SeqFISH, MerFISH",
+		11:"Celsee system for single-cell transcriptomics",
+		12:"smFISH, MERFISH, HCR and RNAscope",
+		14:"Service for Earth Biogenome Project / BGISeq",
+		15:"Ancient DNA genome seq / Paleoproteomics",
+		16:"smFISH"
+	}
 	additional_information = [
 		"#95C11E",                              # colour
 		"B",                                    # prefix
@@ -378,7 +397,8 @@ if __name__ == "__main__":
 		"6b72ad82-ed01-4950-89b5-97796d0264d5", # name of tech
 		"23cc0bc6-8ffb-4994-a569-0a24d64502b7", # name
 		"2fcff9f3-9d5e-48e5-8268-5dc5725e170f", # position
-		"e129e013-f85e-4a50-a987-fc31b0a6f938"  # email
+		"e129e013-f85e-4a50-a987-fc31b0a6f938", # email
+		placeholder_tech_names                  # names for technologies
 		]
 	form_ids = {"mu9Pmx": additional_information, "TKMJZS": additional_information2}
 
