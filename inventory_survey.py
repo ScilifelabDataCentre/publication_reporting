@@ -276,11 +276,13 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 		else:
 			tech_name_response = "Placeholder"
 
+	thing = u'<b>{}</b><br/><font name=Frutiger-45-Light size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response.replace('&', '&amp;'),name_response.replace('&', '&amp;'),position_response.replace('&', '&amp;'),email_response)
+
 	header_content = Paragraph(
-		u'<b>{}</b><br/><font name=Frutiger-45-Light size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response,name_response,position_response,email_response), 
+		u'<b>{}</b><br/><font name=Frutiger-45-Light size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response.replace('&', '&amp;'),name_response.replace('&', '&amp;'),position_response.replace('&', '&amp;'),email_response), 
 		styles["onepager_title"])
 
-	w, h = header_content.wrap(doc.width-50*mm, doc.topMargin)
+	w, h = header_content.wrap(doc.width-60*mm, doc.topMargin)
 
 	top_margin_offset = 0
 	if h > 48:
