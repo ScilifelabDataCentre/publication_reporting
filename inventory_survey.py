@@ -314,24 +314,24 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 					indent_styles[0]))
 			if shown_responses[q["ref"]]["type"] == "choices":
 				for choice in shown_responses[q["ref"]]["choices"]["labels"]:
-					Story.append(Paragraph(u"<em>{}</em>".format(choice), 
+					Story.append(Paragraph(u"<em>{}</em>".format(choice).replace('&', '&amp;'), 
 						indent_styles[2]))
 			elif shown_responses[q["ref"]]["type"] == "choice":
 				if shown_responses[q["ref"]]["choice"]["label"] == u'Representing a group of scientists, a department, a university, a SciLifeLab committee, healthcare, industry etc. (specify  below)':
 					Story.append(Paragraph(u"<em>Representing:</em>", 
 						indent_styles[2]))
 				else:
-					Story.append(Paragraph(u"<em>{}</em>".format(shown_responses[q["ref"]]["choice"][shown_responses[q["ref"]]["choice"].keys()[0]]), 
+					Story.append(Paragraph(u"<em>{}</em>".format(shown_responses[q["ref"]]["choice"][shown_responses[q["ref"]]["choice"].keys()[0]]).replace('&', '&amp;'), 
 						indent_styles[2]))
 			elif shown_responses[q["ref"]]["type"] == "url":
-				Story.append(Paragraph(u"{}".format(shown_responses[q["ref"]]["url"]), 
+				Story.append(Paragraph(u"{}".format(shown_responses[q["ref"]]["url"]).replace('&', '&amp;'), 
 					indent_styles[1]))
 			elif shown_responses[q["ref"]]["type"] == "email":
-				Story.append(Paragraph(u"{}".format(shown_responses[q["ref"]]["email"]), 
+				Story.append(Paragraph(u"{}".format(shown_responses[q["ref"]]["email"]).replace('&', '&amp;'), 
 					indent_styles[1]))
 			else:
 				try:
-					Story.append(Paragraph(u"{}".format(shown_responses[q["ref"]]["text"]), 
+					Story.append(Paragraph(u"{}".format(shown_responses[q["ref"]]["text"]).replace('&', '&amp;'), 
 						indent_styles[1]))
 				except KeyError as e:
 					print shown_responses[q["ref"]]
