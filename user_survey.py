@@ -123,17 +123,7 @@ for i, bar in enumerate([aff_0, aff_1, aff_2, aff_3, aff_4, aff_5, aff_6]):
 		),
 		yaxis="y2"
 	))
-layout = go.Layout(
-	xaxis=dict(tickangle=-45),
-	barmode='group',
-	margin=go.layout.Margin(
-		l=150,
-		r=150,
-		b=200,
-		t=100,
-		pad=4
-	),
-)
+
 fig = plotly.tools.make_subplots(rows=4, cols=2,vertical_spacing = 0.15)
 fig.append_trace(aff_traces[0], 1, 1)
 fig.append_trace(aff_traces[1], 1, 2)
@@ -142,7 +132,7 @@ fig.append_trace(aff_traces[3], 2, 2)
 fig.append_trace(aff_traces[4], 3, 1)
 fig.append_trace(aff_traces[5], 3, 2)
 fig.append_trace(aff_traces[6], 4, 1)
-fig['layout'].update(margin=go.layout.Margin(l=100,r=250,b=200,t=100,pad=4))
+fig['layout'].update(margin=go.layout.Margin(l=100,r=250,b=200,t=100,pad=4),width=2000,height=1200,title="Scores by affiliation")
 fig['layout']['yaxis'].update(range=[1, 5])
 fig['layout']['yaxis2'].update(range=[1, 5])
 fig['layout']['yaxis3'].update(range=[1, 5])
@@ -152,7 +142,9 @@ fig['layout']['yaxis6'].update(range=[0, 1])
 fig['layout']['yaxis7'].update(range=[1, 5])
 config={'showLink': False, "displayModeBar":False}
 # fig = go.Figure(data=aff_traces, layout=layout)
-plotly.offline.plot(fig, filename="user_survey_plots/aff_bars.html", config=config)
+# plotly.offline.plot(fig, filename="user_survey_plots/aff_bars.html", config=config)
+
+plotly.io.write_image(fig, "user_survey_plots/aff_bars.png")
 
 global_means = [mean(all_service), mean(all_quality), mean(all_importance), mean(all_fee), mean(all_morethanone), mean(all_again)]
 
@@ -426,14 +418,6 @@ for i, plot_name in enumerate([
 		data_means_colours.append(trace[3])
 		list_of_num_responses.append(trace[4])
 
-	# data_means = [go.Bar(
-	# 	x = data_means_labels,
-	# 	y = data_means_values,
-	# 	marker = dict(
-	# 		color = data_means_colours
-	# 	)
-	# )]
-
 	if max(data_means_values_mean_of_means) > 1:
 		data_mean_of_means = [
 			go.Bar(
@@ -464,11 +448,13 @@ for i, plot_name in enumerate([
 				pad=10
 			),
 			yaxis=go.layout.YAxis(
-				title="Mean score, N user replies in parenthesis",
+				title="Mean score, N user replies in parentheses",
 				ticktext=["1", "3", "Average: "+str(round(mean_of_means, 2)), "5"],
 				tickvals=[1, 3, mean_of_means, 5],
 				range=[1,5]
-			)
+			),
+			width=2300,
+			height=1000
 		)
 	else:
 		data_mean_of_means = [
@@ -505,7 +491,9 @@ for i, plot_name in enumerate([
 				tickvals=[0, mean_of_means*100, 100],
 				range=[0,100],
 				dtick=0.25
-			)
+			),
+			width=2300,
+			height=1000
 		)		
 
 	# fig = go.Figure(data=data, layout=layout)
@@ -518,5 +506,5 @@ for i, plot_name in enumerate([
 	# plotly.offline.plot(fig_means, filename="user_survey_plots/"+plot_name.replace(" ", "_")+"_means.html", config=config)
 
 	fig_mean_of_means = go.Figure(data=data_mean_of_means, layout=layout_means)
-
-	plotly.offline.plot(fig_mean_of_means, filename="user_survey_plots/"+plot_file_names[i]+".html", config=config)
+	plotly.io.write_image(fig_mean_of_means, "user_survey_plots/"+plot_file_names[i]+".png")
+	# plotly.offline.plot(fig_mean_of_means, filename="user_survey_plots/"+plot_file_names[i]+".html", config=config)
