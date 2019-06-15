@@ -368,20 +368,20 @@ def get_responses(form_id, api_key, raise_error=True):
 if __name__ == "__main__":
 
 	placeholder_tech_names = {
-		1:"CUT&RUN",
-		2:"BioNano Genomics Saphyre system",
-		3:"Imaging Mass Cytometry",
-		4:"eCLIP, XRNAX, PRIDE-seq",
-		5:"Platform for Organoids",
-		6:"STED-FCS",
-		7:"Advanced Fluorescence Micoroscopy",
-		8:"High-speed Camera for ALM Facility",
-		10:"SeqFISH, MerFISH",
-		11:"Celsee system for single-cell transcriptomics",
-		12:"smFISH, MERFISH, HCR and RNAscope",
-		14:"Service for Earth Biogenome Project / BGISeq",
-		15:"Ancient DNA genome seq / Paleoproteomics",
-		16:"smFISH"
+		1:"BioNano Genomics Saphyre system",
+		2:"Service for Earth Biogenome Project / BGISeq",
+		3:"Ancient DNA genome seq / Paleoproteomics",
+		4:"Celsee system for single-cell transcriptomics",
+		5:"Advanced Fluorescence Micoroscopy",
+		6:"smFISH",
+		7:"High-speed Camera for ALM Facility",
+		8:"Imaging Mass Cytometry",
+		9:"CUT&RUN",
+		10:"eCLIP, XRNAX, PRIDE-seq",
+		11:"smFISH, MERFISH, HCR and RNAscope",
+		12:"Platform for Organoids",
+		13:"STED-FCS",
+		14:"SeqFISH, MerFISH"
 	}
 	additional_information = [
 		"#95C11E",                              # colour
@@ -407,17 +407,17 @@ if __name__ == "__main__":
 		form_data = get_form(form_id, INVENTORY_API_KEY)
 		response_data = get_responses(form_id, INVENTORY_API_KEY)
 		
-		for q in form_data["fields"]:
-			print q
+		# for q in form_data["fields"]:
+		# 	print q
 
 		responses = dict()
 		for item in response_data["items"]:
 			if "answers" in item.keys():
 				if datetime.strptime(item["submitted_at"], "%Y-%m-%dT%H:%M:%SZ") > datetime.strptime("2019-05-17T00:00:01Z", "%Y-%m-%dT%H:%M:%SZ"):
-					responses[item["response_id"]] = item["answers"]
+					responses[datetime.strptime(item["submitted_at"], "%Y-%m-%dT%H:%M:%SZ")] = item["answers"]
 
 		summary_responses = dict()
-		for item in responses:
+		for item in sorted(responses.keys()):
 			for question in responses[item]:
 				if question["field"]["type"] == "multiple_choice":
 					if question["field"]["ref"] not in summary_responses.keys():
@@ -436,7 +436,7 @@ if __name__ == "__main__":
 		generate_summary_pdf(summary_responses, form_data, heading_colour=form_ids[form_id][0])
 		# generate_summary_pdf_vertical(summary_responses, form_data, heading_colour=form_ids[form_id][0])
 
-		for i, user_id in enumerate(responses.keys(), 1):
+		for i, user_id in enumerate(sorted(responses.keys()), 1):
 			generate_pdf(user_id, responses[user_id], form_data, index=i, additional_data=form_ids[form_id], heading_colour=form_ids[form_id][0])
 
 
