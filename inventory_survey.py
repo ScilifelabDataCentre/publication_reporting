@@ -274,7 +274,7 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 		if additional_data[1] == "A":
 			tech_name_response = additional_data[6][index]
 		else:
-			tech_name_response = "Placeholder"
+			tech_name_response = "No title"
 
 	thing = u'<b>{}</b><br/><font name=Frutiger-45-Light size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response.replace('&', '&amp;'),name_response.replace('&', '&amp;'),position_response.replace('&', '&amp;'),email_response)
 
