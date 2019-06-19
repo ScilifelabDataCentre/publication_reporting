@@ -355,7 +355,7 @@ def get_form(form_id, api_key, raise_error=True):
 	return resp.json()
 def get_responses(form_id, api_key, raise_error=True):
 	base_url = "https://api.typeform.com/forms/"
-	reponses_url = "{}{}/responses".format(base_url, form_id)
+	reponses_url = "{}{}/responses?page_size=1000".format(base_url, form_id)
 	api_headers = {'Authorization': "Bearer {}".format(api_key)}
 	resp = requests.get(reponses_url, headers=api_headers)
 		
