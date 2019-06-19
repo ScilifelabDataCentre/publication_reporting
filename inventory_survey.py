@@ -408,9 +408,6 @@ if __name__ == "__main__":
 		print form_id
 		form_data = get_form(form_id, INVENTORY_API_KEY)
 		response_data = get_responses(form_id, INVENTORY_API_KEY)
-		
-		# for q in form_data["fields"]:
-		# 	print q
 
 		responses = dict()
 		for item in response_data["items"]:
@@ -436,7 +433,6 @@ if __name__ == "__main__":
 						exit("ERROR"+str(question))
 
 		generate_summary_pdf(summary_responses, form_data, heading_colour=form_ids[form_id][0])
-		# generate_summary_pdf_vertical(summary_responses, form_data, heading_colour=form_ids[form_id][0])
 
 		for i, user_id in enumerate(sorted(responses.keys()), 1):
 			generate_pdf(user_id, responses[user_id], form_data, index=i, additional_data=form_ids[form_id], heading_colour=form_ids[form_id][0])
