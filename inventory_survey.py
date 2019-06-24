@@ -319,11 +319,15 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 					Story.append(Paragraph(u"<em>{}</em>".format(choice).replace('&', '&amp;'), 
 						indent_styles[2]))
 			elif shown_responses[q["ref"]]["type"] == "choice":
-				if shown_responses[q["ref"]]["choice"]["label"] == u'Representing a group of scientists, a department, a university, a SciLifeLab committee, healthcare, industry etc. (specify  below)':
-					Story.append(Paragraph(u"<em>Representing:</em>", 
-						indent_styles[2]))
-				else:
-					Story.append(Paragraph(u"<em>{}</em>".format(shown_responses[q["ref"]]["choice"][shown_responses[q["ref"]]["choice"].keys()[0]]).replace('&', '&amp;'), 
+				try:
+					if shown_responses[q["ref"]]["choice"]["label"] == u'Representing a group of scientists, a department, a university, a SciLifeLab committee, healthcare, industry etc. (specify  below)':
+						Story.append(Paragraph(u"<em>Representing:</em>", 
+							indent_styles[2]))
+					else:
+						Story.append(Paragraph(u"<em>{}</em>".format(shown_responses[q["ref"]]["choice"][shown_responses[q["ref"]]["choice"].keys()[0]]).replace('&', '&amp;'), 
+							indent_styles[2]))
+				except KeyError:
+					Story.append(Paragraph(u"<em>{}</em>".format(shown_responses[q["ref"]]["choice"]["other"]).replace('&', '&amp;'), 
 						indent_styles[2]))
 			elif shown_responses[q["ref"]]["type"] == "url":
 				Story.append(Paragraph(u"{}".format(shown_responses[q["ref"]]["url"]).replace('&', '&amp;'), 
@@ -435,6 +439,7 @@ if __name__ == "__main__":
 		generate_summary_pdf(summary_responses, form_data, heading_colour=form_ids[form_id][0])
 
 		for i, user_id in enumerate(sorted(responses.keys()), 1):
+			print form_ids[form_id][1], i, user_id 
 			generate_pdf(user_id, responses[user_id], form_data, index=i, additional_data=form_ids[form_id], heading_colour=form_ids[form_id][0])
 
 
