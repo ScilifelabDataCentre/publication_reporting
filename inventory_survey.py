@@ -56,12 +56,13 @@ def generate_summary_pdf(summary_data, form_data, heading_colour="#0093BD"):
 	)
 
 	pdfmetrics.registerFont(TTFont('MinionPro', 'MinionPro-Regular.ttf'))
-	pdfmetrics.registerFont(TTFont('Frutiger-65-Bold', 'Frutiger-LT-Std-65-Bold.ttf'))
-	pdfmetrics.registerFont(TTFont('Frutiger-45-Light', 'Frutiger-LT-Std-45-Light.ttf'))
+	pdfmetrics.registerFont(TTFont('Arial', 'Arial Bold.ttf'))
+	pdfmetrics.registerFont(TTFont('Arial-Regular', 'Arial.ttf'))
+	pdfmetrics.registerFont(TTFont('Arial-Regular', 'Frutiger-LT-Std-45-Light.ttf'))
 
 	styles = getSampleStyleSheet()
-	styles.add(ParagraphStyle(name="onepager_inner_heading", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=10, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8))
-	styles.add(ParagraphStyle(name="onepager_title", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=16, bold=0, color="#000000", leading=16, spaceBefore=0))
+	styles.add(ParagraphStyle(name="onepager_inner_heading", parent=styles["Heading1"], fontName="Arial", fontSize=9, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8))
+	styles.add(ParagraphStyle(name="onepager_title", parent=styles["Heading1"], fontName="Arial", fontSize=16, bold=0, color="#000000", leading=16, spaceBefore=0))
 	styles.add(ParagraphStyle(name="onepager_text", parent=styles["Normal"], fontName="MinionPro", fontSize=10, bold=0, color="#000000", leading=14))
 
 	frame1 = Frame(doc.leftMargin, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-21*mm, id='col1', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
@@ -79,7 +80,7 @@ def generate_summary_pdf(summary_data, form_data, heading_colour="#0093BD"):
 
 	for q in form_data["fields"]:
 		if q["ref"] in summary_data.keys():
-			Story.append(Paragraph(u"<font color='{}' name=Frutiger-65-Bold><b>{}</b></font>".format(heading_colour, q["title"].replace("*", "")),
+			Story.append(Paragraph(u"<font color='{}' name=Arial><b>{}</b></font>".format(heading_colour, q["title"].replace("*", "")),
 				styles["onepager_inner_heading"]))
 			
 			labels = list()
@@ -144,15 +145,15 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 
 	pdfmetrics.registerFont(TTFont('MinionPro', 'MinionPro-Regular.ttf'))
 	pdfmetrics.registerFont(TTFont('MinionPro-Italic', 'MinionPro-It.ttf'))
-	pdfmetrics.registerFont(TTFont('Frutiger-65-Bold', 'Frutiger-LT-Std-65-Bold.ttf'))
-	pdfmetrics.registerFont(TTFont('Frutiger-45-Light', 'Frutiger-LT-Std-45-Light.ttf'))
+	pdfmetrics.registerFont(TTFont('Arial', 'Arial Bold.ttf'))
+	pdfmetrics.registerFont(TTFont('Arial-Regular', 'Arial.ttf'))
 
 	styles = getSampleStyleSheet()
-	styles.add(ParagraphStyle(name="onepager_inner_heading", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=10, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8))
-	styles.add(ParagraphStyle(name="onepager_title", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=16, bold=0, color="#000000", leading=16, spaceBefore=0))
+	styles.add(ParagraphStyle(name="onepager_inner_heading", parent=styles["Heading1"], fontName="Arial", fontSize=9, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8))
+	styles.add(ParagraphStyle(name="onepager_title", parent=styles["Heading1"], fontName="Arial", fontSize=16, bold=0, color="#000000", leading=16, spaceBefore=0))
 	styles.add(ParagraphStyle(name="onepager_text", parent=styles["Normal"], fontName="MinionPro", fontSize=10, bold=0, color="#000000", leading=14))
 	styles.add(ParagraphStyle(name="onepager_text_ita", parent=styles["Normal"], fontName="MinionPro-Italic", fontSize=10, bold=0, color="#000000", leading=14))
-	styles.add(ParagraphStyle(name="onepager_inner_heading_indent", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=10, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8, leftIndent=20))
+	styles.add(ParagraphStyle(name="onepager_inner_heading_indent", parent=styles["Heading1"], fontName="Arial", fontSize=9, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8, leftIndent=20))
 	styles.add(ParagraphStyle(name="onepager_text_indent", parent=styles["Normal"], fontName="MinionPro", fontSize=10, bold=0, color="#000000", leading=14, leftIndent=20))
 	styles.add(ParagraphStyle(name="onepager_text_indent_ita", parent=styles["Normal"], fontName="MinionPro-Italic", fontSize=10, bold=0, color="#000000", leading=14, leftIndent=20))
  
@@ -186,10 +187,10 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 		else:
 			tech_name_response = "No title"
 
-	thing = u'<b>{}</b><br/><font name=Frutiger-45-Light size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response.replace('&', '&amp;'),name_response.replace('&', '&amp;'),position_response.replace('&', '&amp;'),email_response)
+	thing = u'<b>{}</b><br/><font name=Arial-Regular size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response.replace('&', '&amp;'),name_response.replace('&', '&amp;'),position_response.replace('&', '&amp;'),email_response)
 
 	header_content = Paragraph(
-		u'<b>{}</b><br/><font name=Frutiger-45-Light size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response.replace('&', '&amp;'),name_response.replace('&', '&amp;'),position_response.replace('&', '&amp;'),email_response), 
+		u'<b>{}</b><br/><font name=Arial-Regular size=12>{}, {}</font><br/><font name=MinionPro-Italic size=10>{}</font>'.format(tech_name_response.replace('&', '&amp;'),name_response.replace('&', '&amp;'),position_response.replace('&', '&amp;'),email_response), 
 		styles["onepager_title"])
 
 	w, h = header_content.wrap(doc.width-60*mm, doc.topMargin)
@@ -222,7 +223,7 @@ def generate_pdf(user_id, response, form_data, index, additional_data, heading_c
 				Story.append(Spacer(1, 3*mm))
 			else:
 				indent_styles = [styles["onepager_inner_heading"], styles["onepager_text"], styles["onepager_text_ita"]]		
-				Story.append(Paragraph(u"<font color='{}' name=Frutiger-65-Bold><b>{}</b></font>".format(heading_colour, q["title"].replace("*", "")),
+				Story.append(Paragraph(u"<font color='{}' name=Arial><b>{}</b></font>".format(heading_colour, q["title"].replace("*", "")),
 					indent_styles[0]))
 			if shown_responses[q["ref"]]["type"] == "choices":
 				for choice in shown_responses[q["ref"]]["choices"]["labels"]:
