@@ -1,7 +1,9 @@
-#!/usr/bin/env
+#!/usr/bin/env python
 
 import requests
 import json
+import urllib
+import string
 
 class facility_reports(object):
     """
@@ -11,7 +13,6 @@ class facility_reports(object):
         self.api_headers = {'X-OrderPortal-API-key': api_key}
         self.base_url = "https://facility-reports.scilifelab.se"
 
-    
     def get_reports(self, status=None, form_title=None, facility=None, return_url=False):
         """Return all report ids or api url if requested"""
         report_list = []
@@ -41,8 +42,14 @@ class facility_reports(object):
             else:
                 return {}
         return resp.json()
-            
-fcr = facility_reports(api_key="022d270ec6984994a3ca22bb2b86f3ef")
 
-
-submitted_reports = fcr.get_reports(status="submitted", return_url=True)
+    def download_file(self, url, path):
+        """Downloads a file from URL, used to download the suppl files to report"""
+        local_filename = u''.join(filter(lambda x: x in string.printable, urllib.url2pathname(url.split('/')[-1])))
+        with requests.get(url, stream=True, headers=self.api_headers) as r:
+            r.raise_for_status()
+            with open("{}/{}".format(path, local_filename), 'wb') as f:
+                for chunk in r.iter_content(chunk_size=8192): 
+                    if chunk:
+                        f.write(chunk)
+        return local_filename
