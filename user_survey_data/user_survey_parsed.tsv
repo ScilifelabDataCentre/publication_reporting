@@ -1,0 +1,425 @@
+Random_UID	Affliation	Facilities	Facility_scores	Scilife_impact	comment	date_sumitted
+u1	Karolinska Institutet,Healthcare	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:5:4:1:1	5	\-	2018-11-19
+u2	Uppsala University	Support and Infrastructure (NBIS)	Support and Infrastructure (NBIS)-5:5:5:3:1:1	5	Hormone lab analyses	2018-11-19
+u3	Uppsala University	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-5:5:5:4:0:1,NGI Uppsala SNP&SEQ-5:5:5:4:1:1	5		2018-11-19
+u4	Uppsala University	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Stockholm-3:4:4:3:1:1,NGI Uppsala SNP&SEQ-4:5:5:4:1:1,NGI Uppsala UGC-4:4:3:5:1:1	5	Handling of infectious samples for NGS	2018-11-18
+u5	Stockholm University	Cryo-EM (UmU),Microbial Single Cell Genomics	Cryo-EM (UmU)-5:5:5:5:0:1,Microbial Single Cell Genomics-5:5:5:5:0:1	5		2018-11-18
+u6	Karolinska Institutet	Swedish Metabolomics Centre	Swedish Metabolomics Centre-3:3:3:3:0:1	4	Integrative multi-omics at single-level cell resolution.-WGS at single-cell or Nuclei.	2018-11-18
+u7	Uppsala University	Clinical Genomics Uppsala	Clinical Genomics Uppsala-4:4:4:3:1:1	5		2018-11-17
+u8	Umea University	NGI Uppsala SNP&SEQ,Protein Science Facility	NGI Uppsala SNP&SEQ-5:5:5:4:1:1,Protein Science Facility-4:3:4:4:0:1	5		2018-11-16
+u9	Uppsala University	Advanced Light Microscopy (ALM),Clinical Genomics Uppsala,NGI Uppsala UGC	Advanced Light Microscopy (ALM)-4:4:5:4:0:1,Clinical Genomics Uppsala-4:4:5:4:1:1,NGI Uppsala UGC-3:4:5:4:1:1	5		2018-11-16
+u10	Karolinska Institutet	BioImage Informatics,Chemical Biology Consortium Sweden (KI)	BioImage Informatics-2:3:5:3:0:1,Chemical Biology Consortium Sweden (KI)-3:4:5:3:1:1	3	FACS analysis and sorting	2018-11-16
+u11	Uppsala University	PLA Proteomics	PLA Proteomics-5:5:5:5:0:1	5		2018-11-16
+u12	Karolinska Institutet	Clinical Genomics Stockholm,Clinical Genomics Uppsala,NGI Stockholm,NGI Uppsala SNP&SEQ	Clinical Genomics Stockholm-4:4:4:4:0:1,Clinical Genomics Uppsala-4:4:4:4:0:1,NGI Stockholm-4:4:4:4:0:1,NGI Uppsala SNP&SEQ-4:4:4:4:0:1	4		2018-11-16
+u13	Karolinska Institutet	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:5:5:1:1	5	no	2018-11-16
+u14	Lund University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:4:4:5:0:1	4	There could have been a pick-up service taking samples to be sequenced from different universities to SciLife every second week or so.	2018-11-16
+u15	Karolinska Institutet	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:3:0:1	5		2018-11-16
+u16	Other international organization	NGI Stockholm	NGI Stockholm-4:5:4:4:0:1	5		2018-11-16
+u17	Karolinska Institutet,Linkoping University	Eukaryotic Single Cell Genomics,Long-term Support (WABI) (NBIS)	Eukaryotic Single Cell Genomics-2:4:5:3:1:0,Long-term Support (WABI) (NBIS)-4:4:5:4:0:1	5		2018-11-16
+u18	University of Gothenburg	Mass Cytometry (KI)	Mass Cytometry (KI)-5:5:5:3:0:1	5		2018-11-16
+u19	KTH Royal Institute of Technology	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:5:3:0:1	5		2018-11-16
+u20	Umea University	Chemical Biology Consortium Sweden (UmU)	Chemical Biology Consortium Sweden (UmU)-5:5:5:1:0:1	5		2018-11-16
+u21	Uppsala University	NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Uppsala SNP&SEQ-4:5:5:4:1:1,NGI Uppsala UGC-5:5:5:4:0:1	5		2018-11-16
+u22	Uppsala University	NGI Stockholm,NGI Uppsala SNP&SEQ,Systems Biology (NBIS)	NGI Stockholm-4:4:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:5:1:1,Systems Biology (NBIS)-5:5:5:5:1:1	5	Providing services more closely tailored to each project.	2018-11-16
+u23	Karolinska Institutet	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-3:4:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:4:1:1	5		2018-11-16
+u24	University of Gothenburg,Uppsala University	Compute and Storage (NBIS),NGI Uppsala SNP&SEQ,Protein Science Facility	Compute and Storage (NBIS)-4:5:5:3:1:1,NGI Uppsala SNP&SEQ-4:5:5:3:1:1,Protein Science Facility-5:5:4:4:0:1	5		2018-11-16
+u25	Karolinska Institutet,Healthcare	Autoimmunity Profiling,Drug Discovery and Development	Autoimmunity Profiling-4:5:5:5:0:1,Drug Discovery and Development-5:5:5:5:1:1	5		2018-11-16
+u26	Umea University	PLA Proteomics	PLA Proteomics-3:5:5:3:0:1	4		2018-11-16
+u27	Karolinska Institutet	Clinical Genomics Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC,Support and Infrastructure (NBIS)	Clinical Genomics Stockholm-4:4:4:3:1:1,NGI Uppsala SNP&SEQ-4:4:4:3:0:1,NGI Uppsala UGC-4:4:4:3:0:1,Support and Infrastructure (NBIS)-3:3:5:4:1:1	5		2018-11-16
+u28	Karolinska Institutet	Chemical Biology Consortium Sweden (KI),Protein Science Facility	Chemical Biology Consortium Sweden (KI)-5:5:5:3:1:1,Protein Science Facility-5:5:5:3:1:1	5	ESI Mass spectrometry on Proteins with Da-precision to decide about post translational modifications and covalent ligands (enzyme reaction intermediates and inhibitors).	2018-11-16
+u29	Stockholm University	NGI Stockholm	NGI Stockholm-4:5:4:3:0:1	5		2018-11-16
+u30	Umea University	Cryo-EM (UmU)	Cryo-EM (UmU)-5:4:5:5:1:1	5		2018-11-16
+u31	KTH Royal Institute of Technology	Cryo-EM (SU)	Cryo-EM (SU)-5:5:5:5:1:1	5		2018-11-16
+u32	Other Swedish University	NGI Stockholm,Support and Infrastructure (NBIS)	NGI Stockholm-4:3:5:3:1:1,Support and Infrastructure (NBIS)-4:4:5:3:0:1	5		2018-11-16
+u33	Karolinska Institutet	Chemical Proteomics and Proteogenomics (OncPat)	Chemical Proteomics and Proteogenomics (OncPat)-5:5:5:4:1:1	5		2018-11-16
+u34	Uppsala University	Swedish NMR Centre	Swedish NMR Centre-4:5:5:3:1:1	4	As there are no room for comments, I use this opportunity to comment on Q4. Of course the level is high to very high, but the question is in some way circular: how would the resources spent on SciLifeLab be spent otherwise? Would the universities get resources to maintain infrastructure themselves?	2018-11-16
+u35	Umea University	NGI Stockholm	NGI Stockholm-4:5:4:3:1:1	4		2018-11-16
+u36	University of Gothenburg	Long-term Support (WABI) (NBIS),NGI Uppsala UGC	Long-term Support (WABI) (NBIS)-3:4:5:1:0:1,NGI Uppsala UGC-3:4:5:3:0:1	4		2018-11-16
+u37	Karolinska Institutet	Chemical Biology Consortium Sweden (UmU)	Chemical Biology Consortium Sweden (UmU)-4:5:5:5:0:1	5		2018-11-16
+u38	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:4:4:3:0:1	4		2018-11-16
+u39	Stockholm University	NGI Stockholm	NGI Stockholm-4:4:5:3:1:1	4	more intense training of PhD students in bioinformatics	2018-11-16
+u40	Lund University	Chemical Biology Consortium Sweden (KI)	Chemical Biology Consortium Sweden (KI)-4:4:3:3:0:1	1		2018-11-16
+u41	Karolinska Institutet	Advanced Light Microscopy (ALM),Chemical Proteomics and Proteogenomics (OncPat),Support and Infrastructure (NBIS)	Advanced Light Microscopy (ALM)-5:5:4:3:0:1,Chemical Proteomics and Proteogenomics (OncPat)-5:5:5:3:1:1,Support and Infrastructure (NBIS)-4:3:4:4:0:1	5	Facility to make cell lines with gene modifications, for  example addition of a flag tag to the endogenous protein, introducing an inducible gene system to switch on or off gene expression in cells, introducing point mutations or gene amplifications/deletions.	2018-11-16
+u42	Karolinska Institutet	NGI Stockholm	NGI Stockholm-3:4:4:3:1:1	4		2018-11-16
+u43	Stockholm University	NGI Stockholm	NGI Stockholm-4:3:4:3:1:0	3		2018-11-16
+u44	University of Gothenburg	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:5:3:1:1	5		2018-11-16
+u45	Karolinska Institutet	Eukaryotic Single Cell Genomics,Mass Cytometry (KI)	Eukaryotic Single Cell Genomics-5:5:5:4:1:1,Mass Cytometry (KI)-5:5:5:4:0:1	5		2018-11-16
+u46	Uppsala University	Compute and Storage (NBIS)	Compute and Storage (NBIS)-4:4:5:3:1:1	5	High memory nodes	2018-11-16
+u47	Swedish University of Agricultural Sciences	Compute and Storage (NBIS),NGI Stockholm,Support and Infrastructure (NBIS)	Compute and Storage (NBIS)-5:5:5:4:1:1,NGI Stockholm-4:4:5:4:1:1,Support and Infrastructure (NBIS)-5:5:4:3:1:1	5		2018-11-16
+u48	Uppsala University	Cell Profiling (High Throughput Microscopy)	Cell Profiling (High Throughput Microscopy)-5:5:5:2:0:1	4		2018-11-16
+u49	Karolinska Institutet	Long-term Support (WABI) (NBIS),NGI Stockholm,NGI Uppsala SNP&SEQ	Long-term Support (WABI) (NBIS)-4:4:3:2:0:1,NGI Stockholm-4:4:3:2:1:1,NGI Uppsala SNP&SEQ-3:4:3:2:1:1	3	It is important to have research possibilities in the research groups so that they can use the facilities in a useful way.	2018-11-16
+u50	Linkoping University	Chemical Biology Consortium Sweden (KI)	Chemical Biology Consortium Sweden (KI)-5:5:4:3:0:1	5		2018-11-16
+u51	Karolinska Institutet,KTH Royal Institute of Technology	Cryo-EM (SU),Cryo-EM (UmU)	Cryo-EM (SU)-4:4:5:3:1:1,Cryo-EM (UmU)-4:4:5:3:1:1	4		2018-11-16
+u52	KTH Royal Institute of Technology,Stockholm University	Cryo-EM (SU),Cryo-EM (UmU)	Cryo-EM (SU)-5:5:5:3:1:1,Cryo-EM (UmU)-3:3:4:3:0:1	5	1. High-throughput electrophysiology-2. Techniques to study 3D chromosome structure & gene connections	2018-11-16
+u53	Stockholm University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5		2018-11-16
+u54	Uppsala University	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:1:1:1	2		2018-11-16
+u55	Umea University	NGI Stockholm,NGI Uppsala UGC	NGI Stockholm-3:4:4:5:1:1,NGI Uppsala UGC-3:4:4:4:1:1	4		2018-11-16
+u56	Karolinska Institutet	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:1:1:1	5		2018-11-16
+u57	Karolinska Institutet	Protein Science Facility	Protein Science Facility-3:3:1:1:0:0	1	Maybe SciLifeLab is intended to provide facilities above with associated services to the users residing here. However, we have used none of them. Also, if one really want to forge SciLifeLab a hub of researching, she/he needs not only management skill, but interdisciplinary science ideas!	2018-11-16
+u58	Lund University	Swedish NMR Centre	Swedish NMR Centre-5:5:5:3:1:1	5		2018-11-16
+u59	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:5:3:1:1	4	More access to single cell NGS applications	2018-11-16
+u60	Other international organization	Cryo-EM (UmU)	Cryo-EM (UmU)-5:5:5:3:1:1	5	Arctica "screening" cryo TEM in Umea, non-stop flights from Olso and/or ability for remote data collection	2018-11-16
+u61	International University	Autoimmunity Profiling	Autoimmunity Profiling-5:5:5:3:0:1	5		2018-11-16
+u62	Swedish University of Agricultural Sciences	Compute and Storage (NBIS),NGI Uppsala SNP&SEQ,NGI Uppsala UGC	Compute and Storage (NBIS)-4:5:3:3:1:1,NGI Uppsala SNP&SEQ-4:5:5:2:1:1,NGI Uppsala UGC-5:5:5:2:1:1	5		2018-11-16
+u63	Uppsala University	Cell Profiling (High Throughput Microscopy),NGI Uppsala SNP&SEQ,PLA Proteomics	Cell Profiling (High Throughput Microscopy)-4:4:3:3:1:1,NGI Uppsala SNP&SEQ-4:4:3:3:1:1,PLA Proteomics-5:5:4:3:0:1	4		2018-11-16
+u64	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:4:3:1:1	4		2018-11-16
+u65	KTH Royal Institute of Technology	NGI Stockholm	NGI Stockholm-4:5:5:5:1:1	5		2018-11-16
+u66	Karolinska Institutet	NGI Stockholm	NGI Stockholm-3:4:2:3:1:1	2	Hard to perform basic research, since the researcher will not recieve all data from analyis run at NGI and also the time. I think that is the main reason why research groups at KI buy there own sequencing platforms.	2018-11-16
+u67	Uppsala University	Compute and Storage (NBIS),NGI Uppsala SNP&SEQ	Compute and Storage (NBIS)-5:5:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5	RADseq	2018-11-16
+u68	Karolinska Institutet	Chemical Proteomics and Proteogenomics (OncPat)	Chemical Proteomics and Proteogenomics (OncPat)-2:4:5:3:1:1	5		2018-11-16
+u69	Umea University	NGI Uppsala UGC	NGI Uppsala UGC-4:4:4:3:0:1	5		2018-11-16
+u70	University of Gothenburg	Clinical Genomics Goteborg,Clinical Genomics Stockholm,NGI Stockholm	Clinical Genomics Goteborg-5:5:5:1:1:1,Clinical Genomics Stockholm-5:5:5:3:1:1,NGI Stockholm-3:3:3:1:0:1	4		2018-11-16
+u71	KTH Royal Institute of Technology	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-3:4:4:3:0:1	4		2018-11-16
+u72	Swedish University of Agricultural Sciences	NGI Uppsala SNP&SEQ,Swedish Metabolomics Centre	NGI Uppsala SNP&SEQ-3:4:5:3:0:1,Swedish Metabolomics Centre-4:5:5:3:1:1	5	Downstream help, statistics	2018-11-16
+u73	Karolinska Institutet	NGI Stockholm	NGI Stockholm-3:4:5:3:1:1	4		2018-11-16
+u74	Other international organization	NGI Stockholm	NGI Stockholm-5:5:4:3:0:1	5		2018-11-16
+u75	Karolinska Institutet,Healthcare	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:5:3:1:1	5		2018-11-16
+u76	Karolinska Institutet	NGI Stockholm	NGI Stockholm-3:4:3:3:1:1	5	Automization systems open for external users (other SciLifeLab tenants) to use.	2018-11-16
+u77	International University	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:5:1:1	5	Nothing spcially	2018-11-16
+u78	International University	Microbial Single Cell Genomics	Microbial Single Cell Genomics-4:4:3:3:1:1	4		2018-11-16
+u79	Stockholm University	Cryo-EM (SU)	Cryo-EM (SU)-2:3:4:3:1:1	3	CryoEM in Scilife is very busy. I think you should consider the booking system. For instance, the registered people not group can book some available time. I think you should give the right for booking each group not each person. Therefore, some group occupies the booking time.	2018-11-16
+u80	Uppsala University	Cryo-EM (SU),Plasma Profiling,Support and Infrastructure (NBIS)	Cryo-EM (SU)-4:4:5:4:0:1,Plasma Profiling-4:4:4:4:1:1,Support and Infrastructure (NBIS)-4:3:3:3:1:1	4	Genetically engineered mice, peptide production, stable cell line production for antibody production, bioinformatics on immunogenicity and neoepitope profiling	2018-11-16
+u81	Karolinska Institutet	Compute and Storage (NBIS),Eukaryotic Single Cell Genomics,Long-term Support (WABI) (NBIS)	Compute and Storage (NBIS)-5:5:5:3:1:1,Eukaryotic Single Cell Genomics-4:4:5:3:1:1,Long-term Support (WABI) (NBIS)-4:4:5:1:1:1	5		2018-11-16
+u82	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:5:5:4:1:1	5		2018-11-16
+u83	Uppsala University	Drug Discovery and Development	Drug Discovery and Development-5:5:5:5:0:1	5	Molecular imaging (PET / SPECT /MRI)	2018-11-16
+u84	Umea University	Cryo-EM (UmU)	Cryo-EM (UmU)-5:5:5:3:1:1	4		2018-11-16
+u85	Karolinska Institutet	Mass Cytometry (KI)	Mass Cytometry (KI)-4:4:5:4:0:1	5		2018-11-16
+u86	Karolinska Institutet	Chemical Biology Consortium Sweden (KI)	Chemical Biology Consortium Sweden (KI)-5:5:5:3:0:1	5		2018-11-16
+u87	University of Gothenburg	Drug Discovery and Development	Drug Discovery and Development-4:4:2:3:0:1	4		2018-11-16
+u88	Swedish University of Agricultural Sciences	Swedish Metabolomics Centre	Swedish Metabolomics Centre-5:5:5:5:0:1	5		2018-11-16
+u89	Industry	Drug Discovery and Development	Drug Discovery and Development-4:4:4:3:1:1	4		2018-11-16
+u90	Other international organization	Autoimmunity Profiling	Autoimmunity Profiling-5:5:5:3:1:1	4		2018-11-16
+u91	Uppsala University	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Stockholm-5:5:5:3:0:1,NGI Uppsala SNP&SEQ-5:5:5:2:1:1,NGI Uppsala UGC-5:5:5:3:0:1	5	Oxford Nanopore PromethION	2018-11-16
+u92	Karolinska Institutet,University of Gothenburg	Clinical Genomics Stockholm,NGI Stockholm,Support and Infrastructure (NBIS)	Clinical Genomics Stockholm-4:5:3:3:0:1,NGI Stockholm-4:4:4:4:1:1,Support and Infrastructure (NBIS)-5:4:4:3:0:1	5		2018-11-16
+u93	Uppsala University	Genome Engineering Zebrafish,NGI Uppsala SNP&SEQ	Genome Engineering Zebrafish-5:5:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5	Flow cytometry in Uppsala	2018-11-16
+u94	Naturhistoriska riksmuseet	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-4:5:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:4:3:0:1	5		2018-11-16
+u95	Karolinska Institutet	NGI Stockholm	NGI Stockholm-4:5:4:3:0:1	4		2018-11-16
+u96	Lund University	Compute and Storage (NBIS),NGI Stockholm	Compute and Storage (NBIS)-5:5:5:3:0:1,NGI Stockholm-5:5:5:3:0:1	5		2018-11-16
+u97	Lund University	Long-term Support (WABI) (NBIS),NGI Uppsala SNP&SEQ	Long-term Support (WABI) (NBIS)-5:4:4:4:0:1,NGI Uppsala SNP&SEQ-5:5:5:4:1:1	5		2018-11-16
+u98	Uppsala University	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Stockholm-4:5:5:3:0:1,NGI Uppsala SNP&SEQ-4:5:5:3:1:1,NGI Uppsala UGC-5:5:4:2:1:1	5		2018-11-16
+u99	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:5:5:3:1:1	5		2018-11-16
+u100	Karolinska Institutet	Eukaryotic Single Cell Genomics,NGI Stockholm	Eukaryotic Single Cell Genomics-3:3:5:3:1:1,NGI Stockholm-4:4:5:3:0:1	5		2018-11-16
+u101	Uppsala University	Eukaryotic Single Cell Genomics	Eukaryotic Single Cell Genomics-5:5:5:3:0:1	5	I would like to see a service for eDNA amplicon library prep and template quantification for tracing organisms in eDNA (ie ddPCR and similar)	2018-11-16
+u102	Karolinska Institutet,Healthcare	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:5:4:1:1	5		2018-11-16
+u103	Karolinska Institutet	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:3:1:1	5		2018-11-16
+u104	Swedish University of Agricultural Sciences	Compute and Storage (NBIS),NGI Uppsala SNP&SEQ,NGI Uppsala UGC	Compute and Storage (NBIS)-5:5:3:4:0:1,NGI Uppsala SNP&SEQ-5:5:5:1:1:1,NGI Uppsala UGC-5:5:5:1:1:1	5		2018-11-16
+u105	Lund University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-3:3:5:3:1:1	5	No	2018-11-16
+u106	University of Gothenburg	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Stockholm-4:5:5:5:0:1,NGI Uppsala SNP&SEQ-5:5:5:5:1:1,NGI Uppsala UGC-5:5:5:5:1:1	5	More troubleshooting on efficiency of sequencing libraries. Sequencing library optimisation.	2018-11-16
+u107	Karolinska Institutet	NGI Stockholm	NGI Stockholm-4:4:5:3:1:1	4	Better access to bioinformaticians/ statisticians to consult about study design and data analysis methods. I have applied unsuccessfully several times for different forms of support but have always had to solve problems "in spite of" SciLife instead of with "help of" Sci Life. Spend more bioinformatics resources on consultancy help rather than bigger schemes like the Wabi one. Serious groups with projects big enough to attract Wabi support already have necessary expertise and the SciLife support is just a way for them to get more people working on their project.	2018-11-16
+u108	Uppsala University	Microbial Single Cell Genomics,NGI Uppsala SNP&SEQ	Microbial Single Cell Genomics-5:4:5:3:0:1,NGI Uppsala SNP&SEQ-3:5:5:3:1:1	5		2018-11-16
+u109	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:5:4:1:1	5		2018-11-16
+u110	Karolinska Institutet	NGI Stockholm,Systems Biology (NBIS)	NGI Stockholm-4:4:5:5:1:1,Systems Biology (NBIS)-3:2:2:2:0:1	5		2018-11-16
+u111	Umea University	NGI Stockholm	NGI Stockholm-4:4:5:4:0:1	5	Although single-cell RNA sequencing service is available, it is more limited than others in terms of user-defined projects since the requirements to submit the samples are very specifics without any biological/scientific reason. I think it would be a good idea to have different options when it comes to sample submission format and also a shorter time in the waiting list, I have been there for 6 months.	2018-11-16
+u112	Karolinska Institutet	NGI Stockholm	NGI Stockholm-4:4:5:4:1:1	4		2018-11-16
+u113	Naturhistoriska riksmuseet	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-4:4:4:4:1:1,NGI Uppsala SNP&SEQ-4:4:4:4:1:1	4	Nanopore sequencing	2018-11-16
+u114	Karolinska Institutet	Eukaryotic Single Cell Genomics	Eukaryotic Single Cell Genomics-5:5:5:3:0:1	5		2018-11-16
+u115	Stockholm University	NGI Stockholm	NGI Stockholm-4:5:5:4:0:1	5		2018-11-16
+u116	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:5:4:5:1:1	5	More single cell technologies	2018-11-16
+u117	KTH Royal Institute of Technology	Cell Profiling (High Throughput Microscopy)	Cell Profiling (High Throughput Microscopy)-4:4:4:4:0:1	4	Cloud lab for general automation / Bioprinting facility	2018-11-16
+u118	Swedish University of Agricultural Sciences	NGI Uppsala UGC	NGI Uppsala UGC-4:5:5:3:0:1	5		2018-11-16
+u119	Karolinska Institutet	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5		2018-11-16
+u120	Karolinska Institutet	Mass Cytometry (KI)	Mass Cytometry (KI)-5:5:5:5:1:1	5		2018-11-16
+u121	Karolinska Institutet	Support and Infrastructure (NBIS)	Support and Infrastructure (NBIS)-1:2:5:3:0:0	3		2018-11-16
+u122	Other international organization	Cryo-EM (SU)	Cryo-EM (SU)-5:5:5:5:0:1	5		2018-11-16
+u123	Linkoping University	NGI Stockholm	NGI Stockholm-4:4:5:2:1:1	5		2018-11-16
+u124	Other Swedish University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:4:5:3:0:1	5		2018-11-16
+u125	Karolinska Institutet	Chemical Proteomics and Proteogenomics (OncPat),Eukaryotic Single Cell Genomics,NGI Stockholm	Chemical Proteomics and Proteogenomics (OncPat)-3:3:3:3:1:1,Eukaryotic Single Cell Genomics-5:5:5:3:1:1,NGI Stockholm-3:3:5:5:1:1	5		2018-11-16
+u126	Karolinska Institutet	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:5:0:1	4	Bioinformatics support for NGS data	2018-11-16
+u127	Swedish University of Agricultural Sciences	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-2:3:4:3:1:1	4		2018-11-16
+u128	Uppsala University	BioImage Informatics,Chemical Biology Consortium Sweden (KI),Compute and Storage (NBIS),NGI Uppsala UGC,Support and Infrastructure (NBIS)	BioImage Informatics-5:4:5:3:0:1,Chemical Biology Consortium Sweden (KI)-5:4:5:3:1:1,Compute and Storage (NBIS)-5:5:5:1:1:1,NGI Uppsala UGC-4:5:4:3:0:1,Support and Infrastructure (NBIS)-4:4:3:3:0:1	5		2018-11-16
+u129	Umea University	Cryo-EM (UmU),Swedish NMR Centre	Cryo-EM (UmU)-5:5:5:3:1:1,Swedish NMR Centre-5:5:5:3:1:1	5		2018-11-16
+u130	Other Swedish University	NGI Stockholm	NGI Stockholm-3:3:2:3:0:1	2		2018-11-16
+u131	Uppsala University	Microbial Single Cell Genomics,NGI Uppsala SNP&SEQ	Microbial Single Cell Genomics-4:4:4:1:0:1,NGI Uppsala SNP&SEQ-3:3:5:1:1:1	5		2018-11-16
+u132	Karolinska Institutet	NGI Stockholm,Plasma Profiling,Swedish Metabolomics Centre	NGI Stockholm-5:4:5:3:1:1,Plasma Profiling-2:2:5:3:1:0,Swedish Metabolomics Centre-1:1:5:3:0:0	4	There is little access to the infectious diseases material. Several of my projects are turned down because the material (plasma/blood) is infected. There should be BSL2 facility linked with the insfrastructure.	2018-11-16
+u133	Karolinska Institutet	Eukaryotic Single Cell Genomics	Eukaryotic Single Cell Genomics-3:3:5:3:1:0	4		2018-11-16
+u134	Uppsala University	Cryo-EM (UmU),NGI Uppsala SNP&SEQ	Cryo-EM (UmU)-5:4:5:3:0:1,NGI Uppsala SNP&SEQ-5:4:5:3:0:1	5	Proteomics platform in Uppsala	2018-11-16
+u135	Other Swedish organization	Microbial Single Cell Genomics,NGI Uppsala SNP&SEQ	Microbial Single Cell Genomics-5:5:5:3:1:1,NGI Uppsala SNP&SEQ-3:4:4:4:1:1	5		2018-11-16
+u136	Karolinska Institutet	Chemical Biology Consortium Sweden (KI),Drug Discovery and Development	Chemical Biology Consortium Sweden (KI)-5:5:5:3:0:1,Drug Discovery and Development-5:5:5:3:0:1	5	Help for  licensing projects or partnering with industry	2018-11-16
+u137	Umea University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-2:2:2:3:0:0	3		2018-11-16
+u138	Uppsala University	Microbial Single Cell Genomics,NGI Uppsala SNP&SEQ	Microbial Single Cell Genomics-4:5:5:2:1:1,NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5	Fluorescence in situ hybridization	2018-11-16
+u139	Karolinska Institutet	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:4:4:1:1	5		2018-11-16
+u140	Uppsala University	Advanced Light Microscopy (ALM),NGI Uppsala SNP&SEQ,NGI Uppsala UGC	Advanced Light Microscopy (ALM)-5:5:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:4:1:1,NGI Uppsala UGC-5:5:5:3:1:1	5	Organoids	2018-11-16
+u141	Karolinska Institutet	PLA Proteomics	PLA Proteomics-2:4:4:5:0:0	2		2018-11-16
+u142	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:4:4:3:0:1	4	A bioinformatician support for sequencing experiments	2018-11-16
+u143	International University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:5:4:3:1:1	4		2018-11-16
+u144	Healthcare	Clinical Genomics Stockholm	Clinical Genomics Stockholm-4:4:4:4:1:1	4	no	2018-11-16
+u145	Lund University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5		2018-11-16
+u146	International University	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:5:1:1	5	Nothing specially currently	2018-11-16
+u147	Swedish University of Agricultural Sciences	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-3:3:3:3:1:1	3		2018-11-15
+u148	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:4:5:3:1:1	4		2018-11-15
+u149	Umea University	Chemical Proteomics and Proteogenomics (MBB),Cryo-EM (UmU),Drug Discovery and Development,Swedish Metabolomics Centre	Chemical Proteomics and Proteogenomics (MBB)-5:5:5:4:1:1,Cryo-EM (UmU)-4:5:5:4:0:1,Drug Discovery and Development-3:3:3:3:0:1,Swedish Metabolomics Centre-5:5:5:5:0:1	4		2018-11-15
+u150	International University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:4:1:0:1	5		2018-11-15
+u151	Lund University	Cryo-EM (SU)	Cryo-EM (SU)-5:5:5:3:0:1	5		2018-11-15
+u152	Lund University	Long-term Support (WABI) (NBIS),NGI Stockholm,NGI Uppsala SNP&SEQ	Long-term Support (WABI) (NBIS)-5:5:5:5:0:1,NGI Stockholm-5:5:5:5:0:1,NGI Uppsala SNP&SEQ-5:5:5:5:1:1	5		2018-11-14
+u153	Karolinska Institutet	Eukaryotic Single Cell Genomics,NGI Stockholm	Eukaryotic Single Cell Genomics-4:4:4:2:1:1,NGI Stockholm-3:3:4:3:1:1	4		2018-11-14
+u154	International University	Chemical Proteomics and Proteogenomics (OncPat)	Chemical Proteomics and Proteogenomics (OncPat)-4:4:4:4:0:1	4		2018-11-14
+u155	Uppsala University	Genome Engineering Zebrafish,Long-term Support (WABI) (NBIS),NGI Uppsala SNP&SEQ,NGI Uppsala UGC,PLA Proteomics,Swedish Metabolomics Centre	Genome Engineering Zebrafish-3:3:4:4:0:0,Long-term Support (WABI) (NBIS)-4:4:4:4:1:1,NGI Uppsala SNP&SEQ-5:5:5:5:1:1,NGI Uppsala UGC-5:5:5:5:1:1,PLA Proteomics-4:4:5:4:0:1,Swedish Metabolomics Centre-4:5:3:4:1:1	5		2018-11-14
+u156	Karolinska Institutet	Chemical Biology Consortium Sweden (KI),Chemical Biology Consortium Sweden (UmU),Chemical Proteomics and Proteogenomics (OncPat),Drug Discovery and Development	Chemical Biology Consortium Sweden (KI)-3:4:5:5:1:0,Chemical Biology Consortium Sweden (UmU)-3:3:5:5:0:0,Chemical Proteomics and Proteogenomics (OncPat)-5:4:5:4:0:1,Drug Discovery and Development-2:3:5:4:0:0	3		2018-11-14
+u157	Karolinska Institutet	Plasma Profiling	Plasma Profiling-5:4:4:3:0:1	5		2018-11-14
+u158	Karolinska Institutet	Chemical Biology Consortium Sweden (UmU)	Chemical Biology Consortium Sweden (UmU)-5:5:5:5:0:1	5		2018-11-14
+u159	Karolinska Institutet	Clinical Genomics Stockholm	Clinical Genomics Stockholm-4:5:5:3:1:1	5	No suggestions.	2018-11-14
+u160	International University	High Throughput Genome Engineering	High Throughput Genome Engineering-5:5:5:5:0:1	5		2018-11-14
+u161	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:5:3:3:0:1	4		2018-11-13
+u162	Other Swedish organization	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-3:4:5:4:0:1	4		2018-11-13
+u163	Uppsala University	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-5:5:5:3:0:1,NGI Uppsala SNP&SEQ-2:5:5:3:1:1	5	(Peptide) phage display, combinatorial and proteomic	2018-11-13
+u164	International University	NGI Stockholm	NGI Stockholm-4:4:4:4:0:1	4		2018-11-13
+u165	Lund University	Chemical Biology Consortium Sweden (UmU),Cryo-EM (UmU)	Chemical Biology Consortium Sweden (UmU)-3:3:3:3:0:1,Cryo-EM (UmU)-4:4:4:3:0:1	4		2018-11-13
+u166	Umea University	Cryo-EM (UmU)	Cryo-EM (UmU)-5:4:4:3:1:1	4		2018-11-13
+u167	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:4:4:3:1:1	5		2018-11-13
+u168	Karolinska Institutet	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:5:5:3:0:1	5		2018-11-13
+u169	University of Gothenburg	Clinical Genomics Goteborg	Clinical Genomics Goteborg-4:3:3:3:1:1	2		2018-11-13
+u170	Swedish University of Agricultural Sciences	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-3:2:3:3:1:1	3		2018-11-13
+u171	Uppsala University	Microbial Single Cell Genomics,NGI Uppsala SNP&SEQ	Microbial Single Cell Genomics-2:4:5:4:0:1,NGI Uppsala SNP&SEQ-3:4:5:5:1:1	5		2018-11-13
+u172	Stockholm University	Chemical Biology Consortium Sweden (KI)	Chemical Biology Consortium Sweden (KI)-3:4:3:4:1:1	2		2018-11-13
+u173	Uppsala University	NGI Uppsala SNP&SEQ,Support and Infrastructure (NBIS)	NGI Uppsala SNP&SEQ-5:5:5:4:1:1,Support and Infrastructure (NBIS)-4:4:5:3:1:1	5		2018-11-13
+u174	KTH Royal Institute of Technology	NGI Stockholm	NGI Stockholm-5:5:5:3:1:1	5		2018-11-13
+u175	University of Gothenburg	Clinical Genomics Goteborg	Clinical Genomics Goteborg-5:5:5:3:1:1	5	\-	2018-11-13
+u176	Karolinska Institutet	Swedish Metabolomics Centre	Swedish Metabolomics Centre-2:2:4:3:1:0	1		2018-11-13
+u177	Karolinska Institutet	Eukaryotic Single Cell Genomics,High Throughput Genome Engineering,NGI Uppsala SNP&SEQ,Protein Science Facility	Eukaryotic Single Cell Genomics-3:4:5:3:1:1,High Throughput Genome Engineering-3:3:5:3:0:1,NGI Uppsala SNP&SEQ-3:4:5:3:0:1,Protein Science Facility-5:4:4:3:0:1	4		2018-11-12
+u178	Uppsala University	Drug Discovery and Development,Swedish NMR Centre	Drug Discovery and Development-5:5:5:3:1:1,Swedish NMR Centre-4:5:5:2:0:1	5		2018-11-12
+u179	Karolinska Institutet	Clinical Genomics Stockholm,NGI Stockholm,NGI Uppsala SNP&SEQ	Clinical Genomics Stockholm-5:5:4:4:1:1,NGI Stockholm-4:4:5:4:1:1,NGI Uppsala SNP&SEQ-4:4:4:4:1:1	5		2018-11-12
+u180	Karolinska Institutet,KTH Royal Institute of Technology,Healthcare	NGI Stockholm	NGI Stockholm-5:5:5:5:1:1	5		2018-11-12
+u181	Karolinska Institutet	Long-term Support (WABI) (NBIS),NGI Uppsala SNP&SEQ	Long-term Support (WABI) (NBIS)-1:1:1:3:0:0,NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5		2018-11-12
+u182	Uppsala University	PLA Proteomics	PLA Proteomics-4:4:5:3:1:1	5		2018-11-12
+u183	Umea University	Cryo-EM (UmU),NGI Stockholm	Cryo-EM (UmU)-5:5:5:4:0:1,NGI Stockholm-4:5:5:3:0:1	5		2018-11-12
+u184	Uppsala University	Chemical Proteomics and Proteogenomics (OncPat)	Chemical Proteomics and Proteogenomics (OncPat)-5:5:5:3:1:1	5		2018-11-12
+u185	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-3:3:5:3:1:1	4		2018-11-12
+u186	Karolinska Institutet	NGI Stockholm	NGI Stockholm-2:3:4:2:1:0	4		2018-11-12
+u187	Uppsala University	Swedish NMR Centre	Swedish NMR Centre-2:2:5:4:0:1	1	Scilife is too bureaucratic to get projects done. In fact, I do not understand what is the difference between Scilife and the University facility	2018-11-12
+u188	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:5:5:5:1:1	4		2018-11-12
+u189	Karolinska Institutet	Chemical Proteomics and Proteogenomics (OncPat),NGI Stockholm	Chemical Proteomics and Proteogenomics (OncPat)-3:4:5:3:0:1,NGI Stockholm-2:1:5:4:0:0	5	There are quite a lot of requests to use our virus lab for production of Lenti-cell lines. Maybe a facility could help there.	2018-11-12
+u190	Other Swedish organization	Swedish NMR Centre	Swedish NMR Centre-4:4:5:3:1:1	4		2018-11-12
+u191	Lund University	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-5:5:5:3:0:1,NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5		2018-11-12
+u192	Karolinska Institutet	Chemical Biology Consortium Sweden (KI),Cryo-EM (SU),Plasma Profiling	Chemical Biology Consortium Sweden (KI)-5:5:5:5:0:1,Cryo-EM (SU)-5:5:5:3:0:1,Plasma Profiling-5:5:5:3:1:1	5		2018-11-12
+u193	Umea University	Compute and Storage (NBIS),Long-term Support (WABI) (NBIS),NGI Stockholm,Swedish Metabolomics Centre	Compute and Storage (NBIS)-5:5:5:3:1:1,Long-term Support (WABI) (NBIS)-4:4:5:1:1:1,NGI Stockholm-4:3:3:4:1:1,Swedish Metabolomics Centre-1:1:3:3:0:0	5	Better support for customised or 'non-standard' sequencing protocols. SciLife should be able to offer something more and better than commercial companies, which we are increasingly finding to be both cheaper and more flexible than NGI.	2018-11-12
+u194	Karolinska Institutet	Clinical Genomics Stockholm,NGI Stockholm	Clinical Genomics Stockholm-5:5:5:5:0:1,NGI Stockholm-5:5:5:5:1:1	5		2018-11-12
+u195	Lund University	Chemical Biology Consortium Sweden (KI)	Chemical Biology Consortium Sweden (KI)-4:4:3:3:0:1	4		2018-11-12
+u196	Uppsala University	Mass Cytometry (KI),Single Cell Proteomics	Mass Cytometry (KI)-5:5:5:3:0:1,Single Cell Proteomics-5:5:4:3:0:1	5		2018-11-12
+u197	Uppsala University	NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Uppsala SNP&SEQ-5:5:5:3:1:1,NGI Uppsala UGC-5:5:5:3:1:1	5	More Long read technology, Oxford Nanopore would be great	2018-11-12
+u198	Uppsala University	Advanced Light Microscopy (ALM),Chemical Proteomics and Proteogenomics (OncPat),High Throughput Genome Engineering,NGI Uppsala UGC,PLA Proteomics	Advanced Light Microscopy (ALM)-4:5:4:4:1:1,Chemical Proteomics and Proteogenomics (OncPat)-5:5:5:3:1:1,High Throughput Genome Engineering-3:4:4:4:0:1,NGI Uppsala UGC-5:5:5:3:1:1,PLA Proteomics-3:3:4:3:1:1	5		2018-11-12
+u199	Uppsala University	NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Uppsala SNP&SEQ-5:5:5:3:1:1,NGI Uppsala UGC-4:4:5:3:1:1	4		2018-11-12
+u200	Stockholm University	Swedish NMR Centre	Swedish NMR Centre-5:5:5:3:1:1	5		2018-11-12
+u201	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:5:5:4:1:1	4		2018-11-12
+u202	Karolinska Institutet	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Stockholm-5:5:5:5:1:1,NGI Uppsala SNP&SEQ-5:5:5:5:1:1,NGI Uppsala UGC-5:5:5:5:1:1	5		2018-11-12
+u203	Umea University	Chemical Proteomics and Proteogenomics (OncPat),Cryo-EM (UmU)	Chemical Proteomics and Proteogenomics (OncPat)-5:5:5:4:0:1,Cryo-EM (UmU)-5:5:5:4:1:1	5		2018-11-12
+u204	Karolinska Institutet	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-4:4:3:3:0:1	4		2018-11-12
+u205	Karolinska Institutet	Long-term Support (WABI) (NBIS)	Long-term Support (WABI) (NBIS)-5:5:5:4:0:1	5		2018-11-12
+u206	Umea University	Compute and Storage (NBIS),Mass Cytometry (LiU),NGI Uppsala SNP&SEQ	Compute and Storage (NBIS)-5:5:5:3:1:1,Mass Cytometry (LiU)-5:5:5:3:0:1,NGI Uppsala SNP&SEQ-1:4:3:4:0:0	5		2018-11-12
+u207	Uppsala University	Compute and Storage (NBIS),NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC,PLA Proteomics,Support and Infrastructure (NBIS)	Compute and Storage (NBIS)-5:5:5:3:0:1,NGI Stockholm-2:5:4:3:0:1,NGI Uppsala SNP&SEQ-5:5:4:3:0:1,NGI Uppsala UGC-5:5:4:3:1:1,PLA Proteomics-4:3:4:3:0:1,Support and Infrastructure (NBIS)-3:4:4:3:0:1	5	ATTAC-seq	2018-11-12
+u208	Lund University	NGI Stockholm	NGI Stockholm-5:5:5:3:1:1	5		2018-11-12
+u209	Lund University	NGI Stockholm	NGI Stockholm-3:3:3:2:0:0	4		2018-11-12
+u210	Karolinska Institutet,Healthcare	Drug Discovery and Development,Protein Science Facility	Drug Discovery and Development-1:1:1:4:0:0,Protein Science Facility-5:5:5:3:0:1	2		2018-11-12
+u211	Lund University	Eukaryotic Single Cell Genomics	Eukaryotic Single Cell Genomics-5:5:5:4:0:1	5		2018-11-12
+u212	University of Gothenburg	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-3:4:5:3:1:1,NGI Uppsala SNP&SEQ-3:4:5:3:1:1	5		2018-11-12
+u213	Karolinska Institutet	Eukaryotic Single Cell Genomics,NGI Stockholm	Eukaryotic Single Cell Genomics-5:5:5:3:1:1,NGI Stockholm-5:5:5:4:0:1	5	I would like to see that more services are compatible with ERC requirements for reporting	2018-11-12
+u214	Karolinska Institutet	Chemical Biology Consortium Sweden (KI),Drug Discovery and Development	Chemical Biology Consortium Sweden (KI)-5:5:5:3:1:1,Drug Discovery and Development-3:3:3:3:0:1	3	X-Ray crystallography	2018-11-12
+u215	Uppsala University	Cryo-EM (SU),NGI Uppsala UGC	Cryo-EM (SU)-5:5:5:3:1:1,NGI Uppsala UGC-5:5:5:3:0:1	5		2018-11-12
+u216	Industry	BioImage Informatics,Drug Discovery and Development,Protein Science Facility,Systems Biology (NBIS)	BioImage Informatics-5:5:5:3:0:1,Drug Discovery and Development-5:5:5:3:0:1,Protein Science Facility-5:5:4:3:1:1,Systems Biology (NBIS)-5:5:5:3:0:1	5		2018-11-12
+u217	Karolinska Institutet	High Throughput Genome Engineering	High Throughput Genome Engineering-5:5:5:5:0:1	4		2018-11-12
+u218	Karolinska Institutet	Eukaryotic Single Cell Genomics,NGI Stockholm	Eukaryotic Single Cell Genomics-3:5:5:4:0:1,NGI Stockholm-5:5:5:5:0:1	5	Service for electrophysiological assays (patch clamp and multi electrode arrays)	2018-11-12
+u219	Karolinska Institutet	Clinical Genomics Stockholm,NGI Stockholm	Clinical Genomics Stockholm-4:4:4:4:1:1,NGI Stockholm-5:5:5:5:1:1	5		2018-11-12
+u220	Karolinska Institutet	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:3:0:1	4	Bioinformatics for smaller projects	2018-11-12
+u221	Uppsala University	Compute and Storage (NBIS),Microbial Single Cell Genomics,NGI Uppsala SNP&SEQ	Compute and Storage (NBIS)-5:5:5:3:1:1,Microbial Single Cell Genomics-5:5:5:5:0:1,NGI Uppsala SNP&SEQ-5:5:5:2:1:1	5		2018-11-12
+u222	International University	High Throughput Genome Engineering	High Throughput Genome Engineering-4:5:4:4:1:1	4		2018-11-12
+u223	KTH Royal Institute of Technology	Autoimmunity Profiling,Clinical Genomics Stockholm,Compute and Storage (NBIS),Long-term Support (WABI) (NBIS),Mass Cytometry (KI),NGI Stockholm,Plasma Profiling,Swedish Metabolomics Centre	Autoimmunity Profiling-5:5:5:3:0:1,Clinical Genomics Stockholm-4:4:4:3:0:1,Compute and Storage (NBIS)-5:5:5:3:1:1,Long-term Support (WABI) (NBIS)-4:4:3:1:0:1,Mass Cytometry (KI)-5:5:5:4:1:1,NGI Stockholm-4:5:5:3:1:1,Plasma Profiling-5:4:4:3:1:1,Swedish Metabolomics Centre-4:4:4:3:1:1	5	Safe storage and sharing of documents and data complying with GDPR (not related to sequence data which can be stored using NBIS).	2018-11-12
+u224	Industry	Eukaryotic Single Cell Genomics	Eukaryotic Single Cell Genomics-2:4:2:3:0:0	3		2018-11-12
+u225	Stockholm University	Chemical Biology Consortium Sweden (KI)	Chemical Biology Consortium Sweden (KI)-5:5:5:3:0:1	4		2018-11-12
+u226	Karolinska Institutet,Healthcare	Clinical Genomics Stockholm,NGI Stockholm	Clinical Genomics Stockholm-5:5:5:4:1:1,NGI Stockholm-2:4:3:3:1:1	5		2018-11-12
+u227	Stockholm University	Compute and Storage (NBIS),NGI Stockholm	Compute and Storage (NBIS)-4:4:5:1:1:1,NGI Stockholm-5:5:5:3:0:1	5		2018-11-12
+u228	Karolinska Institutet	Autoimmunity Profiling,NGI Stockholm	Autoimmunity Profiling-4:5:2:3:1:1,NGI Stockholm-2:4:3:2:0:1	3		2018-11-12
+u229	Uppsala University	NGI Uppsala UGC	NGI Uppsala UGC-3:4:4:4:1:1	5		2018-11-12
+u230	Swedish University of Agricultural Sciences	Long-term Support (WABI) (NBIS),NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	Long-term Support (WABI) (NBIS)-4:4:5:3:0:1,NGI Stockholm-4:5:5:3:1:1,NGI Uppsala SNP&SEQ-4:4:4:3:0:1,NGI Uppsala UGC-5:5:5:3:0:1	5	Availability of reduced representation genotyping eg. RADseq, geotyping-by-sequencing (GBS) as a service where library preparartiosn are done at SciLife. Today SciLife offers sequencing of pre-made libraries but does not offer library construction as a service.	2018-11-12
+u231	Swedish University of Agricultural Sciences	Swedish Metabolomics Centre	Swedish Metabolomics Centre-5:5:5:3:1:1	5		2018-11-12
+u232	Stockholm University	Chemical Proteomics and Proteogenomics (OncPat),Cryo-EM (SU),NGI Stockholm,NGI Uppsala SNP&SEQ	Chemical Proteomics and Proteogenomics (OncPat)-5:5:4:3:0:1,Cryo-EM (SU)-5:5:4:4:0:1,NGI Stockholm-2:2:4:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:3:1:1	4		2018-11-12
+u233	Karolinska Institutet	Chemical Biology Consortium Sweden (KI),Drug Discovery and Development	Chemical Biology Consortium Sweden (KI)-5:4:5:3:1:1,Drug Discovery and Development-5:4:5:3:1:1	4		2018-11-12
+u234	Karolinska Institutet	Eukaryotic Single Cell Genomics	Eukaryotic Single Cell Genomics-4:5:4:3:0:1	5	antibody-based multiplex in situ tissue analyses ;	2018-11-12
+u235	Karolinska Institutet	Chemical Biology Consortium Sweden (KI),Compute and Storage (NBIS),Eukaryotic Single Cell Genomics,NGI Uppsala SNP&SEQ	Chemical Biology Consortium Sweden (KI)-5:5:4:3:0:1,Compute and Storage (NBIS)-4:4:4:3:1:1,Eukaryotic Single Cell Genomics-4:4:4:4:0:1,NGI Uppsala SNP&SEQ-4:3:3:3:0:1	4	Routine services such as genotyping of mice	2018-11-12
+u236	Linkoping University	NGI Stockholm	NGI Stockholm-5:5:5:3:0:1	5		2018-11-12
+u237	University of Gothenburg	NGI Stockholm	NGI Stockholm-3:4:4:3:0:1	4		2018-11-12
+u238	Uppsala University	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Stockholm-4:4:4:3:0:1,NGI Uppsala SNP&SEQ-5:4:4:4:1:1,NGI Uppsala UGC-4:4:4:4:1:1	4	Exome capture of non standard organisms	2018-11-12
+u239	Karolinska Institutet	NGI Stockholm	NGI Stockholm-4:5:5:5:1:1	5		2018-11-12
+u240	Other international organization	Eukaryotic Single Cell Genomics,NGI Stockholm	Eukaryotic Single Cell Genomics-3:5:5:3:0:1,NGI Stockholm-3:5:5:4:0:1	5		2018-11-12
+u241	Karolinska Institutet	NGI Stockholm	NGI Stockholm-4:5:5:3:0:1	5		2018-11-12
+u242	Karolinska Institutet	Chemical Proteomics and Proteogenomics (OncPat)	Chemical Proteomics and Proteogenomics (OncPat)-4:4:5:4:1:1	4		2018-11-12
+u243	Karolinska Institutet	Clinical Genomics Stockholm,Compute and Storage (NBIS),Eukaryotic Single Cell Genomics,NGI Stockholm,NGI Uppsala SNP&SEQ	Clinical Genomics Stockholm-4:4:5:3:0:1,Compute and Storage (NBIS)-4:4:5:1:1:1,Eukaryotic Single Cell Genomics-5:4:5:3:1:1,NGI Stockholm-4:4:4:3:1:1,NGI Uppsala SNP&SEQ-4:4:4:3:1:1	5		2018-11-12
+u244	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:4:2:1:1	5		2018-11-12
+u245	Swedish University of Agricultural Sciences	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:4:5:3:1:1	5		2018-11-12
+u246	Swedish University of Agricultural Sciences	Cryo-EM (UmU)	Cryo-EM (UmU)-5:5:5:3:1:1	5		2018-11-12
+u247	Umea University	Compute and Storage (NBIS),NGI Uppsala SNP&SEQ	Compute and Storage (NBIS)-4:4:5:3:1:1,NGI Uppsala SNP&SEQ-3:4:3:3:1:1	5		2018-11-12
+u248	Uppsala University	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC,Support and Infrastructure (NBIS)	NGI Stockholm-4:5:5:3:0:1,NGI Uppsala SNP&SEQ-5:4:5:3:0:1,NGI Uppsala UGC-5:5:5:3:0:1,Support and Infrastructure (NBIS)-5:5:4:3:0:1	5	HiC chromosome mapping.	2018-11-12
+u249	Karolinska Institutet	Drug Discovery and Development,Support and Infrastructure (NBIS)	Drug Discovery and Development-5:5:5:5:0:1,Support and Infrastructure (NBIS)-5:5:5:5:0:1	5		2018-11-12
+u250	Stockholm University	Cryo-EM (SU)	Cryo-EM (SU)-4:5:5:3:1:1	4		2018-11-12
+u251	Karolinska Institutet,Healthcare	NGI Stockholm,NGI Uppsala UGC	NGI Stockholm-3:4:3:3:1:1,NGI Uppsala UGC-4:4:4:3:1:1	4		2018-11-12
+u252	Other international organization	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:5:5:1:1	5		2018-11-12
+u253	Umea University	Chemical Biology Consortium Sweden (UmU),NGI Uppsala UGC	Chemical Biology Consortium Sweden (UmU)-4:4:4:2:1:1,NGI Uppsala UGC-4:4:4:4:1:1	4	No	2018-11-12
+u254	Linkoping University	Mass Cytometry (LiU),Plasma Profiling	Mass Cytometry (LiU)-5:4:4:3:0:1,Plasma Profiling-5:4:5:3:0:1	5		2018-11-12
+u255	Uppsala University	Cryo-EM (SU)	Cryo-EM (SU)-5:5:5:3:1:1	5	Additional cryo-EM access would be very desirable. Especially, access to grid freezing and screening of grids locally at the Uppsala SciLifeLab node would be very helpful.	2018-11-12
+u256	Linkoping University	Mass Cytometry (LiU)	Mass Cytometry (LiU)-5:5:5:4:1:1	5		2018-11-12
+u257	International University	NGI Stockholm	NGI Stockholm-3:4:5:4:0:1	3		2018-11-12
+u258	University of Gothenburg	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:4:4:3:1:1	4		2018-11-12
+u259	Karolinska Institutet	Clinical Genomics Stockholm	Clinical Genomics Stockholm-3:5:5:4:1:1	5	I would appreciate an easier communication.	2018-11-11
+u260	Uppsala University	NGI Uppsala UGC	NGI Uppsala UGC-4:4:5:4:1:1	5		2018-11-11
+u261	Karolinska Institutet	Cryo-EM (SU),Cryo-EM (UmU)	Cryo-EM (SU)-5:5:5:3:1:1,Cryo-EM (UmU)-5:5:5:3:0:1	5		2018-11-09
+u262	Stockholm University,Other Swedish University	NGI Stockholm	NGI Stockholm-4:4:4:4:1:1	4		2018-11-07
+u263	Umea University	Protein Science Facility	Protein Science Facility-4:4:4:3:0:1	4		2018-11-07
+u264	Healthcare	Clinical Genomics Stockholm	Clinical Genomics Stockholm-4:4:4:4:1:1	3	no	2018-11-07
+u265	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:5:5:3:1:1	5		2018-11-07
+u266	Lund University	Compute and Storage (NBIS),NGI Stockholm,NGI Uppsala UGC	Compute and Storage (NBIS)-5:4:5:1:1:1,NGI Stockholm-5:5:5:1:0:1,NGI Uppsala UGC-5:5:5:1:0:1	5		2018-11-07
+u267	Karolinska Institutet	Drug Discovery and Development,NGI Stockholm,NGI Uppsala SNP&SEQ	Drug Discovery and Development-5:5:5:3:0:1,NGI Stockholm-5:5:5:3:0:1,NGI Uppsala SNP&SEQ-5:5:5:3:0:1	5		2018-11-07
+u268	Swedish University of Agricultural Sciences	NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Uppsala SNP&SEQ-5:5:5:1:0:1,NGI Uppsala UGC-4:4:5:1:1:1	5	An overall function that can guide customers that have yet not decided which platform to use. More on an general experimental design level. Also, more support for MinION would be great. And library preparation protocols for samples with very low input material (e.g. Nextera XT).	2018-11-06
+u269	University of Gothenburg	NGI Stockholm	NGI Stockholm-3:3:4:3:0:1	4		2018-11-06
+u270	Industry	Drug Discovery and Development	Drug Discovery and Development-5:5:5:3:0:1	5		2018-11-06
+u271	Stockholm University	Cryo-EM (SU)	Cryo-EM (SU)-1:2:5:3:0:1	1	Make the already existing ones more available!!!!!1	2018-11-06
+u272	Swedish University of Agricultural Sciences,Umea University	Long-term Support (WABI) (NBIS),NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	Long-term Support (WABI) (NBIS)-5:5:4:3:0:1,NGI Stockholm-4:4:5:3:1:1,NGI Uppsala SNP&SEQ-4:4:5:3:0:0,NGI Uppsala UGC-5:5:5:3:1:1	5	None	2018-11-06
+u273	University of Gothenburg	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-5:5:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5		2018-11-05
+u274	Karolinska Institutet	Clinical Genomics Stockholm,NGI Stockholm,Support and Infrastructure (NBIS)	Clinical Genomics Stockholm-5:5:4:3:1:1,NGI Stockholm-3:5:5:3:1:1,Support and Infrastructure (NBIS)-5:5:4:3:1:1	5		2018-11-05
+u275	University of Gothenburg,Other international organization	NGI Stockholm	NGI Stockholm-5:5:5:3:1:1	5		2018-11-05
+u276	Swedish University of Agricultural Sciences	Chemical Proteomics and Proteogenomics (MBB),Swedish Metabolomics Centre	Chemical Proteomics and Proteogenomics (MBB)-5:5:5:3:1:1,Swedish Metabolomics Centre-5:5:5:3:1:1	5		2018-11-05
+u277	Other international organization	NGI Stockholm	NGI Stockholm-3:4:1:3:1:1	4	processing time should become shorter	2018-11-05
+u278	Karolinska Institutet	Long-term Support (WABI) (NBIS)	Long-term Support (WABI) (NBIS)-5:5:5:3:1:1	5		2018-11-05
+u279	Uppsala University	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:5:3:1:1	5		2018-11-05
+u280	Umea University	Compute and Storage (NBIS),NGI Stockholm	Compute and Storage (NBIS)-5:4:5:5:0:1,NGI Stockholm-5:5:5:5:0:1	5		2018-11-05
+u281	Swedish University of Agricultural Sciences	Compute and Storage (NBIS),NGI Uppsala SNP&SEQ,Support and Infrastructure (NBIS)	Compute and Storage (NBIS)-5:5:5:4:0:1,NGI Uppsala SNP&SEQ-3:3:4:3:1:1,Support and Infrastructure (NBIS)-4:4:4:4:1:1	5		2018-11-05
+u282	Lund University	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-5:5:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:3:0:1	5		2018-11-05
+u283	Lund University	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-5:5:5:4:1:1,NGI Uppsala SNP&SEQ-5:5:5:5:1:1	5		2018-11-05
+u284	Karolinska Institutet	NGI Stockholm	NGI Stockholm-2:1:4:3:1:1	5		2018-11-05
+u285	Uppsala University	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Stockholm-3:4:5:4:0:1,NGI Uppsala SNP&SEQ-4:4:5:5:0:1,NGI Uppsala UGC-4:5:5:4:0:1	5		2018-11-05
+u286	Other international organization	NGI Stockholm	NGI Stockholm-5:5:5:5:1:1	5		2018-11-05
+u287	Karolinska Institutet	NGI Stockholm	NGI Stockholm-3:4:5:3:1:1	5	Extended FACS service for single cell genomics	2018-11-05
+u288	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:5:5:5:1:1	5	Larger IT support group-the requests are handled slowly, I guess because the large number of users	2018-11-05
+u289	Karolinska Institutet	Clinical Genomics Stockholm,NGI Stockholm	Clinical Genomics Stockholm-4:4:4:3:0:1,NGI Stockholm-2:2:5:3:1:1	3		2018-11-05
+u290	Industry	Chemical Biology Consortium Sweden (KI)	Chemical Biology Consortium Sweden (KI)-4:3:5:3:1:1	5		2018-11-05
+u291	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:5:5:5:1:1	5		2018-11-05
+u292	KTH Royal Institute of Technology	NGI Stockholm	NGI Stockholm-2:5:2:2:1:0	4		2018-11-05
+u293	Naturhistoriska riksmuseet	NGI Stockholm	NGI Stockholm-5:5:5:3:1:1	5		2018-11-05
+u294	Karolinska Institutet	Chemical Proteomics and Proteogenomics (OncPat),Mass Cytometry (KI),NGI Stockholm,Plasma Profiling	Chemical Proteomics and Proteogenomics (OncPat)-1:1:3:5:1:0,Mass Cytometry (KI)-1:2:4:5:1:0,NGI Stockholm-1:1:5:5:1:0,Plasma Profiling-1:1:3:5:0:0	1		2018-11-05
+u295	Karolinska Institutet	NGI Stockholm	NGI Stockholm-4:4:5:4:1:1	5		2018-11-05
+u296	Naturhistoriska riksmuseet	NGI Stockholm	NGI Stockholm-4:4:5:4:1:1	5		2018-11-05
+u297	Karolinska Institutet,KTH Royal Institute of Technology	Advanced Light Microscopy (ALM),NGI Stockholm	Advanced Light Microscopy (ALM)-5:5:5:1:1:1,NGI Stockholm-3:3:3:5:0:1	5	More experimental and advanced light microscopy. Also advanced EM imaging, serial block face scanning.	2018-11-05
+u298	Karolinska Institutet	Eukaryotic Single Cell Genomics,Mass Cytometry (KI),NGI Stockholm	Eukaryotic Single Cell Genomics-5:5:5:4:1:1,Mass Cytometry (KI)-4:4:5:3:1:1,NGI Stockholm-2:4:5:4:1:1	5	There is too limited access to the Flow cytometry facility. It would be nice to increase the number of time slots that are available. Especially for specialised sorting such as single cell sorting in plates and nano-wells, which are nowadays becoming more common in projects and workflows.	2018-11-05
+u299	International University	NGI Stockholm	NGI Stockholm-5:5:5:3:1:1	4		2018-11-05
+u300	KTH Royal Institute of Technology	NGI Stockholm	NGI Stockholm-4:3:5:4:1:1	5		2018-11-05
+u301	Lund University	NGI Stockholm	NGI Stockholm-5:5:5:3:0:1	5		2018-11-05
+u302	Karolinska Institutet	NGI Stockholm	NGI Stockholm-5:5:5:3:0:1	5		2018-11-05
+u303	Linkoping University	NGI Stockholm	NGI Stockholm-4:5:5:5:1:1	5		2018-11-05
+u304	KTH Royal Institute of Technology,International University	Cell Profiling (High Throughput Microscopy),NGI Stockholm	Cell Profiling (High Throughput Microscopy)-4:4:4:3:1:1,NGI Stockholm-4:4:4:4:0:1	5		2018-11-05
+u305	Other Swedish University	Compute and Storage (NBIS),NGI Stockholm,Support and Infrastructure (NBIS)	Compute and Storage (NBIS)-4:4:5:3:1:1,NGI Stockholm-4:5:5:3:1:1,Support and Infrastructure (NBIS)-5:5:5:3:1:1	5		2018-11-05
+u306	Karolinska Institutet	NGI Stockholm	NGI Stockholm-4:4:5:4:0:1	5		2018-11-05
+u307	Karolinska Institutet	NGI Stockholm	NGI Stockholm-4:4:5:2:1:1	5		2018-11-05
+u308	University of Gothenburg	NGI Stockholm	NGI Stockholm-1:3:2:5:1:0	2	Information about the platforms are missing. Activities outside Stockholm and Uppsala are missing.	2018-11-05
+u309	Other international organization	NGI Stockholm	NGI Stockholm-5:5:5:5:1:1	5		2018-11-05
+u310	Stockholm University	NGI Stockholm,Support and Infrastructure (NBIS)	NGI Stockholm-4:4:5:2:1:1,Support and Infrastructure (NBIS)-3:4:5:3:1:1	4	Library preparation for amplicon sequencing (MiSeq or HiSeq) would be important	2018-11-05
+u311	Other Swedish organization	NGI Stockholm	NGI Stockholm-5:5:5:4:1:1	5		2018-11-05
+u312	Karolinska Institutet	Eukaryotic Single Cell Genomics,NGI Stockholm	Eukaryotic Single Cell Genomics-1:1:5:3:1:0,NGI Stockholm-3:3:5:3:1:0	3	please provide phone numbers to core facilities and individuals, it is not sufficient to correpsond using email, especially when it takes about a week to get one single reply. it is important to be able to call and discuss a project, book an appointment, make changes in the project or communicate at the day of the experiment. this goes for the front desk as well, they need the phone numbers of the facilities and individuals. most often the front desk has to email people notifying that you have arrived for a scheduled appointment, this is ridiculous. thanks	2018-11-05
+u313	Other Swedish University	NGI Stockholm,Support and Infrastructure (NBIS)	NGI Stockholm-4:5:5:3:1:1,Support and Infrastructure (NBIS)-4:4:5:3:1:1	5		2018-11-05
+u314	Karolinska Institutet	NGI Stockholm	NGI Stockholm-3:4:2:4:1:1	3		2018-11-05
+u315	Karolinska Institutet	Compute and Storage (NBIS),NGI Stockholm	Compute and Storage (NBIS)-4:4:5:3:1:1,NGI Stockholm-5:4:5:3:1:1	5		2018-11-05
+u316	Stockholm University	NGI Stockholm	NGI Stockholm-4:4:5:3:1:1	5		2018-11-05
+u317	Karolinska Institutet	Chemical Proteomics and Proteogenomics (MBB),Drug Discovery and Development,NGI Stockholm	Chemical Proteomics and Proteogenomics (MBB)-3:4:3:4:0:0,Drug Discovery and Development-2:2:4:4:0:0,NGI Stockholm-1:2:1:4:1:0	3		2018-11-05
+u318	Karolinska Institutet	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:5:3:1:1	5		2018-11-05
+u319	Karolinska Institutet,Other Swedish organization	NGI Stockholm	NGI Stockholm-3:3:4:4:1:1	4		2018-11-05
+u320	Linkoping University	Drug Discovery and Development	Drug Discovery and Development-5:5:5:3:0:1	5		2018-11-05
+u321	Uppsala University	Long-term Support (WABI) (NBIS),NGI Uppsala SNP&SEQ,Single Cell Proteomics	Long-term Support (WABI) (NBIS)-3:4:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:3:1:1,Single Cell Proteomics-4:4:4:3:1:1	5	Larger resources at NGI in order to perform more technology development work, either in-house or in collaboration with other facilities or researchers	2018-11-04
+u322	Uppsala University	Clinical Genomics Uppsala,Compute and Storage (NBIS),Long-term Support (WABI) (NBIS),NGI Uppsala SNP&SEQ,NGI Uppsala UGC	Clinical Genomics Uppsala-5:5:5:4:1:1,Compute and Storage (NBIS)-4:4:5:5:1:1,Long-term Support (WABI) (NBIS)-5:5:5:5:0:1,NGI Uppsala SNP&SEQ-5:5:5:4:1:1,NGI Uppsala UGC-5:5:5:4:1:1	5		2018-11-04
+u323	Uppsala University	NGI Stockholm,NGI Uppsala UGC	NGI Stockholm-5:5:5:3:1:1,NGI Uppsala UGC-5:5:5:3:1:1	5	Hi-C	2018-11-02
+u324	Swedish University of Agricultural Sciences	NGI Uppsala UGC	NGI Uppsala UGC-4:3:5:2:1:0	4		2018-11-02
+u325	Karolinska Institutet	Clinical Genomics Stockholm	Clinical Genomics Stockholm-5:5:5:3:1:1	5		2018-11-02
+u326	Lund University	NGI Uppsala SNP&SEQ,Support and Infrastructure (NBIS)	NGI Uppsala SNP&SEQ-4:4:5:3:1:1,Support and Infrastructure (NBIS)-4:4:5:3:0:1	5		2018-11-02
+u327	Industry	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:5:5:0:1	5	DNA extraction facility for industry	2018-11-01
+u328	KTH Royal Institute of Technology	Cryo-EM (SU),Protein Science Facility	Cryo-EM (SU)-4:4:4:4:0:1,Protein Science Facility-5:5:5:5:1:1	5		2018-11-01
+u329	Stockholm University	Cryo-EM (SU),Cryo-EM (UmU)	Cryo-EM (SU)-5:5:4:3:0:1,Cryo-EM (UmU)-5:5:4:3:0:1	4		2018-11-01
+u330	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:4:5:4:1:1	5	RAD seq	2018-11-01
+u331	University of Gothenburg,Other international organization	Compute and Storage (NBIS),Long-term Support (WABI) (NBIS),NGI Stockholm,NGI Uppsala SNP&SEQ	Compute and Storage (NBIS)-4:5:5:3:1:1,Long-term Support (WABI) (NBIS)-4:4:3:3:1:1,NGI Stockholm-4:5:4:3:1:1,NGI Uppsala SNP&SEQ-4:5:4:3:1:1	5	Targeted capture sequencing was not available at the time when I enquired about it. Also, assistance with obtaining high-quality DNA from difficult samples would be very valuable.	2018-11-01
+u332	Karolinska Institutet	Cryo-EM (SU)	Cryo-EM (SU)-4:4:5:3:1:1	4		2018-11-01
+u333	Umea University	Chemical Biology Consortium Sweden (UmU),Cryo-EM (UmU)	Chemical Biology Consortium Sweden (UmU)-5:5:4:4:1:1,Cryo-EM (UmU)-5:5:4:4:0:1	5		2018-10-31
+u334	University of Gothenburg	Genome Engineering Zebrafish	Genome Engineering Zebrafish-5:5:4:3:1:1	4		2018-10-31
+u335	Lund University	Long-term Support (WABI) (NBIS),NGI Stockholm,NGI Uppsala SNP&SEQ	Long-term Support (WABI) (NBIS)-5:5:5:3:0:1,NGI Stockholm-5:5:5:3:0:1,NGI Uppsala SNP&SEQ-5:5:5:3:1:1	5		2018-10-31
+u336	Karolinska Institutet	High Throughput Genome Engineering	High Throughput Genome Engineering-5:5:5:3:1:1	4	masspec	2018-10-31
+u337	Uppsala University	BioImage Informatics,Eukaryotic Single Cell Genomics,Genome Engineering Zebrafish,NGI Uppsala SNP&SEQ,Single Cell Proteomics	BioImage Informatics-3:3:5:4:0:1,Eukaryotic Single Cell Genomics-3:4:5:5:0:1,Genome Engineering Zebrafish-5:5:5:4:1:1,NGI Uppsala SNP&SEQ-3:3:5:5:1:1,Single Cell Proteomics-4:5:5:4:0:1	5	Single Cell Mass Spectrometry, Lattice Light-Sheet microscopy, reasonably priced data-storage and in cloud processing  system (eg DATA Solution HIVE system)	2018-10-31
+u338	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-3:3:5:4:0:1	4		2018-10-31
+u339	Umea University	Cryo-EM (UmU)	Cryo-EM (UmU)-4:4:5:3:1:1	3		2018-10-31
+u340	Uppsala University	Eukaryotic Single Cell Genomics,Genome Engineering Zebrafish	Eukaryotic Single Cell Genomics-3:3:3:3:0:1,Genome Engineering Zebrafish-3:3:4:4:1:1	4		2018-10-31
+u341	Uppsala University	Cryo-EM (SU)	Cryo-EM (SU)-5:5:5:3:1:1	5	More access to cryo-EM microscopes	2018-10-31
+u342	Lund University,International University	Chemical Biology Consortium Sweden (UmU),Cryo-EM (UmU)	Chemical Biology Consortium Sweden (UmU)-3:4:3:3:0:1,Cryo-EM (UmU)-5:5:5:3:1:1	4		2018-10-31
+u343	Stockholm University	Long-term Support (WABI) (NBIS),NGI Stockholm,Swedish Metabolomics Centre	Long-term Support (WABI) (NBIS)-5:5:4:3:0:1,NGI Stockholm-4:5:5:3:1:1,Swedish Metabolomics Centre-4:3:2:3:0:1	3		2018-10-31
+u344	Umea University	Swedish Metabolomics Centre,Swedish NMR Centre	Swedish Metabolomics Centre-5:5:4:3:1:1,Swedish NMR Centre-5:5:3:3:0:1	5		2018-10-31
+u345	Umea University	Chemical Biology Consortium Sweden (UmU),Cryo-EM (UmU),Swedish Metabolomics Centre	Chemical Biology Consortium Sweden (UmU)-5:5:5:3:0:1,Cryo-EM (UmU)-5:5:4:3:0:1,Swedish Metabolomics Centre-1:1:5:5:1:0	5		2018-10-31
+u346	Swedish University of Agricultural Sciences	NGI Stockholm,NGI Uppsala UGC	NGI Stockholm-4:4:4:4:0:1,NGI Uppsala UGC-5:5:5:5:1:1	5		2018-10-31
+u347	Umea University	Cryo-EM (UmU),NGI Uppsala SNP&SEQ	Cryo-EM (UmU)-5:5:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:3:0:1	5		2018-10-31
+u348	Stockholm University	Advanced Light Microscopy (ALM),Mass Cytometry (KI)	Advanced Light Microscopy (ALM)-4:5:4:3:1:1,Mass Cytometry (KI)-1:1:4:5:0:0	3		2018-10-31
+u349	Uppsala University	BioImage Informatics,Compute and Storage (NBIS),Drug Discovery and Development,Genome Engineering Zebrafish,NGI Stockholm,NGI Uppsala SNP&SEQ,Systems Biology (NBIS)	BioImage Informatics-5:5:5:3:1:1,Compute and Storage (NBIS)-5:5:5:1:1:1,Drug Discovery and Development-5:5:4:1:0:1,Genome Engineering Zebrafish-5:5:1:1:1:1,NGI Stockholm-2:5:5:3:1:1,NGI Uppsala SNP&SEQ-5:5:5:3:1:1,Systems Biology (NBIS)-5:5:4:1:0:1	5		2018-10-31
+u350	Lund University	Cryo-EM (SU)	Cryo-EM (SU)-1:1:1:5:0:0	1	I am a PI in a cryo-EM bag from Lund and I had to establish an account, but that one does not work. I contacted Cryo-EM person that asked me to create the account because it does not work and I can't use the account - but this cryo-EM personal ignores my questions and request for help.	2018-10-31
+u351	Stockholm University	Swedish Metabolomics Centre	Swedish Metabolomics Centre-3:3:5:5:0:1	3	The technologies are there, but it's either difficult to get the expertise and once you get them it's very expensive! NOT AFFORDABLE.	2018-10-31
+u352	Stockholm University	Cryo-EM (SU)	Cryo-EM (SU)-2:3:5:3:0:0	2	I am not missing any, but AKE IT accessible to everyone and NOT only to specific research groups!	2018-10-31
+u353	University of Gothenburg	Long-term Support (WABI) (NBIS),NGI Stockholm,NGI Uppsala UGC,Swedish Metabolomics Centre	Long-term Support (WABI) (NBIS)-4:4:5:3:0:1,NGI Stockholm-5:5:5:3:1:1,NGI Uppsala UGC-5:5:5:3:1:1,Swedish Metabolomics Centre-4:4:5:3:0:1	5	Phenomics	2018-10-31
+u354	University of Gothenburg	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:4:5:3:1:1	5		2018-10-31
+u355	Lund University	Cryo-EM (SU)	Cryo-EM (SU)-4:4:5:2:0:1	4	Given that many groups in Sweden are relative newcomers to cryoEM, and that the relevant expertise for data analysis is not present at every university, it would be most appreciated if SciLifeLab staff could offer more assistance with data analysis.	2018-10-31
+u356	Lund University	Eukaryotic Single Cell Genomics	Eukaryotic Single Cell Genomics-4:4:5:4:0:1	5		2018-10-31
+u357	Lund University	Cryo-EM (UmU)	Cryo-EM (UmU)-5:5:4:3:0:1	5		2018-10-31
+u358	Other Swedish University	Autoimmunity Profiling	Autoimmunity Profiling-5:5:5:1:0:1	5		2018-10-31
+u359	Lund University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:5:4:3:1:1	5		2018-10-31
+u360	Naturhistoriska riksmuseet	NGI Stockholm	NGI Stockholm-4:5:5:1:1:1	5		2018-10-31
+u361	Other Swedish organization	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-3:5:5:3:0:1	4		2018-10-31
+u362	University of Gothenburg	Cryo-EM (UmU)	Cryo-EM (UmU)-5:5:5:3:0:1	4		2018-10-31
+u363	Karolinska Institutet,Healthcare,Industry	Drug Discovery and Development	Drug Discovery and Development-4:4:5:3:0:1	5		2018-10-31
+u364	International University	Chemical Proteomics and Proteogenomics (OncPat)	Chemical Proteomics and Proteogenomics (OncPat)-5:5:5:3:0:1	5		2018-10-31
+u365	Uppsala University	Clinical Genomics Uppsala	Clinical Genomics Uppsala-5:5:5:5:1:1	4		2018-10-30
+u366	Industry	Swedish NMR Centre	Swedish NMR Centre-4:3:5:3:1:1	3	See a potential issue that SciLifeLab can compete with Swedish industrial alternatives as fees are not set by the market forces.	2018-10-30
+u367	Swedish University of Agricultural Sciences	NGI Uppsala SNP&SEQ,NGI Uppsala UGC,Support and Infrastructure (NBIS)	NGI Uppsala SNP&SEQ-5:5:5:4:1:1,NGI Uppsala UGC-5:5:5:4:1:1,Support and Infrastructure (NBIS)-5:5:5:5:0:1	5		2018-10-30
+u368	Other international organization	Swedish Metabolomics Centre	Swedish Metabolomics Centre-5:5:5:3:1:1	5		2018-10-30
+u369	Lund University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-3:4:4:3:1:1	5	10x chromium platform	2018-10-30
+u370	Other Swedish University	Microbial Single Cell Genomics,NGI Uppsala SNP&SEQ,PLA Proteomics,Systems Biology (NBIS)	Microbial Single Cell Genomics-4:5:4:3:0:1,NGI Uppsala SNP&SEQ-4:4:5:3:1:1,PLA Proteomics-4:4:3:3:0:1,Systems Biology (NBIS)-5:5:4:3:0:1	5		2018-10-30
+u371	Swedish University of Agricultural Sciences	Compute and Storage (NBIS),Microbial Single Cell Genomics,NGI Uppsala SNP&SEQ	Compute and Storage (NBIS)-3:5:5:3:1:1,Microbial Single Cell Genomics-4:5:4:3:1:1,NGI Uppsala SNP&SEQ-4:5:5:3:1:1	5		2018-10-30
+u372	KTH Royal Institute of Technology	Cryo-EM (UmU)	Cryo-EM (UmU)-5:5:5:3:1:1	5		2018-10-30
+u373	Karolinska Institutet	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Stockholm-4:5:5:3:1:1,NGI Uppsala SNP&SEQ-4:4:3:3:1:0,NGI Uppsala UGC-4:5:3:3:1:1	5		2018-10-30
+u374	Stockholm University	Long-term Support (WABI) (NBIS)	Long-term Support (WABI) (NBIS)-5:5:5:3:0:1	5		2018-10-30
+u375	University of Gothenburg	Chemical Biology Consortium Sweden (KI),Clinical Genomics Goteborg,NGI Uppsala SNP&SEQ,Swedish NMR Centre	Chemical Biology Consortium Sweden (KI)-5:5:5:5:0:0,Clinical Genomics Goteborg-3:4:5:5:1:1,NGI Uppsala SNP&SEQ-3:4:3:4:0:1,Swedish NMR Centre-5:5:3:1:0:1	5		2018-10-30
+u376	Stockholm University	Cryo-EM (SU)	Cryo-EM (SU)-3:3:5:3:1:1	3		2018-10-30
+u377	Uppsala University	NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Uppsala SNP&SEQ-5:5:5:3:1:1,NGI Uppsala UGC-5:5:5:3:1:1	5		2018-10-30
+u378	Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:4:5:3:1:1	4		2018-10-30
+u379	Uppsala University	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:1:1:1	3		2018-10-30
+u380	Karolinska Institutet	BioImage Informatics,Cell Profiling (High Throughput Microscopy),Chemical Biology Consortium Sweden (KI)	BioImage Informatics-4:4:5:3:1:1,Cell Profiling (High Throughput Microscopy)-5:4:4:5:0:1,Chemical Biology Consortium Sweden (KI)-5:4:5:3:1:1	4	High throughput image analysis, data analysis from high content image analysis, flow cytometry cell sorting.	2018-10-30
+u381	Lund University	Eukaryotic Single Cell Genomics,NGI Stockholm	Eukaryotic Single Cell Genomics-1:2:4:4:0:0,NGI Stockholm-5:4:4:4:0:1	3		2018-10-30
+u382	Umea University	Swedish Metabolomics Centre	Swedish Metabolomics Centre-2:2:3:4:1:0	3	quantitative metabolomics	2018-10-30
+u383	Uppsala University	Clinical Genomics Uppsala	Clinical Genomics Uppsala-5:5:5:5:1:1	5		2018-10-30
+u384	Lund University	Long-term Support (WABI) (NBIS),Swedish Metabolomics Centre	Long-term Support (WABI) (NBIS)-4:4:5:3:0:1,Swedish Metabolomics Centre-4:5:3:3:0:1	3		2018-10-30
+u385	Umea University	Chemical Biology Consortium Sweden (KI),Chemical Biology Consortium Sweden (UmU),Drug Discovery and Development,Swedish Metabolomics Centre,Swedish NMR Centre	Chemical Biology Consortium Sweden (KI)-4:5:4:3:1:1,Chemical Biology Consortium Sweden (UmU)-5:5:4:3:1:1,Drug Discovery and Development-4:5:5:3:1:1,Swedish Metabolomics Centre-5:5:5:3:1:1,Swedish NMR Centre-3:4:5:3:1:1	4		2018-10-30
+u386	Umea University	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:4:5:4:1:1	5		2018-10-30
+u387	Karolinska Institutet	Eukaryotic Single Cell Genomics,Mass Cytometry (KI),NGI Stockholm	Eukaryotic Single Cell Genomics-1:3:5:3:0:0,Mass Cytometry (KI)-4:4:4:3:0:1,NGI Stockholm-1:1:3:2:0:0	1		2018-10-30
+u388	Stockholm University	Cryo-EM (SU),Cryo-EM (UmU)	Cryo-EM (SU)-5:5:5:3:1:1,Cryo-EM (UmU)-5:5:5:3:1:1	5		2018-10-30
+u389	Swedish University of Agricultural Sciences	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:4:5:5:1:0	4	We used to sequence everything in SciLife because of the good price and excelent service by the people there. Nowdays, the price for PE125 is to hight compare to other compagnies and as only novaseq will be available soon and that most of the time we don't generate enought samples to need a full lane of sequencing in novaseq, we will sadly do  our sequencing somewhere else. On average, we sequence 6 to 12 samples and need 20-30 millions reads for each. We don't need 600 millions reads for x2/x3 time the price of a hiseq lane.	2018-10-30
+u390	Umea University	Swedish NMR Centre	Swedish NMR Centre-5:5:5:5:1:1	5		2018-10-30
+u391	Stockholm University	Genome Engineering Zebrafish	Genome Engineering Zebrafish-5:4:5:2:1:1	4		2018-10-30
+u392	Karolinska Institutet	NGI Stockholm,Systems Biology (NBIS)	NGI Stockholm-2:4:5:3:0:0,Systems Biology (NBIS)-4:4:5:3:0:0	4		2018-10-30
+u393	Karolinska Institutet	Plasma Profiling	Plasma Profiling-5:5:5:4:1:1	5	A comprehensive immunomonitoring facility	2018-10-30
+u394	Industry	Drug Discovery and Development	Drug Discovery and Development-4:5:3:3:1:1	5		2018-10-30
+u395	Uppsala University	Clinical Genomics Uppsala	Clinical Genomics Uppsala-5:5:5:5:1:1	5		2018-10-30
+u396	Karolinska Institutet	Eukaryotic Single Cell Genomics	Eukaryotic Single Cell Genomics-3:3:4:5:1:1	3	In vivo imaging	2018-10-30
+u397	Lund University	Compute and Storage (NBIS),NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC,Support and Infrastructure (NBIS)	Compute and Storage (NBIS)-4:5:4:1:1:1,NGI Stockholm-4:5:5:3:1:1,NGI Uppsala SNP&SEQ-4:5:4:3:1:1,NGI Uppsala UGC-5:5:5:3:1:1,Support and Infrastructure (NBIS)-4:5:4:1:1:1	5		2018-10-30
+u398	Uppsala University	Compute and Storage (NBIS),NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	Compute and Storage (NBIS)-3:4:5:3:1:1,NGI Stockholm-4:5:5:3:0:1,NGI Uppsala SNP&SEQ-3:5:5:3:1:1,NGI Uppsala UGC-5:5:5:3:1:1	5		2018-10-30
+u399	Stockholm University	Cryo-EM (SU)	Cryo-EM (SU)-5:5:5:3:1:1	4	Affordable mass-spectrometry	2018-10-30
+u400	Other international organization	Chemical Proteomics and Proteogenomics (OncPat)	Chemical Proteomics and Proteogenomics (OncPat)-5:5:5:5:1:1	5		2018-10-30
+u401	Chalmers University of Technology	Advanced Light Microscopy (ALM),Cryo-EM (UmU)	Advanced Light Microscopy (ALM)-4:4:5:3:0:1,Cryo-EM (UmU)-5:5:5:3:0:1	4		2018-10-30
+u402	Stockholm University	Genome Engineering Zebrafish	Genome Engineering Zebrafish-5:5:5:1:1:1	5	OECD 236 screening	2018-10-30
+u403	Other international organization	Chemical Proteomics and Proteogenomics (MBB),Cryo-EM (SU)	Chemical Proteomics and Proteogenomics (MBB)-5:4:5:4:0:1,Cryo-EM (SU)-5:5:5:3:1:1	5		2018-10-30
+u404	Swedish University of Agricultural Sciences,Uppsala University	Long-term Support (WABI) (NBIS),Microbial Single Cell Genomics,NGI Stockholm,NGI Uppsala SNP&SEQ	Long-term Support (WABI) (NBIS)-4:4:4:1:0:1,Microbial Single Cell Genomics-4:5:5:3:1:1,NGI Stockholm-3:4:3:3:0:1,NGI Uppsala SNP&SEQ-4:5:5:3:1:1	5	Compound specific isotope analyses	2018-10-30
+u405	Umea University	Cryo-EM (UmU)	Cryo-EM (UmU)-5:5:4:4:0:1	5		2018-10-30
+u406	Umea University	Chemical Biology Consortium Sweden (UmU),Compute and Storage (NBIS),Cryo-EM (UmU),NGI Stockholm	Chemical Biology Consortium Sweden (UmU)-5:5:5:5:1:1,Compute and Storage (NBIS)-4:4:4:4:1:1,Cryo-EM (UmU)-5:5:5:5:1:1,NGI Stockholm-4:4:4:4:1:1	4		2018-10-30
+u407	Karolinska Institutet	Eukaryotic Single Cell Genomics	Eukaryotic Single Cell Genomics-2:2:4:1:0:0	4		2018-10-30
+u408	Uppsala University	Long-term Support (WABI) (NBIS),NGI Uppsala SNP&SEQ	Long-term Support (WABI) (NBIS)-4:4:5:3:0:1,NGI Uppsala SNP&SEQ-5:4:5:3:1:1	4		2018-10-30
+u409	Lund University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-5:5:5:4:0:1	5		2018-10-30
+u410	Stockholm University	Autoimmunity Profiling	Autoimmunity Profiling-4:4:4:1:1:1	4	Quantitative mass spectrometry	2018-10-30
+u411	Swedish University of Agricultural Sciences	NGI Stockholm,NGI Uppsala SNP&SEQ	NGI Stockholm-4:4:5:3:1:1,NGI Uppsala SNP&SEQ-4:4:5:3:0:1	5		2018-10-30
+u412	Uppsala University	Long-term Support (WABI) (NBIS),NGI Uppsala SNP&SEQ,NGI Uppsala UGC,Single Cell Proteomics	Long-term Support (WABI) (NBIS)-4:4:5:3:0:1,NGI Uppsala SNP&SEQ-4:5:5:3:1:1,NGI Uppsala UGC-5:5:4:3:1:1,Single Cell Proteomics-4:4:3:3:0:1	5		2018-10-30
+u413	Swedish University of Agricultural Sciences,Uppsala University	NGI Uppsala SNP&SEQ	NGI Uppsala SNP&SEQ-4:4:5:4:0:1	3		2018-10-30
+u414	Other Swedish University	Cryo-EM (SU),Cryo-EM (UmU)	Cryo-EM (SU)-2:3:3:3:1:1,Cryo-EM (UmU)-4:4:3:3:1:1	3	Data Processing, Access to laboratory instruments	2018-10-30
+u415	Stockholm University,Naturhistoriska riksmuseet	NGI Stockholm,NGI Uppsala UGC	NGI Stockholm-5:5:5:3:1:1,NGI Uppsala UGC-5:5:5:3:0:1	5		2018-10-30
+u416	Stockholm University	Chemical Proteomics and Proteogenomics (OncPat),Drug Discovery and Development,NGI Stockholm	Chemical Proteomics and Proteogenomics (OncPat)-4:5:5:3:1:1,Drug Discovery and Development-5:4:5:3:0:1,NGI Stockholm-5:5:5:3:0:1	5		2018-10-30
+u417	Uppsala University,Other international organization	Genome Engineering Zebrafish	Genome Engineering Zebrafish-5:5:5:4:1:1	5		2018-10-30
+u418	Karolinska Institutet	NGI Stockholm,NGI Uppsala SNP&SEQ,NGI Uppsala UGC	NGI Stockholm-4:4:4:4:1:1,NGI Uppsala SNP&SEQ-4:4:4:4:1:0,NGI Uppsala UGC-4:4:3:4:1:1	4		2018-10-30
+u419	Stockholm University	Cryo-EM (SU),Cryo-EM (UmU)	Cryo-EM (SU)-5:5:5:1:1:1,Cryo-EM (UmU)-5:5:5:1:0:1	5		2018-10-30
+u420	Umea University	Cryo-EM (UmU),Swedish NMR Centre	Cryo-EM (UmU)-5:5:5:5:0:1,Swedish NMR Centre-5:5:5:5:1:1	5		2018-10-30
+u421	Uppsala University	Advanced Light Microscopy (ALM)	Advanced Light Microscopy (ALM)-5:5:5:1:1:1	4		2018-10-30
+u422	Stockholm University	Cryo-EM (SU)	Cryo-EM (SU)-3:2:5:5:1:0	5		2018-10-30
+u423	Umea University	Cryo-EM (UmU)	Cryo-EM (UmU)-4:4:3:2:0:1	3		2018-10-30
+u424	International University	Cryo-EM (SU)	Cryo-EM (SU)-5:5:5:5:0:1	5		2018-10-30
