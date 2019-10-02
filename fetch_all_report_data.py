@@ -268,7 +268,7 @@ for report in reports:
 			# row[6] is End date* (yyyy-mm-dd) 
 			# row[7] is Location (city) of the course*
 			# row[8] is Comment
-			# print row
+			
 			if not facility_name:
 				facility_name = row[0]
 			if not facility_contact:
@@ -522,7 +522,6 @@ worksheet_users.write(0, 4, "user_last_name", bold)
 worksheet_users.write(0, 5, "affiliation", bold)
 worksheet_users.write(0, 6, "additional_info", bold)
 for facility in sorted(reporting_data.keys()):
-	# print reporting_data[facility]["user_all"]
 	for user in reporting_data[facility]["user_all"]:
 		worksheet_users.write(user_row, 0, facility)
 		worksheet_users.write(user_row, 1, user[0])

@@ -13,8 +13,6 @@ from issn_files import ISSN_IMPACT_2017, ISSN_IMPACT_2016, ISSN_IMPACT_2015, ISS
 from publications_api import Publications_api
 
 def publication_plot(label_list, year):
-	# difflib.get_close_matches()
-
 	url = "https://publications.scilifelab.se/labels.json"
 	response = urllib.urlopen(url)
 	labels = json.loads(response.read())
