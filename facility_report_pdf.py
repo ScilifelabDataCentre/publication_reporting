@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#Author: Adrian Lärkeryd <adrian.larkeryd@scilifelab.uu.se>
+
+# Regular packages
 import os
 import datetime
 import pandas as pd
 
+# Specific imports from reportlab 
 from reportlab.platypus import BaseDocTemplate, Paragraph, Spacer, Image, PageTemplate, Frame, CondPageBreak
 from reportlab.platypus.flowables import HRFlowable
 from reportlab.lib.pagesizes import A4
@@ -13,12 +17,19 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
+# This import facilitates the header creation
 from functools import partial
+
+# SVG file function
 from svglib.svglib import svg2rlg
 
+# These are custom functions
 from facility_report_plots import user_plot, publication_plot
 
 def header(canvas, doc, content):
+	'''
+	header creates a header for a reportlabs document, and is inserted in the template
+	'''
 	canvas.saveState()
 	w, h = content.wrap(doc.width, doc.topMargin)
 	content.drawOn(canvas, doc.leftMargin, doc.height + doc.topMargin - h)
@@ -32,29 +43,44 @@ def header(canvas, doc, content):
 	canvas.restoreState()
 
 def generatePdf(facility_name, reporting_data, current_year):
+	'''
+	generatePdf creates a PDF document based on the reporting data supplied.
+	It is using very strict formatting, but is quite simple to edit.
 
+	This function will print the name of the facility its working on, and
+	any warnings that may arise. The excel document can be edited to fix warnings
+	and to change the information in the PDFs.
+	'''
+	
 	print "\nFacility report {}: {}".format(current_year, facility_name.encode("utf-8"))
+	
 	cwd = os.getcwd()
 	directory = cwd+"/facility_onepagers"
 	if not os.path.exists(directory):
 		os.makedirs(directory)
 
+	# Setting the document sizes and margins. showBoundary is useful for debugging
 	doc = BaseDocTemplate(u"facility_onepagers/{}_{}.pdf".format(current_year, facility_name.lower().replace(" ", "_")),
 		pagesize=A4,
 		rightMargin=18*mm, leftMargin=18*mm,
 		topMargin=16*mm, bottomMargin=16*mm, 
 		showBoundary=0
 	)
+
+	# These are the fonts available, in addition to a number of "standard" fonts.
+	# These are used in setting paragraph styles
 	pdfmetrics.registerFont(TTFont('MinionPro', 'MinionPro-Regular.ttf'))
 	pdfmetrics.registerFont(TTFont('Frutiger-65-Bold', 'Frutiger-LT-Std-65-Bold.ttf'))
 	pdfmetrics.registerFont(TTFont('Frutiger-45-Light', 'Frutiger-LT-Std-45-Light.ttf'))
 
+	# I have used spaceAfter, spaceBefore and leading to change the layout of the "paragraphs" created with these styles
 	styles = getSampleStyleSheet()
 	styles.add(ParagraphStyle(name="onepager_inner_heading", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=10, color="#FF00AA", leading=16, spaceAfter=0, spaceBefore=8))
 	styles.add(ParagraphStyle(name="onepager_title", parent=styles["Heading1"], fontName="Frutiger-65-Bold", fontSize=16, bold=0, color="#000000", leading=16, spaceBefore=0))
 	styles.add(ParagraphStyle(name="onepager_text", parent=styles["Normal"], fontName="MinionPro", fontSize=10, bold=0, color="#000000", leading=14))
 	styles.add(ParagraphStyle(name="onepager_footnote", parent=styles["Normal"], fontName="MinionPro", fontSize=7, bold=0, color="#000000", leading=14))
 	
+	# The document is set up with two frames, one frame is one column, and their widths are set according to SciLifeLab design policy
 	frame1 = Frame(doc.leftMargin, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-18*mm, id='col1', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
 	frame2 = Frame(doc.leftMargin+doc.width/2+3.5*mm, doc.bottomMargin, doc.width/2-3.5*mm, doc.height-18*mm, id='col2', leftPadding=0*mm, topPadding=0*mm, rightPadding=0*mm, bottomPadding=0*mm)
 	
@@ -62,25 +88,28 @@ def generatePdf(facility_name, reporting_data, current_year):
 		u'<b>{}</b><br/><font name=Frutiger-45-Light size=12> {} platform</font>'.format(facility_name.replace('&', '&amp;'), reporting_data["platform"]), 
 		styles["onepager_title"])
 
-	# print header_content
-
 	template = PageTemplate(id='test', frames=[frame1,frame2], onPage=partial(header, content=header_content))
 	doc.addPageTemplates([template])
 
+	# The Story list will contain all Paragraph and other elements. In the end this is used to build the document
 	Story = []
 
-	Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>Basic information</b></font>", styles["onepager_inner_heading"]))
+	### Below here will be Paragraph and Image elements added to the Story, they flow through frames automatically,
+	### however I have set a framebreak to correctly organise things in left/right column.
 
+	Story.append(Paragraph("<font color='#95C11E' name=Frutiger-65-Bold><b>Basic information</b></font>", styles["onepager_inner_heading"]))
+	
+	# This is a workaround the fact that sometimes there are several facility directors, sometimes just one
 	directors = ""
 	for director in eval(reporting_data["facility_director"]):
 		if directors:
 			directors += u', ' + u' '.join((director[0], director[1])).strip()
 		else:
 			directors = u' '.join((director[0], director[1])).strip()
-	
 	Story.append(Paragraph(u"<font name=Frutiger-65-Bold><b>Facility director: </b></font>{}".format(directors), 
 		styles["onepager_text"]))
 
+	# This is a workaround the fact that sometimes there are several facility heads, sometimes just one
 	heads = ""
 	for head in eval(reporting_data["facility_head"]):
 		if heads:
@@ -102,6 +131,7 @@ def generatePdf(facility_name, reporting_data, current_year):
 	Story.append(Paragraph("<font color='#95C11E'><font name=Frutiger-65-Bold><b>Funding {} (in kSEK)</b></font></font>".format(current_year), 
 		styles["onepager_inner_heading"]))
 	
+	# Funding calculations, to have a total funding item. It does NOT contain user fees. 
 	total_funding = 0
 	if "additional_funding" in reporting_data.keys():
 		for funds in eval(reporting_data["additional_funding"]):
@@ -120,6 +150,7 @@ def generatePdf(facility_name, reporting_data, current_year):
 	Story.append(Paragraph("<font name=Frutiger-65-Bold><b>SciLifeLab: </b></font>{}".format(reporting_data["scilifelab_funding"]), 
 		styles["onepager_text"]))
 
+	# The following puts in another item for user fees/invoicing, if there was any
 	user_fees_flag = False
 	user_fees_amount = None
 
@@ -146,7 +177,7 @@ def generatePdf(facility_name, reporting_data, current_year):
 	Story.append(Paragraph("<font name=Frutiger-65-Bold><b>Total: </b></font>{}".format(total_funding), 
 		styles["onepager_text"]))
 
-	##RESOURCE ALLOCATION
+	### RESOURCE ALLOCATION
 	total_percentage = int(reporting_data["resource_academic_national"])+int(reporting_data["resource_academic_international"])+\
 		int(reporting_data["resource_internal"])+int(reporting_data["resource_industry"])+\
 		int(reporting_data["resource_healthcare"])+int(reporting_data["resource_other"])
@@ -200,7 +231,7 @@ def generatePdf(facility_name, reporting_data, current_year):
 	Story.append(Paragraph("<font name=Frutiger-65-Bold><b>Other gov. agencies: </b></font>{}".format(tmp_input), 
 		styles["onepager_text"]))
 
-	##USER FEES
+	### USER FEES
 	total_percentage = reporting_data["cost_reagents"]+reporting_data["cost_instrument"]+\
 		reporting_data["cost_salaries"]+reporting_data["cost_rents"]+reporting_data["cost_other"]
 	if total_percentage == 100:
@@ -255,7 +286,7 @@ def generatePdf(facility_name, reporting_data, current_year):
 	Story.append(Paragraph("<font name=Frutiger-65-Bold><b>Other: </b></font>{}".format(tmp_input), 
 		styles["onepager_text"]))
 
-	##USER FEES BY SECTOR
+	### USER FEES BY SECTOR
 	total_percentage = reporting_data["user_fees_academic_sweden"]+reporting_data["user_fees_academic_international"]+\
 		reporting_data["user_fees_industry"]+reporting_data["user_fees_healthcare"]+\
 		reporting_data["user_fees_other"]
@@ -312,12 +343,15 @@ def generatePdf(facility_name, reporting_data, current_year):
 	else:
 		Story.append(Paragraph("Service information goes here, please input text in excel file", styles["onepager_text"]))
 	
-	##USERS
+	### USERS
+	# Conditional "framebreak" that will change frames if there is not 100mm left in the frame. 
+	# This is to put the User headline above the User figure, instead of on the bottom of the prev column
 	Story.append(CondPageBreak(100*mm))
 
 	Story.append(Paragraph("<font color='#95C11E'><font name=Frutiger-65-Bold><b>Users {}</b></font></font>".format(current_year), 
 		styles["onepager_inner_heading"]))
 
+	# Create the user plot and return the name so we can use it in the PDF
 	user_dist_filename = user_plot(eval(reporting_data["user_affiliation"]), facility_name)
 
 	if os.path.isfile(user_dist_filename):
@@ -334,15 +368,18 @@ def generatePdf(facility_name, reporting_data, current_year):
 		Story.append(Spacer(1, 3*mm))
 		Story.append(user_dist_image)
 	else:
+		# If there was no file to find, print warning
 		print "WARNING: NO USER PLOT FOR:", facility_name, user_dist_filename
 
-	#PUBLICATIONS
+	### PUBLICATIONS
 	Story.append(Paragraph("<font color='#95C11E'><font name=Frutiger-65-Bold><b>Publications</b></font></font>", 
 		styles["onepager_inner_heading"]))
 
+	# Create the publications plots, which return two filenames and a tupule of publication counts for the most recent years
 	if eval(reporting_data["database_label_names"]):
 		pub_label_cat_filename, pub_label_jif_filename, pub_counts = publication_plot(eval(reporting_data["database_label_names"]), current_year)
 	else:
+		# If there was no label to get, we can get no plots, and no pub counts
 		pub_label_cat_filename, pub_label_jif_filename, pub_counts = None, None, (0, 0, 0)
 
 	Story.append(Paragraph("<font name=Frutiger-65-Bold><b>{}: </b></font>{}".format(current_year-2, pub_counts[2]), 
@@ -379,11 +416,12 @@ def generatePdf(facility_name, reporting_data, current_year):
 	else:
 		print "WARNING: NO PUB PLOTS FOR:", facility_name
 
+	# This puts an asterisk at the bottom of the page, with some info if there was any in the data file
 	if isinstance(reporting_data["asterisk_footnote"], basestring):
 		Story.append(Paragraph("* {}".format(reporting_data["asterisk_footnote"].encode("utf-8")), 
 			styles["onepager_footnote"]))
 
-	#print Story
+	# Finally, build the document. 
 	doc.build(Story)
 
 if __name__ == "__main__":
@@ -394,6 +432,7 @@ if __name__ == "__main__":
 
 	complete_reporting_data = dict()
 	
+	# Go through spreadsheet and assign data items to the facility
 	for i, row in completed_data_df.iterrows():
 		facility = row["facility"]
 
@@ -437,5 +476,5 @@ if __name__ == "__main__":
 
 	now = datetime.datetime.now()
 	for facility in complete_reporting_data.keys():
-	 	# generatePdf(facility, complete_reporting_data[facility], now.year)
-	 	generatePdf(facility, complete_reporting_data[facility], 2018)
+		# Run PDF generation for each facility
+	 	generatePdf(facility, complete_reporting_data[facility], now.year)
