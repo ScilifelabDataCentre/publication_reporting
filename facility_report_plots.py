@@ -3,6 +3,8 @@
 
 #Author: Adrian Lärkeryd <adrian.larkeryd@scilifelab.uu.se>
 
+# This is used in facility_report_pdf.py to generate the plots that are to be in the PDF.
+
 import json, time, urllib, os
 
 #Plotting libs

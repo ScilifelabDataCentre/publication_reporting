@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# This is used in the 2018_IAB_plots.py script to handle colours
+
 #Colourblind friendly colour sets
 COLOURS = {
 	1 : ['#4477AA'],

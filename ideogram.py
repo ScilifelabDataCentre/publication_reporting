@@ -3,6 +3,9 @@
 
 #Author: Adrian Lärkeryd <adrian.larkeryd@scilifelab.uu.se>
 
+# This is used in the 2018_IAB script to create the network plot. Source for these functions are plotly, see below.
+# I have made some edits
+
 import random
 import numpy as np
 import plotly
